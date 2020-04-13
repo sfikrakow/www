@@ -25,7 +25,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     'home',
-    'search',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -35,7 +34,6 @@ INSTALLED_APPS = [
     'wagtail.snippets',
     'wagtail.documents',
     'wagtail.images',
-    'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
 
@@ -60,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     'mozilla_django_oidc.middleware.SessionRefresh',
     'sfi_base.middleware.TryAuthenticateMiddleware',
