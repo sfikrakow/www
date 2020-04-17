@@ -20,7 +20,7 @@
 
     {% compress css %}
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/sfi_www.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/test.scss' %}">
 
     {% endcompress %}
@@ -30,7 +30,7 @@
 
     {% compress js preload %}
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/sfi_www.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     {% endcompress %}
 </head>
 
@@ -41,7 +41,7 @@
 
 {% compress js %}
     {# Global javascript #}
-    <script type="text/javascript" src="{% static 'js/sfi_www.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
 {% block extra_js %}
     {# Override this in templates to add extra javascript #}
