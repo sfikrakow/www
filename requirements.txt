@@ -1,3 +1,8 @@
 Django>=3.0,<3.1
 wagtail>=2.8,<2.9
 -e git+https://git.sfi.pl/scm/djbase/django-sfibase.git@eacac9be7a70b54508cfef4ea1483427b3d10ac8#egg=django_sfibase
+django_compressor>=2.4,<2.5
+django-libsass==0.8
+Brotli>=1.0,<1.1
+beautifulsoup4>=4.9.0,<4.10.0
+closure==20191111

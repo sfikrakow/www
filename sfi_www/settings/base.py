@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'compressor',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,6 +143,7 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -155,6 +157,29 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+COMPRESS_FILTERS = {
+    'css': [
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.rCSSMinFilter',
+    ],
+    'js': [
+        'compressor.filters.closure.ClosureCompilerFilter',
+    ],
+}
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+COMPRESS_OFFLINE = True
+
+COMPRESS_STORAGE = 'compressor.storage.BrotliCompressorFileStorage'
+COMPRESS_CLOSURE_COMPILER_BINARY = '/usr/bin/env closure'
+COMPRESS_CLOSURE_COMPILER_ARGUMENTS = '--compilation_level=ADVANCED --warning_level=VERBOSE ' \
+                                      '--summary_detail_level=3 --language_out=ECMASCRIPT5_STRICT'
+COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_OUTPUT_DIR = 'min'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -175,7 +200,4 @@ WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = False
 WAGTAIL_PASSWORD_RESET_ENABLED = False
 WAGTAILUSERS_PASSWORD_ENABLED = False
 WAGTAIL_ENABLE_UPDATE_CHECK = False
-WAGTAIL_FRONTEND_LOGIN_TEMPLATE = '/oidc/authenticate/'
-
-
-
+WAGTAIL_FRONTEND_LOGIN_URL = '/oidc/authenticate/'
