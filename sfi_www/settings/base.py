@@ -61,6 +61,8 @@ THIRD_PARTY_APPS = [
 MY_APPS = [
     'common',
     'home',
+    'blog',
+    'agenda',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + MY_APPS
@@ -135,6 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'common.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
