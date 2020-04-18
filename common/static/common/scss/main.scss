@@ -1,7 +1,19 @@
-$font-stack:    Helvetica, sans-serif;
+$font-stack:    'Open Sans', sans-serif;
 $primary-color: #333;
+$primary-background: #fafafa;
+
+html, body {
+  height: 100%;
+}
 
 body {
-  font: 100% $font-stack;
+  font: 62.5% $font-stack;
   color: $primary-color;
+  background-color: $primary-background;
+}
+
+.container {
+  width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }

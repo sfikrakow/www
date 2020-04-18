@@ -8,25 +8,29 @@
     <title>
         {% block title %}
             {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-        {% endblock %}
+        {% endblock title %}
         {% block title_suffix %}
             {% with self.get_site.site_name as site_name %}
                 {% if site_name %}- {{ site_name }}{% endif %}
             {% endwith %}
-        {% endblock %}
+        {% endblock title_suffix %}
     </title>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     {% compress css %}
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'common/css/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'common/css/normalize.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'common/css/fonts.css' %}">
         <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
-
+        {% block extra_scss %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock extra_scss %}
     {% endcompress %}
+
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
-    {% endblock %}
+    {% endblock extra_css %}
 
     {% compress js preload %}
         {# Global javascript #}
@@ -34,10 +38,10 @@
     {% endcompress %}
 </head>
 
-<body class="{% block body_class %}{% endblock %}">
+<body>
 {% wagtailuserbar %}
 
-{% block content %}{% endblock %}
+{% block content %}{% endblock content %}
 
 {% compress js %}
     {# Global javascript #}
@@ -45,6 +49,6 @@
 {% endcompress %}
 {% block extra_js %}
     {# Override this in templates to add extra javascript #}
-{% endblock %}
+{% endblock extra_js %}
 </body>
 </html>

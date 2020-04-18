@@ -2,12 +2,12 @@
 {% load static %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-homepage{% endblock %}
-
-{% block extra_css %}
-{% endblock extra_css %}
+{% block extra_scss %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'home/scss/home_page.scss' %}">
+{% endblock extra_scss %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <div>{{ page.content | richtext }}</div>
+    <div class="container">
+        <h1 class="title">cool cool</h1>
+    </div>
 {% endblock content %}
