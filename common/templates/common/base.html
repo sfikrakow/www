@@ -41,9 +41,19 @@
 <body>
 {% wagtailuserbar %}
 
-<main class="content">
+<div class="content">
+    <nav class="navbar">
+        <div class="navbar__logo">
+            sfi
+        </div>
+        <div class="navbar__controls">
+            <a href="#" class="controls__control">test</a>
+            <a href="#" class="controls__control">test</a>
+            <a href="#" class="controls__control">test</a>
+        </div>
+    </nav>
     {% block content %}{% endblock content %}
-</main>
+</div>
 
 <footer class="footer">
     <span class="footer__text">Wszelkie prawa zastrzeżone - Studencki Festiwal Informatyczny</span>
