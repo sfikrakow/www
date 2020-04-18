@@ -4,7 +4,7 @@
 ### Shell (quick setup)
 ```shell script
 git clone https://git.sfi.pl/scm/www/wwwsfi.git
-cd enroll
+cd wwwsfi
 virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
