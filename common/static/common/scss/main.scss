@@ -28,6 +28,10 @@ body {
 }
 // End of sticky footer implementation
 
+.hidden {
+  display: none;
+}
+
 .container {
   max-width: 60rem;
   margin: 0 auto;
@@ -62,6 +66,7 @@ body {
 
 .navbar__logo {
   font-size: 2rem;
+  font-weight: 700;
   transition: color 0.3s ease-in-out;
 }
 
@@ -77,10 +82,48 @@ body {
 .controls__control {
   margin-right: 0.8rem;
   text-decoration: none;
+  text-transform: uppercase;
   color: $primary-color;
   transition: color 0.3s ease-in-out;
 }
 
 .controls__control:hover {
   @include navbar_hover($secondary-color);
+}
+
+// Handling the responsive navbar
+@media screen and (max-width: 660px) {
+  .navbar {
+    padding: 0.3rem 1.5rem;
+    flex-direction: column;
+  }
+
+  .navbar__logo {
+    align-self: stretch;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar__controls {
+    display: none;
+  }
+
+  .navbar__controls--show {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .controls__control {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 661px) {
+  .hamburger {
+    display: none;
+  }
 }

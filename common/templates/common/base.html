@@ -22,6 +22,7 @@
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'common/css/normalize.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'common/css/fonts.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'common/css/hamburgers.css' %}">
         <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
         {% block extra_scss %}
             {# Override this in templates to add extra stylesheets #}
@@ -32,10 +33,10 @@
         {# Override this in templates to add extra stylesheets #}
     {% endblock extra_css %}
 
-    {% compress js preload %}
+{#    {% compress js preload %}#}
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'common/js/main.js' %}"></script>
-    {% endcompress %}
+{#        <script type="text/javascript" src="{% static 'common/js/main.js' %}"></script>#}
+{#    {% endcompress %}#}
 </head>
 
 <body>
@@ -45,11 +46,18 @@
     <nav class="navbar">
         <div class="navbar__logo">
             sfi
+            <button id="dropdown" class="hamburger hamburger--emphatic" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
         </div>
+
         <div class="navbar__controls">
-            <a href="#" class="controls__control">test</a>
-            <a href="#" class="controls__control">test</a>
-            <a href="#" class="controls__control">test</a>
+            <a href="#" class="controls__control">16. SFI przeniesione</a>
+            <a href="#" class="controls__control">O nas</a>
+            <a href="#" class="controls__control">FAQ</a>
+            <a href="#" class="controls__control">Newsletter</a>
         </div>
     </nav>
     {% block content %}{% endblock content %}
