@@ -41,7 +41,14 @@
 <body>
 {% wagtailuserbar %}
 
-{% block content %}{% endblock content %}
+<main class="content">
+    {% block content %}{% endblock content %}
+</main>
+
+<footer class="footer">
+    <span class="footer__text">Wszelkie prawa zastrzeżone - Studencki Festiwal Informatyczny</span>
+    <span class="footer__text">Copyright © 2020</span>
+</footer>
 
 {% compress js %}
     {# Global javascript #}

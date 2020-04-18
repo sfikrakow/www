@@ -10,10 +10,35 @@ body {
   font: 62.5% $font-stack;
   color: $primary-color;
   background-color: $primary-background;
+  // Needed for a sticky footer
+  display: flex;
+  flex-direction: column;
 }
 
+// Sticky footer implementation
+.content {
+  flex: 1 0 auto;
+}
+
+%sticky-footer {
+  flex-shrink: 0;
+}
+// End of sticky footer implementation
+
 .container {
-  width: 60rem;
+  max-width: 60rem;
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+.footer {
+  @extend %sticky-footer;
+  background-color: #ddd;
+  text-align: center;
+  padding: 1rem;
+}
+
+.footer__text {
+  font-size: 1rem;
+  display: block;
 }
