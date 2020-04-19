@@ -9,6 +9,8 @@ virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
+python manage.py sync_page_translation_fields
+python manage.py update_translation_fields
 python manage.py runserver
 ```
 ### (alternative) setup with PyCharm
@@ -20,8 +22,13 @@ python manage.py runserver
 * Wait for the project to get indexed
 * Open `Terminal` (not Python Console) in PyCharm
 * Verify that the prompt starts with `(venv)`
-* (in terminal) `pip install -r requirements.txt`
-* (in terminal) `python manage.py migrate`
+* (in terminal)
+```shell script
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py sync_page_translation_fields
+python manage.py update_translation_fields
+```
 * Click on the `manage.py`, PyCharm should reindex the project
 * `Add Configuration...` -> `+` -> `Django Server` -> `OK`
 

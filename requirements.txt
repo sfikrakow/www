@@ -6,3 +6,4 @@ django-libsass==0.8
 Brotli>=1.0,<1.1
 beautifulsoup4>=4.9.0,<4.10.0
 closure==20191111
+wagtail-modeltranslation>=0.10.13,<0.11.0

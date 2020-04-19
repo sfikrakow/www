@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+from django.conf.global_settings import gettext_noop
 from sfi_base.base_settings import *
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,6 +58,9 @@ WAGTAIL_APPS = [
 THIRD_PARTY_APPS = [
     'compressor',
     'sfi_base',
+    'wagtail_modeltranslation',
+    'wagtail_modeltranslation.makemigrations',
+    'wagtail_modeltranslation.migrate',
 ]
 
 MY_APPS = [
@@ -143,6 +148,11 @@ AUTH_USER_MODEL = 'common.User'
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
+LANGUAGES = [
+    ('en', gettext_noop('English')),
+    ('pl', gettext_noop('Polish')),
+]
+
 LANGUAGE_CODE = 'pl'
 
 TIME_ZONE = 'Europe/Warsaw'
@@ -217,3 +227,6 @@ WAGTAIL_PASSWORD_RESET_ENABLED = False
 WAGTAILUSERS_PASSWORD_ENABLED = False
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAIL_FRONTEND_LOGIN_URL = '/oidc/authenticate/'
+
+WAGTAILMODELTRANSLATION_TRANSLATE_SLUGS = False
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
