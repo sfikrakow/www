@@ -32,4 +32,8 @@ python manage.py update_translation_fields
 * Click on the `manage.py`, PyCharm should reindex the project
 * `Add Configuration...` -> `+` -> `Django Server` -> `OK`
 
+## Live reload
+```shell script
+python manage.py livereload
+```
 
