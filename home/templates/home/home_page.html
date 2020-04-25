@@ -2,14 +2,10 @@
 {% load static %}
 {% load wagtailcore_tags %}
 
-{% block extra_scss %}
-<link rel="stylesheet" type="text/x-scss" href="{% static 'home/scss/home_page.scss' %}">
-{% endblock extra_scss %}
-
 {% block content %}
-    <header class="header">
-        <div class="sfi-title">
-            <span class="sfi-edition">16.</span> Studencki Festwial Informatyczny
+    <header class="home-header">
+        <div class="home-header__sfi-title">
+            <span class="home-header__sfi-edition">16.</span> Studencki Festwial Informatyczny
         </div>
     </header>
 {% endblock content %}

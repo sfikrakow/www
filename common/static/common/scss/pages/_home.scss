@@ -1,6 +1,6 @@
-.header {
+.home-header {
   min-height: calc(100vh - 115px);
-  background-image: url('../img/placeholder.jpg');
+  background-image: url('../img/placeholder.jpg'); // relative from main.scss
   background-size: cover;
   background-position: center;
   padding: 0 0.8rem;
@@ -10,8 +10,8 @@
   align-items: center;
 }
 
-.sfi-title {
-  background-color: #000000; // $page_color_2;
+.home-header__sfi-title {
+  background-color: $page_color_2;
   padding: 0.8rem;
   border-radius: 0.8rem;
 
@@ -19,7 +19,7 @@
   text-align: center;
 }
 
-.sfi-edition {
-  color: #e4203b; // $page_color_8;
+.home-header__sfi-edition {
+  color: $page_color_8;
   font-weight: 700;
 }

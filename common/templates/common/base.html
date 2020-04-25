@@ -20,9 +20,6 @@
 
     {% compress css %}
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'common/css/normalize.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'common/css/fonts.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'common/css/hamburgers.css' %}">
         <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
         {% block extra_scss %}
             {# Override this in templates to add extra stylesheets #}

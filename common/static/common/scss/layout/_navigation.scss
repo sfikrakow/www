@@ -7,11 +7,6 @@
   align-items: center;
 }
 
-@mixin navbar_hover($color) {
-  color: $color;
-  cursor: pointer;
-}
-
 .navbar__logo {
   font-size: 2rem;
   font-weight: 700;
