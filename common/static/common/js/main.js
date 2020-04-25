@@ -1,8 +1,8 @@
 const $hamburgerBtn = document.querySelector('#dropdown');
-const $navbarControls = document.querySelector('.navbar__controls');
+const $navbarLinks = document.querySelector('.navbar__links');
 
-// Toggle the hamburger button and the navbar controls on click
+// Toggle the hamburger button and the navbar links on click
 $hamburgerBtn.addEventListener('click', (e) => {
-    e.currentTarget.classList.toggle('is-active');
-    $navbarControls.classList.toggle('navbar__controls--show')
-})
+  $hamburgerBtn.classList.toggle('is-active');
+  $navbarLinks.classList.toggle('navbar__links--show');
+});

@@ -43,30 +43,12 @@
 {% wagtailuserbar %}
 
 <div class="content">
-    <nav class="navbar">
-        <div class="navbar__logo">
-            sfi
-            <button id="dropdown" class="hamburger hamburger--emphatic" type="button">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-          </span>
-        </button>
-        </div>
-
-        <div class="navbar__controls">
-            <a href="#" class="controls__control">16. SFI przeniesione</a>
-            <a href="#" class="controls__control">O nas</a>
-            <a href="#" class="controls__control">FAQ</a>
-            <a href="#" class="controls__control">Newsletter</a>
-        </div>
-    </nav>
+    {% include 'common/partials/navbar.html' %}
     {% block content %}{% endblock content %}
 </div>
 
-<footer class="footer">
-    <span class="footer__text">Wszelkie prawa zastrzeżone - Studencki Festiwal Informatyczny</span>
-    <span class="footer__text">Copyright © 2020</span>
-</footer>
+
+{% include 'common/partials/footer.html' %}
 
 {% compress js %}
     {# Global javascript #}

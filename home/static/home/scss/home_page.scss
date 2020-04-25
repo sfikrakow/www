@@ -1,9 +1,25 @@
-.article {
-  padding: 2rem 1rem;
+.header {
+  min-height: calc(100vh - 115px);
+  background-image: url('../img/placeholder.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 0 0.8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.title {
-  color: cadetblue;
-  margin: 0;
+.sfi-title {
+  background-color: #000000; // $page_color_2;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+
   font-size: 2.3rem;
+  text-align: center;
+}
+
+.sfi-edition {
+  color: #e4203b; // $page_color_8;
+  font-weight: 700;
 }
