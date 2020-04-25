@@ -1,7 +1,22 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
-}
+@import 'components/hamburgers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+@import 'base/universal';
+
+@import 'layout/navigation';
+@import 'layout/footer';
+@import 'layout/forms';
+
+@import 'components/buttons';
+//@import 'components/carousel';
+//@import 'components/slider';
+
+@import 'pages/home';
+@import 'pages/about';
+@import 'pages/faq';
+@import 'pages/newsletter';

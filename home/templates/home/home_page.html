@@ -2,12 +2,10 @@
 {% load static %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-homepage{% endblock %}
-
-{% block extra_css %}
-{% endblock extra_css %}
-
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <div>{{ page.content | richtext }}</div>
+    <header class="home-header">
+        <div class="home-header__sfi-title">
+            <span class="home-header__sfi-edition">16.</span> Studencki Festwial Informatyczny
+        </div>
+    </header>
 {% endblock content %}

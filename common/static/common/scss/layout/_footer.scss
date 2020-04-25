@@ -1,0 +1,12 @@
+.footer {
+  @extend %sticky-footer;
+  background-color: $page_color_2;
+  color: $page_color_6;
+  text-align: center;
+  padding: 1rem;
+}
+
+.footer__text {
+  font-size: 1rem;
+  display: block;
+}

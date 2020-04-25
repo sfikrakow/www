@@ -1,0 +1,82 @@
+.navbar {
+  background-color: $page_color_2;
+  padding: 0.8rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__logo {
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: $page_color_1;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar__links {
+  font-size: 1.2rem;
+
+  display: flex;
+}
+
+.navbar__link {
+  margin-right: 0.8rem;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  color: $page_color_1;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar__link:hover {
+  @include navbar_hover($page_color_10);
+}
+
+// Handling the responsive navbar
+@media screen and (max-width: 660px) {
+  .navbar {
+    padding: 0.3rem 1.5rem;
+
+    flex-direction: column;
+  }
+
+  .navbar__logo {
+    align-self: stretch;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar__links {
+    display: flex;
+    flex-direction: column;
+
+    /* Animate the dropdown */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  .navbar__links--show {
+    max-height: 1000px;
+  }
+
+  .navbar__link {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .navbar__link:first-of-type {
+    margin-top: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 661px) {
+  .hamburger {
+    display: none;
+  }
+}
