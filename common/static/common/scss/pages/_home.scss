@@ -1,9 +1,11 @@
 .home-header {
+  margin-top: 66px;
   min-height: calc(100vh - 115px);
-  background-image: url('../img/placeholder.jpg'); // relative from main.scss
+  background-image: url('../img/slide-1.jpg'); // relative from main.scss
   background-size: cover;
   background-position: center;
   padding: 0 0.8rem;
+  animation: slider 10s infinite;
 
   display: flex;
   justify-content: center;
@@ -21,5 +23,28 @@
   &__sfi-edition {
     color: $page_color_8;
     font-weight: 700;
+  }
+}
+@keyframes slider {
+  0% {
+    background-image:url('../img/slide-1.jpg');
+  }
+  45% {
+    background-image:url('../img/slide-1.jpg');
+  }
+  55% {
+    background-image:url('../img/slide-2.jpg');
+  }
+  90% {
+    background-image:url('../img/slide-2.jpg');
+  }
+  100% {
+    background-image:url('../img/slide-1.jpg');
+  }
+}
+
+@media (max-width: 768px) {
+  .home-header {
+   margin-top: 56px;
   }
 }
