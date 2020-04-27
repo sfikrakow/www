@@ -69,6 +69,7 @@ MY_APPS = [
     'home',
     'blog',
     'agenda',
+    'pages',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + MY_APPS
