@@ -19,7 +19,7 @@ class SpeakerIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Speaker.objects.live().public().order_by('last_name')
+        all_posts = Speaker.objects.live().public()
         paginator = Paginator(all_posts, SpeakerIndex.SPEAKERS_PER_PAGE)
         page = request.GET.get('page')
         try:
@@ -34,8 +34,6 @@ class SpeakerIndex(SFIPage):
 
 class Speaker(SFIPage):
     content = RichTextField()
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('content')
