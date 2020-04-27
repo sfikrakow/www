@@ -7,7 +7,7 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
-from wagtail.images.edit_handlers import ImageChooserPanel
+from django.forms.widgets import TextInput
 
 from common.models import SFIPage
 
@@ -112,7 +112,7 @@ class Category(SFIPage):
     content_panels = SFIPage.content_panels + [
         FieldPanel('name'),
         FieldPanel('icon'),
-        FieldPanel('color')
+        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'}))
     ]
 
     parent_page_types = ['CategoryIndex']
