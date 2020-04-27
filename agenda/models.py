@@ -7,6 +7,7 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from common.models import SFIPage
 
