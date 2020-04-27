@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <section class="post">
+        <div class="post__header">
+            <div class="post__header-image">
+                <div class="post__sfi-edition-info">
+                    <p class="post__sfi-edition">16 edycja</p>
+                    <p class="post__sfi-year">2020</p>
+                </div>
+            </div>
+            <div class="post__header-title">
+                <p class="post__title">{{ page.title }}</p>
+                <p class="post__date">{{ page.date | date}}</p>
+            </div>
+        </div>
+        <div class="post__body">
+            {% image page.featured_image width-200 class="post__body-image" %}
+            <div class="post__body-content">
+                {{ page.content | richtext }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
