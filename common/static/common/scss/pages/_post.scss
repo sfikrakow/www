@@ -26,6 +26,9 @@
     margin: 1rem 0;
     border-radius: 15px;
 
+    color: $page_color_1;
+    text-decoration: none;
+
     &:hover {
       .post-list__title {
         color: $page_color_10;
@@ -45,6 +48,13 @@
   &__post-info {
     flex-basis: 60%;
     padding: 0 0.8rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__info-container {
+    flex: 1 0 auto;
   }
 
   &__title {
@@ -66,9 +76,9 @@
   }
 
   &__read-more {
+    @extend %sticky-footer;
     font-size: 1rem;
     text-align: right;
-    margin-top: 3.6rem;
   }
 }
 
@@ -183,10 +193,6 @@
       flex-direction: column;
 
       max-width: 85%;
-    }
-
-    &__read-more {
-      margin-top: 4.6rem;
     }
   }
 
