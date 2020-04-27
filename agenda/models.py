@@ -7,6 +7,7 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from common.models import SFIPage
 
@@ -74,10 +75,10 @@ class Edition(SFIPage):
     ]
 
     parent_page_types = ['EditionIndex']
-    subpage_types = ['Categories', 'Events']
+    subpage_types = ['CategoryIndex', 'EventIndex']
 
 
-class Categories(SFIPage):
+class CategoryIndex(SFIPage):
     subpage_types = ['Category']
     parent_page_types = ['Edition']
 
@@ -86,7 +87,7 @@ class Categories(SFIPage):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         all_posts = Category.objects.live().public().order_by('name')
-        paginator = Paginator(all_posts, Categories.CATEGORIES_PER_PAGE)
+        paginator = Paginator(all_posts, CategoryIndex.CATEGORIES_PER_PAGE)
         page = request.GET.get('page')
         try:
             categories = paginator.page(page)
@@ -100,7 +101,13 @@ class Categories(SFIPage):
 
 class Category(SFIPage):
     name = models.CharField(max_length=300)
-    icon = models.ImageField("Icon")
+    icon = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     color = models.CharField("Category color",
                              max_length=7,
                              default='#23211f',
@@ -110,11 +117,17 @@ class Category(SFIPage):
                              ),
                              ])
 
-    parent_page_types = ['Categories']
+    content_panels = SFIPage.content_panels + [
+        FieldPanel('name'),
+        ImageChooserPanel('icon'),
+        FieldPanel('color')
+    ]
+
+    parent_page_types = ['CategoryIndex']
     subpage_types = []
 
 
-class Events(SFIPage):
+class EventIndex(SFIPage):
     parent_page_types = ['Edition']
     subpage_types = ['Event']
 
@@ -123,7 +136,7 @@ class Events(SFIPage):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         all_posts = Event.objects.live().public().order_by('-date')
-        paginator = Paginator(all_posts, Events.EVENTS_PER_PAGE)
+        paginator = Paginator(all_posts, EventIndex.EVENTS_PER_PAGE)
         page = request.GET.get('page')
         try:
             events = paginator.page(page)
@@ -138,8 +151,15 @@ class Events(SFIPage):
 class Event(SFIPage):
     content = RichTextField()
     date = models.DateTimeField()
-    speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    event_speaker = models.ForeignKey(Speaker, null=True, on_delete=models.SET_NULL)
+    event_category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
 
-    parent_page_types = ['Events']
+    content_panels = SFIPage.content_panels + [
+        FieldPanel('content'),
+        FieldPanel('date'),
+        FieldPanel('event_speaker'),
+        FieldPanel('event_category')
+    ]
+
+    parent_page_types = ['EventIndex']
     subpage_types = []
