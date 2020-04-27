@@ -7,5 +7,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL('DROP TABLE IF EXISTS home_homepage CASCADE')
+        migrations.RunSQL('DROP TABLE IF EXISTS home_homepage')
     ]
