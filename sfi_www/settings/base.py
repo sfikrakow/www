@@ -53,6 +53,7 @@ WAGTAIL_APPS = [
     'wagtail.core',
     'modelcluster',
     'taggit',
+    'wagtail.contrib.modeladmin',
 ]
 
 THIRD_PARTY_APPS = [
@@ -66,7 +67,6 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     'common',
-    'home',
     'blog',
     'agenda',
     'pages',
