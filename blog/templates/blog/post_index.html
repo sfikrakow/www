@@ -1,63 +1,21 @@
 {% extends 'common/base.html' %}
+{% load wagtailcore_tags %}
 
 {% block content %}
-<section class="post-list">
-    <h2 class="post-list__main-title">Aktualności</h2>
-    <div class="post-list__container">
-       <div class="post-list__single-post">
-            <div class="post-list__image"></div>
-            <div class="post-list__post-info">
-                <p class="post-list__title">Pzykładowy tytuł</p>
-                <p class="post-list__date">26 marca 2020</p>
-                <p class="post-list__post-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum lacus, feugiat vel enim sit.</p>
-                <p class="post-list__read-more">Czytaj dalej...</p>
-            </div>
+    <section class="post-list">
+        <h2 class="post-list__main-title">{{ page.title }}</h2>
+        <div class="post-list__container">
+            {% for post in posts %}
+                <div class="post-list__single-post">
+                    <div class="post-list__image">{# TODO: featured_image #}</div>
+                    <div class="post-list__post-info">
+                        <p class="post-list__title">{{ post.title }}</p>
+                        <p class="post-list__date">{{ post.date }}</p>
+                        <p class="post-list__post-content">{{ post.content | richtext | truncatewords_html:15 }}</p>
+                        <p class="post-list__read-more">Czytaj dalej...</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        <div class="post-list__single-post">
-            <div class="post-list__image"></div>
-            <div class="post-list__post-info">
-                <p class="post-list__title">Pzykładowy tytuł</p>
-                <p class="post-list__date">26 marca 2020</p>
-                <p class="post-list__post-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum lacus, feugiat vel enim sit.</p>
-                <p class="post-list__read-more">Czytaj dalej...</p>
-            </div>
-        </div>
-        <div class="post-list__single-post">
-            <div class="post-list__image"></div>
-            <div class="post-list__post-info">
-                <p class="post-list__title">Pzykładowy tytuł</p>
-                <p class="post-list__date">26 marca 2020</p>
-                <p class="post-list__post-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum lacus, feugiat vel enim sit.</p>
-                <p class="post-list__read-more">Czytaj dalej...</p>
-            </div>
-        </div>
-        <div class="post-list__single-post">
-            <div class="post-list__image"></div>
-            <div class="post-list__post-info">
-                <p class="post-list__title">Pzykładowy tytuł</p>
-                <p class="post-list__date">26 marca 2020</p>
-                <p class="post-list__post-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum lacus, feugiat vel enim sit.</p>
-                <p class="post-list__read-more">Czytaj dalej...</p>
-            </div>
-        </div>
-        <div class="post-list__single-post">
-            <div class="post-list__image"></div>
-            <div class="post-list__post-info">
-                <p class="post-list__title">Pzykładowy tytuł</p>
-                <p class="post-list__date">27.07.2020</p>
-                <p class="post-list__post-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum lacus, feugiat vel enim sit.</p>
-                <p class="post-list__read-more">Czytaj dalej...</p>
-            </div>
-        </div>
-        <div class="post-list__single-post">
-            <div class="post-list__image"></div>
-            <div class="post-list__post-info">
-                <p class="post-list__title">Pzykładowy tytuł</p>
-                <p class="post-list__date">26 marca 2020</p>
-                <p class="post-list__post-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum lacus, feugiat vel enim sit.</p>
-                <p class="post-list__read-more">Czytaj dalej...</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
