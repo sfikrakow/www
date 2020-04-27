@@ -11,7 +11,7 @@
                     <div class="post-list__post-info">
                         <p class="post-list__title">{{ post.title }}</p>
                         <p class="post-list__date">{{ post.date }}</p>
-                        <p class="post-list__post-content">{{ post.content | richtext | truncatewords_html:15 }}</p>
+                        <p class="post-list__post-content">{{ post.content | striptags | truncatewords:15 }}</p>
                         <p class="post-list__read-more">Czytaj dalej...</p>
                     </div>
                 </div>
