@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from django.core.validators import RegexValidator
@@ -65,7 +65,8 @@ class EditionIndex(SFIPage):
 
 class Edition(SFIPage):
     number = models.IntegerField("Edition number")
-    start_date = models.DateTimeField("Edition date", default=datetime.now)
+    start_date = models.DateTimeField("Edition start date", default=datetime.now)
+    end_date = models.DateTimeField("Edition end date", default=datetime.now)
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('number'),
@@ -150,7 +151,7 @@ class Event(SFIPage):
         FieldPanel('content'),
         FieldPanel('date'),
         FieldPanel('event_speaker'),
-        FieldPanel('event_category')
+        PageChooserPanel('event_category')
     ]
 
     parent_page_types = ['EventIndex']
