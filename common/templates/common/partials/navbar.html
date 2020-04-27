@@ -1,12 +1,7 @@
+{% load static %}
+
 <nav class="navbar">
-    <div class="navbar__logo">
-        sfi
-        <button id="dropdown" class="hamburger hamburger--emphatic" type="button">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
-    </div>
+    <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="logo">
 
     <div class="navbar__links">
         <a href="#" class="navbar__link">16. SFI przeniesione</a>
@@ -14,4 +9,10 @@
         <a href="#" class="navbar__link">FAQ</a>
         <a href="#" class="navbar__link">Newsletter</a>
     </div>
+<button class="hamburger">
+        <span class="hamburger__outer">
+            <span class="hamburger__inner">
+            </span>
+        </span>
+    </button>
 </nav>
