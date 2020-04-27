@@ -8,18 +8,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.home-header__sfi-title {
-  background-color: $page_color_2;
-  padding: 0.8rem;
-  border-radius: 0.8rem;
+  &__sfi-title {
+    background-color: $page_color_2;
+    padding: 0.8rem;
+    border-radius: 0.8rem;
 
-  font-size: 2.3rem;
-  text-align: center;
-}
+    font-size: 2.3rem;
+    text-align: center;
+  }
 
-.home-header__sfi-edition {
-  color: $page_color_8;
-  font-weight: 700;
+  &__sfi-edition {
+    color: $page_color_8;
+    font-weight: 700;
+  }
 }

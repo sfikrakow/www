@@ -4,9 +4,9 @@
   color: $page_color_6;
   text-align: center;
   padding: 1rem;
-}
 
-.footer__text {
-  font-size: 1rem;
-  display: block;
+  &__text {
+    font-size: 1rem;
+    display: block;
+  }
 }

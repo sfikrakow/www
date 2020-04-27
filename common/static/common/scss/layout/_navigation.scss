@@ -5,34 +5,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.navbar__logo {
-  font-size: 2rem;
-  font-weight: 700;
+  &__logo {
+    font-size: 2rem;
+    font-weight: 700;
 
-  color: $page_color_1;
-  transition: color 0.3s ease-in-out;
-}
+    color: $page_color_1;
+    transition: color 0.3s ease-in-out;
+  }
 
-.navbar__links {
-  font-size: 1.2rem;
+  &__links {
+    font-size: 1.2rem;
 
-  display: flex;
-}
+    display: flex;
+  }
 
-.navbar__link {
-  margin-right: 0.8rem;
+  &__link {
+    margin-right: 0.8rem;
 
-  text-decoration: none;
-  text-transform: uppercase;
+    text-decoration: none;
+    text-transform: uppercase;
 
-  color: $page_color_1;
-  transition: color 0.3s ease-in-out;
-}
+    color: $page_color_1;
+    transition: color 0.3s ease-in-out;
 
-.navbar__link:hover {
-  @include navbar_hover($page_color_10);
+    &:hover {
+      @include navbar_hover($page_color_10);
+    }
+  }
+
 }
 
 // Handling the responsive navbar
@@ -41,37 +42,37 @@
     padding: 0.3rem 1.5rem;
 
     flex-direction: column;
-  }
 
-  .navbar__logo {
-    align-self: stretch;
+    &__logo {
+      align-self: stretch;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .navbar__links {
-    display: flex;
-    flex-direction: column;
+    &__links {
+      display: flex;
+      flex-direction: column;
 
-    /* Animate the dropdown */
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out;
-  }
+      /* Animate the dropdown */
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
 
-  .navbar__links--show {
-    max-height: 1000px;
-  }
+      &--show {
+        max-height: 1000px;
+      }
+    }
 
-  .navbar__link {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
+    &__link {
+      margin-right: 0;
+      margin-bottom: 1rem;
 
-  .navbar__link:first-of-type {
-    margin-top: 1.3rem;
+      &:first-of-type {
+        margin-top: 1.3rem;
+      }
+    }
   }
 }
 
