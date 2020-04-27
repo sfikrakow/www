@@ -7,7 +7,6 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from common.models import SFIPage
 
@@ -19,7 +18,7 @@ class SpeakerIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Speaker.objects.live().public()
+        all_posts = Speaker.objects.live().public().order_by('last_name')
         paginator = Paginator(all_posts, SpeakerIndex.SPEAKERS_PER_PAGE)
         page = request.GET.get('page')
         try:
@@ -34,6 +33,8 @@ class SpeakerIndex(SFIPage):
 
 class Speaker(SFIPage):
     content = RichTextField()
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('content')
@@ -99,13 +100,7 @@ class CategoryIndex(SFIPage):
 
 class Category(SFIPage):
     name = models.CharField(max_length=300)
-    icon = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    icon = models.CharField(max_length=300)
     color = models.CharField("Category color",
                              max_length=7,
                              default='#23211f',
@@ -117,7 +112,7 @@ class Category(SFIPage):
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('name'),
-        ImageChooserPanel('icon'),
+        FieldPanel('icon'),
         FieldPanel('color')
     ]
 
