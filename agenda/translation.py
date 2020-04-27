@@ -1,7 +1,7 @@
 from modeltranslation.decorators import register
 from modeltranslation.translator import TranslationOptions
 
-from agenda.models import SpeakerIndex, Speaker, Edition, EditionIndex, Categories, Category, Events, Event
+from agenda.models import SpeakerIndex, Speaker, Edition, EditionIndex, CategoryIndex, Category, EventIndex, Event
 
 
 @register(SpeakerIndex)
@@ -24,8 +24,8 @@ class EditionTR(TranslationOptions):
     pass
 
 
-@register(Categories)
-class CategoriesTR(TranslationOptions):
+@register(CategoryIndex)
+class CategoryIndexTR(TranslationOptions):
     pass
 
 
@@ -34,8 +34,8 @@ class CategoryTR(TranslationOptions):
     fields = ('name',)
 
 
-@register(Events)
-class EventsTR(TranslationOptions):
+@register(EventIndex)
+class EventIndexTR(TranslationOptions):
     pass
 
 
