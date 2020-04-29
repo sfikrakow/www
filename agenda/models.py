@@ -64,13 +64,12 @@ class EditionIndex(SFIPage):
 
 
 class Edition(SFIPage):
-    number = models.IntegerField("Edition number")
-    start_date = models.DateTimeField("Edition start date", default=datetime.now)
-    end_date = models.DateTimeField("Edition end date", default=datetime.now)
+    start_date = models.DateTimeField("Edition start date", null=True, blank=True)
+    end_date = models.DateTimeField("Edition end date", null=True, blank=True)
 
     content_panels = SFIPage.content_panels + [
-        FieldPanel('number'),
-        FieldPanel('start_date')
+        FieldPanel('start_date'),
+        FieldPanel('end_date'),
     ]
 
     parent_page_types = ['EditionIndex']
@@ -99,7 +98,6 @@ class CategoryIndex(SFIPage):
 
 
 class Category(SFIPage):
-    name = models.CharField(max_length=300)
     icon = models.CharField(max_length=300)
     color = models.CharField("Category color",
                              max_length=7,
@@ -111,7 +109,6 @@ class Category(SFIPage):
                              ])
 
     content_panels = SFIPage.content_panels + [
-        FieldPanel('name'),
         FieldPanel('icon'),
         FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'}))
     ]

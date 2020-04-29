@@ -31,7 +31,7 @@ class CategoryIndexTR(TranslationOptions):
 
 @register(Category)
 class CategoryTR(TranslationOptions):
-    fields = ('name',)
+    pass
 
 
 @register(EventIndex)
