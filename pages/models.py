@@ -13,7 +13,7 @@ class StaticPage(SFIPage):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('post_index', PostIndexBlock()),
-    ])
+    ], null=True, blank=True)
 
     content_panels = SFIPage.content_panels + [
         StreamFieldPanel('content'),
