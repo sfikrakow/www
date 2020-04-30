@@ -1,16 +1,35 @@
 {% load static %}
+{% load i18n %}
 
 <nav class="navbar">
-    <a href="/">
-        <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="logo">
-    </a>
+    {% get_available_languages as languages %}
+    {% get_current_language as lang %}
+    {% for lang_code, lang_name in languages %}
+        {% if page and lang == lang_code %}
+            {% language lang_code %}
+                 <a href="/{{ lang_code }}">
+                    <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="logo">
+                 </a>
+            {% endlanguage %}
+        {% endif %}
+    {% endfor %}
 
     <div class="navbar__links">
         <a href="#" class="navbar__link">16. SFI przeniesione</a>
         <a href="#" class="navbar__link">O nas</a>
         <a href="#" class="navbar__link">FAQ</a>
         <a href="#" class="navbar__link">Newsletter</a>
+        {% get_available_languages as languages %}
+        {% get_current_language as lang %}
+        {% for lang_code, lang_name in languages %}
+             {% if page and lang != lang_code %}
+            {% language lang_code %}
+                <a class="navbar__link" id="navbar__last" href="{{ page.url }}"><img class ="navbar__image" src="{% static 'common/img/icon-' %}{{ lang_code }}.png"></a>
+            {% endlanguage %}
+        {% endif %}
+    {% endfor %}
     </div>
+
 <button class="hamburger">
         <span class="hamburger__outer">
             <span class="hamburger__inner">

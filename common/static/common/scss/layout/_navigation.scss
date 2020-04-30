@@ -20,6 +20,9 @@
   &__links {
     margin-right: 50px;
     display: flex;
+    &:nth-last-child(1)::after {
+      display: none;
+    }
   }
   &__link {
     text-decoration: none;
@@ -35,6 +38,7 @@
       background-color: $page_color_10;
       transition: width 0.5s;
     }
+
     &:hover {
       color: $page_color_10;
       background-size: 100% .1em;
@@ -44,6 +48,17 @@
       }
     }
   }
+  &__image {
+    margin-left: 20px;
+    width: 1.6rem;
+    transform: translateY(5%);
+  }
+}
+
+#navbar__last:hover {
+  &::after {
+        width: 0;
+      }
 }
 
 @media (max-width: 768px) {
@@ -70,6 +85,9 @@
       transform: translateY(-100%);
       z-index: 1;
       transition: 0.3s;
+    }
+    &__image {
+    margin-left: 0;
     }
 
     &__link {
