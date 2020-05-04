@@ -10,8 +10,8 @@ class PostIndexBlock(StructBlock):
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
         context['posts'] = Post.objects.live().public() \
-            .descendant_of(value['index']).order_by('-date')[
-            :value['shown_posts']]
+                               .descendant_of(value['index']).order_by('-date')[
+                           :value['shown_posts']]
         return context
 
     class Meta:

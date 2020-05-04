@@ -1,0 +1,24 @@
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <section class="post-list">
+        <h2 class="post-list__main-title">{{ page.title }}</h2>
+        <div class="post-list__container">
+            {% for post in posts %}
+                <a href="{{ post.url }}" class="post-list__single-post">
+                    <div class="post-list__image">{# TODO: featured_image #}</div>
+                    <div class="post-list__post-info">
+                        <div class="post-list__info-container">
+                            <p class="post-list__title">{{ post.title }}</p>
+                            <p class="post-list__date">{{ post.date }}</p>
+                            <p class="post-list__post-content">{{ post.content | striptags | truncatewords_html:15 }}</p>
+                        </div>
+                        <p class="post-list__read-more">Czytaj dalej...</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        {# TODO: style #}
+        <a href="{% pageurl value.index %}">Więcej...</a>
+    </section>
+{% endblock %}
