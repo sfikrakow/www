@@ -140,14 +140,14 @@ class EventIndex(SFIPage):
 
 class Event(SFIPage):
     content = RichTextField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True, blank=True)
     event_speaker = models.ForeignKey(Speaker, null=True, on_delete=models.SET_NULL)
     event_category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('content'),
         FieldPanel('date'),
-        FieldPanel('event_speaker'),
+        PageChooserPanel('event_speaker'),
         PageChooserPanel('event_category')
     ]
 

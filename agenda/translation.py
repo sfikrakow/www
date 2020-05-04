@@ -41,4 +41,4 @@ class EventIndexTR(TranslationOptions):
 
 @register(Event)
 class EventTR(TranslationOptions):
-    field = ('content',)
+    fields = ('content',)
