@@ -20,16 +20,13 @@
   &__links {
     margin-right: 50px;
     display: flex;
-    &:nth-last-child(1)::after {
-      display: none;
-    }
+    list-style-type: none;
   }
-  &__link {
-    text-decoration: none;
-    color: $page_color_1;
-    font-size: 1.3rem;
+
+  &__li {
     margin-right: 15px;
     transition: 0.5s;
+
     &::after {
       content: "";
       display: block;
@@ -48,6 +45,14 @@
       }
     }
   }
+
+  &__link {
+    text-decoration: none;
+    color: $page_color_1;
+    font-size: 1.3rem;
+
+  }
+
   &__image {
     margin-left: 20px;
     width: 1.6rem;
@@ -57,8 +62,8 @@
 
 #navbar__last:hover {
   &::after {
-        width: 0;
-      }
+    width: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -66,12 +71,14 @@
     height: 30px;
     z-index: 2;
     border-bottom: solid 1px $page_color_6;
+
     &__logo {
       width: 40px;
       left: 0;
     }
 
     &__links {
+      margin: 0;
       position: fixed;
       flex-direction: column;
       background-color: $page_color_2;
@@ -80,19 +87,22 @@
       top: 0;
       left: 0;
       padding-top: 70px;
+      padding-left: 0;
       justify-content: center;
       align-content: center;
       transform: translateY(-100%);
       z-index: 1;
       transition: 0.3s;
     }
+
     &__image {
-    margin-left: 0;
+      margin-left: 0;
     }
 
-    &__link {
+    &__li {
       margin: 0 auto 5px auto;
     }
+
     &__logo {
       z-index: 2;
     }

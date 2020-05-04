@@ -8,23 +8,36 @@
         <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="logo">
     </a>
 
-    <div class="navbar__links">
-        <a href="#" class="navbar__link">16. SFI przeniesione</a>
-        <a href="#" class="navbar__link">O nas</a>
-        <a href="#" class="navbar__link">FAQ</a>
-        <a href="#" class="navbar__link">Newsletter</a>
-        {% get_available_languages as languages %}
-        {% get_current_language as lang %}
-        {% for lang_code, lang_name in languages %}
-             {% if page and lang != lang_code %}
-            {% language lang_code %}
-                <a class="navbar__link" id="navbar__last" href="{{ page.url }}"><img class ="navbar__image" src="{% static 'common/img/icon-' %}{{ lang_code }}.png"></a>
-            {% endlanguage %}
-        {% endif %}
-    {% endfor %}
-    </div>
+    <ul class="navbar__links">
+        <li class="navbar__li">
+            <a href="#" class="navbar__link">16. SFI przeniesione</a>
+        </li>
+        <li class="navbar__li">
+            <a href="#" class="navbar__link">O nas</a>
+        </li>
+        <li class="navbar__li">
+            <a href="#" class="navbar__link">FAQ</a>
+        </li>
+        <li class="navbar__li">
+            <a href="#" class="navbar__link">Newsletter</a>
+        </li>
+        <li class="navbar__li"  id="navbar__last">
+            {% get_available_languages as languages %}
+            {% get_current_language as lang %}
+            {% for lang_code, lang_name in languages %}
+                {% if page and lang != lang_code %}
+                    {% language lang_code %}
+                        <a class="navbar__link" href="{{ page.url }}">
+                            <img class="navbar__image" src="{% static 'common/img/icon-' %}{{ lang_code }}.png">
+                        </a>
+                    {% endlanguage %}
+                {% endif %}
+            {% endfor %}
+        </li>
 
-<button class="hamburger">
+    </ul>
+
+    <button class="hamburger">
         <span class="hamburger__outer">
             <span class="hamburger__inner">
             </span>
