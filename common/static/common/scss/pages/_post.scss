@@ -163,17 +163,37 @@
     flex-basis: 60%;
     font-size: 1rem;
 
-    h1,
     h2,
     h3,
     h4,
-    h5,
-    h6,
     p {
-      margin: 1rem 0;
-
-      &:first-of-type {
+      &:first-child {
         margin-top: 0;
+      }
+    }
+
+    p {
+      line-height: 1.4;
+    }
+
+    // Responsive image
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    // Prevent link overflows in the lists
+    ul, ol {
+      overflow: hidden;
+    }
+
+    a {
+      color: $page_color_11;
+      text-decoration: none;
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        color: $page_color_10;
       }
     }
   }
@@ -228,10 +248,15 @@
 
 @media screen and (max-width: 680px) {
   .post {
+    &__header-title {
+      padding: 0 1rem;
+    }
+
     &__body {
-      width: 100%;
+      max-width: 100%;
 
       flex-direction: column;
+      justify-content: center;
     }
 
     &__body-image {
