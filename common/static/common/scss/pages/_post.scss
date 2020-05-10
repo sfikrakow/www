@@ -161,41 +161,6 @@
 
   &__body-content {
     flex-basis: 60%;
-    font-size: 1rem;
-
-    h2,
-    h3,
-    h4,
-    p {
-      &:first-child {
-        margin-top: 0;
-      }
-    }
-
-    p {
-      line-height: 1.4;
-    }
-
-    // Responsive image
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    // Prevent link overflows in the lists
-    ul, ol {
-      overflow: hidden;
-    }
-
-    a {
-      color: $page_color_11;
-      text-decoration: none;
-      transition: all .3s ease-in-out;
-
-      &:hover {
-        color: $page_color_10;
-      }
-    }
   }
 }
 

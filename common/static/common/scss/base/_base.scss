@@ -24,3 +24,73 @@ body {
   flex-shrink: 0;
 }
 // End of sticky footer implementation
+
+// WAGTAIL styles
+.rich-text {
+  font-size: 1rem;
+  line-height: 1.4;
+
+  h2,
+  h3,
+  h4,
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.5));
+  }
+
+  // Responsive image
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  // Prevent link overflows in the lists
+  ul, ol {
+    overflow: hidden;
+  }
+
+  a {
+    color: $page_color_11;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: $page_color_10;
+    }
+  }
+}
+
+.block {
+  &-heading {
+    font-size: 2.3rem;
+    font-weight: 700;
+    padding: 1rem;
+  }
+
+  &-image {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &-paragraph {
+    padding: 1.2rem;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .block-paragraph {
+    max-width: 100%;
+  }
+}
+// end of WAGTAIL styles
