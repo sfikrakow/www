@@ -72,7 +72,11 @@ MY_APPS = [
     'pages',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + MY_APPS
+OVERRIDE_APPS = [
+    'dashboard'
+]
+
+INSTALLED_APPS = OVERRIDE_APPS + DJANGO_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + MY_APPS
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
