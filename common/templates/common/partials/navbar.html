@@ -21,14 +21,16 @@
         <li class="navbar__li">
             <a href="#" class="navbar__link">Newsletter</a>
         </li>
-        <li class="navbar__li"  id="navbar__last">
+        <li class="navbar__li" id="navbar__last">
             {% get_available_languages as languages %}
             {% get_current_language as lang %}
             {% for lang_code, lang_name in languages %}
                 {% if page and lang != lang_code %}
                     {% language lang_code %}
                         <a class="navbar__link" href="{{ page.url }}">
-                            <img class="navbar__image" src="{% static 'common/img/icon-' %}{{ lang_code }}.png">
+                            {% with 'common/img/icon-'|add:lang_code|add:'.png' as lang_icon %}
+                                <img class="navbar__image" src="{% static lang_icon %}" alt="{{ lang_name }} version icon">
+                            {% endwith %}
                         </a>
                     {% endlanguage %}
                 {% endif %}

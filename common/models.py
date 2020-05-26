@@ -18,9 +18,9 @@ class SFIPage(Page):
         related_name='+'
     )
 
-    promote_panels = [
+    content_panels = Page.content_panels + [
         ImageChooserPanel('featured_image'),
-    ] + Page.promote_panels
+    ]
 
     class Meta:
         abstract = True
