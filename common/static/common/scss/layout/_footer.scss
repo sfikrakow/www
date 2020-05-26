@@ -1,12 +1,39 @@
 .footer {
   @extend %sticky-footer;
-  background-color: $page_color_2;
-  color: $page_color_6;
-  text-align: center;
-  padding: 1rem;
+
+  &__orgs {
+    padding: 2rem 0;
+    background: $page_color_7;
+    color: $page_color_6;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    &__single {
+      & img {
+        height: 8rem;
+        width: auto;
+        color: $page_color_6;
+        transition: filter 0.3s;
+        padding: 0.75rem;
+
+        &:hover {
+          filter: brightness(250%);
+        }
+      }
+    }
+  }
+
+  &__copyright {
+    background-color: $page_color_2;
+    color: $page_color_6;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+  }
 
   &__text {
     font-size: 1rem;
-    display: block;
   }
 }

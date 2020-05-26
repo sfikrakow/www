@@ -1,5 +1,30 @@
+{% load static %}
 {% load i18n %}
 <footer class="footer">
-    <span class="footer__text">© 2018 - {% now  'Y' %} {% trans 'SFI IT Academic Festival' %}</span>
-    <span class="footer__text">{% trans 'All rights reserved' %}</span>
+    <div class="footer__orgs">
+        <a href="https://ksi.ii.uj.edu.pl/" target="_blank" rel="noopener" title="Koło Studentów Informatyki UJ"
+           class="footer__orgs__single">
+            <img src="{% static 'common/img/orgs/logo-ksi.svg' %}" alt="KSI UJ logo">
+        </a>
+        <a href="https://www.facebook.com/knbit" target="_blank" rel="noopener" title="Koło Naukowe BIT AGH"
+           class="footer__orgs__single">
+            <img src="{% static 'common/img/orgs/logo-bit.svg' %}" alt="BIT AGHlogo">
+        </a>
+        <a href="https://www.facebook.com/KNIUEK" target="_blank" rel="noopener" title="Koło Naukowe i::team UEK"
+           class="footer__orgs__single">
+            <img src="{% static 'common/img/orgs/logo-iteam.svg' %}" alt="iTEAM UEKlogo">
+        </a>
+        <a href="https://www.facebook.com/KniOnPk/" target="_blank" rel="noopener" title="Koło Naukowe Informatyki PK"
+           class="footer__orgs__single">
+            <img src="{% static 'common/img/orgs/logo-pk.svg' %}" alt="KNII PK logo">
+        </a>
+        <a href="https://www.academica.org.pl/" target="_blank" rel="noopener"
+           title="Fundacja Studentów i Absolwentów AGH w Krakowie ACADEMICA" class="footer__orgs__single">
+            <img src="{% static 'common/img/orgs/logo-aca.svg' %}" alt="ACADEMICA logo">
+        </a>
+    </div>
+    <div class="footer__copyright">
+        <div>© 2018 - {% now  'Y' %} {% trans 'SFI IT Academic Festival' %}</div>
+        <div>{% trans 'All rights reserved' %}</div>
+    </div>
 </footer>
