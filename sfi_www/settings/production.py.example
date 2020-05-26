@@ -1,0 +1,58 @@
+from .base import *
+
+DEBUG = False
+
+SECRET_KEY = ''
+
+# Admin e-mail addresses to send messages to when errors occur
+ADMINS = [('Admin SFI', 'admins@sfi.pl')]
+
+ALLOWED_HOSTS = ['sfi.pl']
+
+STATIC_ROOT = '/var/www/static'
+MEDIA_ROOT = '/var/www/media'
+
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'www',
+        'USER': 'www',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'disable'
+        },
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+EMAIL_HOST = '10.20.10.102'
+EMAIL_PORT = 25
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+SERVER_EMAIL = 'www@sfi.pl'
+
+OIDC_ADMIN_ROLE = 'wwwadmin'
+OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/auth'
+OIDC_OP_TOKEN_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/token'
+OIDC_OP_USER_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/userinfo'
+OIDC_OP_JWKS_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/certs'
+OIDC_OP_LOGOUT_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/logout'
+OIDC_RP_CLIENT_ID = 'www'
+OIDC_RP_CLIENT_SECRET = ''
+
+try:
+    from .local import *
+except ImportError:
+    pass
