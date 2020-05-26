@@ -9,3 +9,5 @@ closure==20191111
 wagtail-modeltranslation>=0.10.13,<0.11.0
 django-livereload-server==0.3.2
 django-redis==4.11.0
+numpy==1.18.4
+opencv-contrib-python-headless==4.2.0
