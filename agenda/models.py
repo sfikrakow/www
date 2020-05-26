@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from django.forms.widgets import TextInput
 
 from common.models import SFIPage
+from common.utils import paginate
 
 
 class SpeakerIndex(SFIPage):
@@ -19,16 +20,9 @@ class SpeakerIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Speaker.objects.live().public()
-        paginator = Paginator(all_posts, SpeakerIndex.SPEAKERS_PER_PAGE)
-        page = request.GET.get('page')
-        try:
-            speakers = paginator.page(page)
-        except PageNotAnInteger:
-            speakers = paginator.page(1)
-        except EmptyPage:
-            speakers = paginator.page(paginator.num_pages)
-        context['speakers'] = speakers
+        context['speakers'] = paginate(
+            Speaker.objects.live().public().descendant_of(self).order_by('title'),
+            request, SpeakerIndex.SPEAKERS_PER_PAGE)
         return context
 
 
@@ -50,16 +44,7 @@ class EditionIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Edition.objects.live().public().order_by('-date')
-        paginator = Paginator(all_posts, EditionIndex.EDITIONS_PER_PAGE)
-        page = request.GET.get('page')
-        try:
-            editions = paginator.page(page)
-        except PageNotAnInteger:
-            editions = paginator.page(1)
-        except EmptyPage:
-            editions = paginator.page(paginator.num_pages)
-        context['editions'] = editions
+        context['editions'] = Edition.objects.live().public().descendant_of(self)
         return context
 
 
@@ -84,16 +69,7 @@ class CategoryIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Category.objects.live().public().order_by('name')
-        paginator = Paginator(all_posts, CategoryIndex.CATEGORIES_PER_PAGE)
-        page = request.GET.get('page')
-        try:
-            categories = paginator.page(page)
-        except PageNotAnInteger:
-            categories = paginator.page(1)
-        except EmptyPage:
-            categories = paginator.page(paginator.num_pages)
-        context['categories'] = categories
+        context['categories'] = Category.objects.live().public().order_by('title')
         return context
 
 
@@ -125,16 +101,7 @@ class EventIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Event.objects.live().public().order_by('-date')
-        paginator = Paginator(all_posts, EventIndex.EVENTS_PER_PAGE)
-        page = request.GET.get('page')
-        try:
-            events = paginator.page(page)
-        except PageNotAnInteger:
-            events = paginator.page(1)
-        except EmptyPage:
-            events = paginator.page(paginator.num_pages)
-        context['events'] = events
+        # TODO: display agenda block??
         return context
 
 

@@ -1,12 +1,12 @@
 from datetime import datetime
 
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 
 from common.models import SFIPage
+from common.utils import paginate
 
 
 class PostIndex(SFIPage):
@@ -16,16 +16,9 @@ class PostIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = Post.objects.live().public().order_by('-date')
-        paginator = Paginator(all_posts, PostIndex.POSTS_PER_PAGE)
-        page = request.GET.get('page')
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-        context['posts'] = posts
+        context['posts'] = paginate(
+            Post.objects.live().public().descendant_of(self).order_by('-date'),
+            request, PostIndex.POSTS_PER_PAGE)
         return context
 
 
