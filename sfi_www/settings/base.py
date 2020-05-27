@@ -53,7 +53,7 @@ WAGTAIL_APPS = [
     'wagtail.core',
     'modelcluster',
     'taggit',
-    'wagtail.contrib.modeladmin',
+    "django.contrib.sitemaps",
 ]
 
 THIRD_PARTY_APPS = [
