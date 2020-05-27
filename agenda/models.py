@@ -164,6 +164,10 @@ class EventIndex(SFIPage):
                                  message=_('Color must be in hex'),
                              ), ])
 
+    content_panels = SFIPage.content_panels + [
+        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'}))
+    ]
+
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         # TODO: display agenda block??
