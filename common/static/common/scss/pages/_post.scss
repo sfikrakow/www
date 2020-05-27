@@ -13,7 +13,7 @@
     justify-content: space-evenly;
 
     margin: 0 auto;
-    max-width: 85%;
+    max-width: 90rem;
   }
 
   &__single-post {
@@ -174,20 +174,20 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .post-list {
-    &__container {
-      max-width: 95%;
-    }
-  }
-}
+//@media screen and (max-width: 1200px) {
+//  .post-list {
+//    &__container {
+//      max-width: 95%;
+//    }
+//  }
+//}
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1210px) {
   .post-list {
     &__container {
       flex-direction: column;
 
-      max-width: 85%;
+      max-width: 45rem;
     }
   }
 
