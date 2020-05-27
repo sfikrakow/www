@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 15:01+0200\n"
+"POT-Creation-Date: 2020-05-27 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: common/templates/404.html:8
+msgid "Page not found"
+msgstr "Nie znaleziono strony"
+
+#: common/templates/404.html:9
+msgid "Sorry, the page you are looking for does not exist."
+msgstr "Przepraszamy, poszukiwana strona nie istnieje."
 
 #: common/templates/common/partials/footer.html:27
 msgid "SFI IT Academic Festival"
