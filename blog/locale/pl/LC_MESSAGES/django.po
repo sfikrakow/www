@@ -20,10 +20,11 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: common/templates/common/partials/footer.html:27
-msgid "SFI IT Academic Festival"
-msgstr "Studencki Festiwal Informatyczny"
+#: blog/templates/blog/post_index.html:19
+#: blog/templates/blog/post_index_block.html:18
+msgid "Read more..."
+msgstr "Czytaj więcej..."
 
-#: common/templates/common/partials/footer.html:28
-msgid "All rights reserved"
-msgstr "Wszelkie prawa zastrzeżone"
+#: blog/templates/blog/post_index_block.html:24
+msgid "More..."
+msgstr "Więcej..."

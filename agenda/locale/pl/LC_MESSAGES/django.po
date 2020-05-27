@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-04 23:26+0200\n"
+"POT-Creation-Date: 2020-05-27 15:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,26 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: agenda/models.py:107
-msgid "Username must be Alphanumeric"
+#: agenda/models.py:85
+msgid "Email"
+msgstr "Email"
+
+#: agenda/models.py:86
+msgid "Website"
+msgstr "Strona internetowa"
+
+#: agenda/models.py:87
+msgid "Other"
+msgstr "Inne"
+
+#: agenda/models.py:138 agenda/models.py:164
+msgid "Color must be in hex"
 msgstr ""
+
+#: agenda/models.py:178
+msgid "Polish"
+msgstr "Polski"
+
+#: agenda/models.py:179
+msgid "English"
+msgstr "Angielski"
