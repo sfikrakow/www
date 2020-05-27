@@ -19,36 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: blog/models.py:26
-msgid "post index"
-msgstr "lista postów"
-
-#: blog/models.py:27
-msgid "post indexes"
-msgstr "listy postów"
-
-#: blog/models.py:31
+#: pages/models.py:17
 msgid "content"
 msgstr "zawartość"
 
-#: blog/models.py:33
-msgid "post date"
-msgstr "data postu"
+#: pages/models.py:24
+msgid "page"
+msgstr "strona"
 
-#: blog/models.py:44
-msgid "post"
-msgstr "post"
-
-#: blog/models.py:45
-msgid "posts"
-msgstr "posty"
-
-#: blog/templates/blog/post_index.html:19
-#: blog/templates/blog/post_index_block.html:18
-msgid "Read more..."
-msgstr "Czytaj więcej..."
-
-#: blog/templates/blog/post_index_block.html:24
-msgid "More..."
-msgstr "Więcej..."
+#: pages/models.py:25
+msgid "pages"
+msgstr "strony"

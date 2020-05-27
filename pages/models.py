@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core import blocks
 from wagtail.core.fields import StreamField
@@ -13,8 +14,12 @@ class StaticPage(SFIPage):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('post_index', PostIndexBlock()),
-    ], null=True, blank=True)
+    ], null=True, blank=True, verbose_name=_('content'))
 
     content_panels = SFIPage.content_panels + [
         StreamFieldPanel('content'),
     ]
+
+    class Meta:
+        verbose_name = _('page')
+        verbose_name_plural = _('pages')
