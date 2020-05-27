@@ -1,5 +1,5 @@
-Django>=3.0,<3.1
-wagtail>=2.8,<2.9
+Django>=3.0.6,<3.1
+wagtail>=2.9,<2.10
 -e git+https://github.com/sfikrakow/django-sfibase.git@5dfb2f269c791144304ac433f8aa4d03a9b9ac7c#egg=django_sfibase
 django_compressor>=2.4,<2.5
 django-libsass==0.8
@@ -8,6 +8,6 @@ beautifulsoup4<4.6.1,>=4.5.1
 closure==20191111
 wagtail-modeltranslation>=0.10.13,<0.11.0
 django-livereload-server==0.3.2
-django-redis==4.11.0
-numpy==1.18.4
-opencv-contrib-python-headless==4.2.0.34
+django-redis>=4.12.1,<4.13
+numpy>=1.18.4,<1.19
+opencv-contrib-python-headless>=4.2.0.34,<4.2.1

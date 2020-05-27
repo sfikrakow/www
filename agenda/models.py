@@ -19,13 +19,14 @@ from common.utils import paginate
 
 @register_snippet
 class Sponsor(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, verbose_name=_('name'))
     logo = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        verbose_name=_('logo')
     )
 
     panels = [
@@ -37,8 +38,8 @@ class Sponsor(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Sponsor"
-        verbose_name_plural = "Sponsors"
+        verbose_name = _("sponsor")
+        verbose_name_plural = _("sponsors")
 
 
 class SpeakerIndex(SFIPage):
@@ -54,13 +55,13 @@ class SpeakerIndex(SFIPage):
         return context
 
     class Meta:
-        verbose_name = 'Speakers index'
-        verbose_name_plural = 'Speakers indexes'
+        verbose_name = _('speakers index')
+        verbose_name_plural = _('speakers indexes')
 
 
 class Speaker(SFIPage):
-    content = RichTextField()
-    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT)
+    content = RichTextField(verbose_name=_('content'))
+    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('content'))
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('content'),
@@ -72,8 +73,8 @@ class Speaker(SFIPage):
     subpage_types = []
 
     class Meta:
-        verbose_name = 'Speaker'
-        verbose_name_plural = 'Speakers'
+        verbose_name = _('speaker')
+        verbose_name_plural = _('speakers')
 
 
 class SocialLinkTypes(models.TextChoices):
@@ -89,8 +90,9 @@ class SocialLinkTypes(models.TextChoices):
 
 class SocialLink(models.Model):
     speaker = ParentalKey(Speaker, on_delete=models.CASCADE, related_name='social_links')
-    type = models.CharField(max_length=16, choices=SocialLinkTypes.choices, default=SocialLinkTypes.OTHER)
-    link = models.URLField(max_length=512)
+    type = models.CharField(max_length=16, choices=SocialLinkTypes.choices, default=SocialLinkTypes.OTHER,
+                            verbose_name=_('type'))
+    link = models.URLField(max_length=512, verbose_name=_('link'))
 
 
 class EditionIndex(SFIPage):
@@ -104,13 +106,13 @@ class EditionIndex(SFIPage):
         return context
 
     class Meta:
-        verbose_name = 'Edition index'
-        verbose_name_plural = 'Edition indexes'
+        verbose_name = _('edition index')
+        verbose_name_plural = _('edition indexes')
 
 
 class Edition(SFIPage):
-    start_date = models.DateTimeField("Edition start date", null=True, blank=True)
-    end_date = models.DateTimeField("Edition end date", null=True, blank=True)
+    start_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition start date'))
+    end_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition end date'))
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('start_date'),
@@ -122,21 +124,20 @@ class Edition(SFIPage):
     subpage_types = ['EventIndex']
 
     class Meta:
-        verbose_name = 'Edition'
-        verbose_name_plural = 'Editions'
+        verbose_name = _('edition')
+        verbose_name_plural = _('editions')
 
 
 class Category(models.Model):
-    edition = ParentalKey(Edition, on_delete=models.CASCADE, related_name='event_categories')
-    name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=300)
-    color = models.CharField("Category color",
-                             max_length=7,
+    edition = ParentalKey(Edition, on_delete=models.CASCADE, related_name='event_categories', verbose_name=_('edition'))
+    name = models.CharField(max_length=100, verbose_name=_('name'))
+    icon = models.CharField(max_length=300, verbose_name=_('icon'))
+    color = models.CharField(max_length=7,
                              default='#23211f',
                              validators=[RegexValidator(
                                  regex=r'^#([0-9a-fA-F]{6})$',
                                  message=_('Color must be in hex'),
-                             ), ])
+                             ), ], verbose_name=_('color'))
 
     panels = [
         FieldPanel('name'),
@@ -148,21 +149,20 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Event category'
-        verbose_name_plural = 'Event categories'
+        verbose_name = _('event category')
+        verbose_name_plural = _('event categories')
 
 
 class EventIndex(SFIPage):
     parent_page_types = ['Edition']
     subpage_types = ['Event']
 
-    color = models.CharField("Index color",
-                             max_length=7,
+    color = models.CharField(max_length=7,
                              default='#23211f',
                              validators=[RegexValidator(
                                  regex=r'^#([0-9a-fA-F]{6})$',
                                  message=_('Color must be in hex'),
-                             ), ])
+                             ), ], verbose_name=_('color'))
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'}))
@@ -174,8 +174,8 @@ class EventIndex(SFIPage):
         return context
 
     class Meta:
-        verbose_name = 'Event list'
-        verbose_name_plural = 'Event lists'
+        verbose_name = _('event list')
+        verbose_name_plural = _('event lists')
 
 
 class LanguageChoice(models.TextChoices):
@@ -184,14 +184,16 @@ class LanguageChoice(models.TextChoices):
 
 
 class Event(SFIPage):
-    content = RichTextField()
-    date = models.DateTimeField(null=True, blank=True)
-    duration_minutes = models.IntegerField(null=True, blank=True)
-    event_speaker = models.ForeignKey(Speaker, null=True, on_delete=models.PROTECT)
-    event_category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
-    language = models.CharField(max_length=5, choices=LanguageChoice.choices, null=True, blank=True)
-    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT)
-    recording = models.URLField(max_length=512, null=True, blank=True)
+    content = RichTextField(verbose_name=_('content'))
+    date = models.DateTimeField(null=True, blank=True, verbose_name=_('date'))
+    duration_minutes = models.IntegerField(null=True, blank=True, verbose_name=_('duration in minutes'))
+    event_speaker = models.ForeignKey(Speaker, null=True, on_delete=models.PROTECT, verbose_name=_('speaker'))
+    event_category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL,
+                                       verbose_name=_('category'))
+    language = models.CharField(max_length=5, choices=LanguageChoice.choices, null=True, blank=True,
+                                verbose_name=_('language'))
+    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
+    recording = models.URLField(max_length=512, null=True, blank=True, verbose_name=_('link to recording'))
 
     class EventCategoryFieldPanel(FieldPanel):
         # Terrible hack to limit category choices to edition.
@@ -220,5 +222,5 @@ class Event(SFIPage):
         return self.get_parent()
 
     class Meta:
-        verbose_name = 'Event'
-        verbose_name_plural = 'Events'
+        verbose_name = _('event')
+        verbose_name_plural = _('events')

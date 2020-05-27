@@ -89,10 +89,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 
     'mozilla_django_oidc.middleware.SessionRefresh',
-    # 'sfi_base.middleware.TryAuthenticateMiddleware',
-    'sfi_base.middleware.ForceAdminInEnglish',
 
-    'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
     'livereload.middleware.LiveReloadScript',
