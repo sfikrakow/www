@@ -10,3 +10,14 @@ register = template.Library()
 def unrich_text(value):
     value = value.replace('<p>', '').replace('</p>', ' ')
     return strip_tags(value)
+
+
+@register.inclusion_tag('common/tags/responsive_img.html')
+def responsive_img(img, size: str, css_class=''):
+    image_jpg = img.get_rendition(size + '|format-jpeg|jpegquality-70')
+    image_webp = img.get_rendition(size + '|format-webp')
+    return {
+        'image_jpg': image_jpg,
+        'image_webp': image_webp,
+        'css_class': css_class,
+    }

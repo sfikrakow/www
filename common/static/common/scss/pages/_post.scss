@@ -39,10 +39,12 @@
   &__image {
     flex-basis: 40%;
 
-    background: url('../img/post-placeholder.png') no-repeat center center; // relative from main.scss
-    background-size: cover;
-    min-height: 230px;
-    border-radius: 15px;
+
+    & > img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
   }
 
   &__post-info {
@@ -155,9 +157,11 @@
 
   &__body-image {
     flex-basis: 15%;
-
     text-align: right;
-    border-radius: 15px;
+
+    & > img {
+      border-radius: 15px;
+    }
   }
 
   &__body-content {

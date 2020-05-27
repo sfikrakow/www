@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load common_tags %}
+
+<a href="{{ post.url }}" class="post-list__single-post">
+    {% responsive_img post.featured_image 'fill-350x350-c100' 'post-list__image' %}
+    <div class="post-list__post-info">
+        <div class="post-list__info-container">
+            <p class="post-list__title">{{ post.title }}</p>
+            <p class="post-list__date">{{ post.date }}</p>
+            <p class="post-list__post-content">{{ post.content | unrich_text | truncatewords:15 }}</p>
+        </div>
+        <p class="post-list__read-more">{% trans 'Read more...' %}</p>
+    </div>
+</a>
