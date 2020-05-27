@@ -33,17 +33,22 @@
       .post-list__title {
         color: $page_color_10;
       }
+
+      .post-list__image > img {
+        transform: scale(1.1);
+      }
     }
   }
 
   &__image {
     flex-basis: 40%;
-
+    border-radius: 15px;
+    overflow: hidden;
 
     & > img {
       width: 100%;
       height: auto;
-      border-radius: 15px;
+      transition: transform .3s ease;
     }
   }
 
