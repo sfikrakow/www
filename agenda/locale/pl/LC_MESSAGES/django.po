@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 18:06+0200\n"
+"POT-Creation-Date: 2020-05-27 20:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "nazwa"
 msgid "logo"
 msgstr "logo"
 
-#: agenda/models.py:41 agenda/models.py:195
+#: agenda/models.py:41 agenda/models.py:64 agenda/models.py:195
 msgid "sponsor"
 msgstr "sponsor"
 
@@ -44,7 +44,7 @@ msgstr "lista prelegentów"
 msgid "speakers indexes"
 msgstr "listy prelegentów"
 
-#: agenda/models.py:63 agenda/models.py:64 agenda/models.py:187
+#: agenda/models.py:63 agenda/models.py:187
 msgid "content"
 msgstr "zawartość"
 

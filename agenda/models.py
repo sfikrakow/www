@@ -61,7 +61,7 @@ class SpeakerIndex(SFIPage):
 
 class Speaker(SFIPage):
     content = RichTextField(verbose_name=_('content'))
-    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('content'))
+    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('content'),
