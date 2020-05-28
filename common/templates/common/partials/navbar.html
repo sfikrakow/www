@@ -5,7 +5,10 @@
 
 <nav class="navbar">
     <a href="{% slugurl_trans 'home' %}">
-        <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="logo">
+        <picture>
+            <source srcset="{% static 'common/img/logo.webp' %}" type="image/webp">
+            <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="sfi logo">
+        </picture>
     </a>
 
     <ul class="navbar__links">
@@ -28,8 +31,12 @@
                 {% if page and lang != lang_code %}
                     {% language lang_code %}
                         <a class="navbar__link" href="{{ page.url }}">
-                            {% with 'common/img/icon-'|add:lang_code|add:'.png' as lang_icon %}
-                                <img class="navbar__image" src="{% static lang_icon %}" alt="{{ lang_name }} version icon">
+                            {% with lang_icon='common/img/icon-'|add:lang_code|add:'.png'  lang_icon_webp='common/img/icon-'|add:lang_code|add:'.webp' %}
+                                <picture>
+                                    <source srcset="{% static lang_icon_webp %}" type="image/webp">
+                                    <img class="navbar__image" src="{% static lang_icon %}"
+                                         alt="{{ lang_name }} version icon">
+                                </picture>
                             {% endwith %}
                         </a>
                     {% endlanguage %}
