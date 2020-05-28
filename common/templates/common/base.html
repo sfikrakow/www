@@ -1,22 +1,37 @@
+{% load wagtailcore_tags %}
+{% load common_tags %}
+{% load i18n %}
 {% load static wagtailuserbar %}
 {% load compress %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-    <meta charset="utf-8"/>
-    <title>
-        {% block title %}
-            {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-        {% endblock title %}
-        {% block title_suffix %}
-            {% with self.get_site.site_name as site_name %}
-                {% if site_name %}- {{ site_name }}{% endif %}
-            {% endwith %}
-        {% endblock title_suffix %}
-    </title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% get_title page %} | {% trans 'SFI IT Academic Festival' %}</title>
+    <meta property="og:title" content="{% get_title page %}">
+    <meta property="og:locale" content="{% trans 'en_US' %}">
+    <meta name="description" content="{% get_description page %}">
+    <meta property="og:description" content="{% get_description page %}">
+    <link rel="canonical" href="{{ page.full_url }}">
+    <meta property="og:url" content="{{ page.full_url }}">
+    <meta property="og:site_name" content="{% trans 'SFI IT Academic Festival' %}">
+    <meta property="og:image" content="{% get_featured_image page %}">
+    <script type="application/ld+json">
+        {
+            "@type":"WebPage",
+            "headline":"{% get_title page %}",
+            "image":"{% get_featured_image page %}",
+            "url":"{{ page.full_url }}",
+            "description":"{% get_description page %}",
+            "@context":"https://schema.org"
+        }
+    </script>
+
 
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
@@ -28,8 +43,8 @@
     <link rel="manifest" href="{% static 'common/site.webmanifest' %}">
     <link rel="mask-icon" href="{% static 'common/favicon/safari-pinned-tab.svg' %}" color="#333a6d">
     <link rel="shortcut icon" href="{% static 'common/favicon/favicon.ico' %}">
-    <meta name="apple-mobile-web-app-title" content="SFI Academic IT Festival">
-    <meta name="application-name" content="SFI Academic IT Festival">
+    <meta name="apple-mobile-web-app-title" content="{% trans 'SFI IT Academic Festival' %}">
+    <meta name="application-name" content="{% trans 'SFI IT Academic Festival' %}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="{% static 'common/browserconfig.xml' %}">
     <meta name="theme-color" content="#333a6d">
