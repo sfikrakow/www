@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+{% load common_tags %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block head %}
+    <title>{% get_title page %} | {% trans 'SFI IT Academic Festival' %}</title>
+    <meta property="og:title" content="{% get_title page %}">
+    <meta property="og:locale" content="{% trans 'en_US' %}">
+    <meta name="description" content="{% get_description page %}">
+    <meta property="og:description" content="{% get_description page %}">
+    <link rel="canonical" href="{{ page.full_url }}">
+    <meta property="og:url" content="{{ page.full_url }}">
+    <meta property="og:site_name" content="{% trans 'SFI IT Academic Festival' %}">
+    <meta property="og:image" content="{% get_featured_image page %}">
+    <script type="application/ld+json">
+        {
+            "@type":"WebPage",
+            "headline":"{% get_title page %}",
+            "image":"{% get_featured_image page %}",
+            "url":"{{ page.full_url }}",
+            "description":"{% get_description page %}",
+            "@context":"https://schema.org"
+        }
+    </script>
+{% endblock %}

@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
         # Wagtail does not allow deleting orphaned Pages when a model with the same name exists... too bad!
         Page.objects.filter(id=page.id)._raw_delete(Page.objects.db)
 
-    def cleanup(self):
+    def cleanup(self, _):
         # HACK!!!
         types = [x.id for x in ContentType.objects.all()]
         orphaned_pages = set(Page.objects.exclude(content_type_id__in=types).all())
