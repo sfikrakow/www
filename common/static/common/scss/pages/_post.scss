@@ -48,7 +48,7 @@
     & > img {
       width: 100%;
       height: auto;
-      transition: transform .3s ease;
+      transition: transform .3s ease-in-out;
     }
   }
 
@@ -68,7 +68,7 @@
     color: $page_color_11;
     font-size: 1.3rem;
     font-weight: 700;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.2s ease-in-out;
 
     margin: 0.8rem 0;
   }

@@ -91,8 +91,6 @@ MIDDLEWARE = [
     'mozilla_django_oidc.middleware.SessionRefresh',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-
-    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'sfi_www.urls'

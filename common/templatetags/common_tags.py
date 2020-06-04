@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 from django.template.defaultfilters import stringfilter, truncatewords
 from django.utils.html import strip_tags
 
@@ -53,3 +54,9 @@ def get_featured_image(context, page):
     else:
         # TODO: fallback
         return ''
+
+
+@register.simple_tag
+def page_languages(page):
+    locales = [x[0] for x in settings.LANGUAGES if page.__dict__['slug_' + x[0]]]
+    return locales

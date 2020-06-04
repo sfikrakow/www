@@ -4,10 +4,10 @@
 {% load wagtail_modeltranslation %}
 
 <nav class="navbar">
-    <a href="{% slugurl_trans 'home' %}">
+    <a class="navbar__logo" href="{% slugurl_trans 'home' %}">
         <picture>
             <source srcset="{% static 'common/img/logo.webp' %}" type="image/webp">
-            <img class="navbar__logo" src="{% static 'common/img/logo.png' %}" alt="sfi logo">
+            <img src="{% static 'common/img/logo.png' %}" alt="sfi logo">
         </picture>
     </a>
 

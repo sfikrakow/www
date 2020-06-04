@@ -13,6 +13,7 @@
     <meta property="og:url" content="{{ page.full_url }}">
     <meta property="og:site_name" content="{% trans 'SFI IT Academic Festival' %}">
     <meta property="og:image" content="{% get_featured_image page %}">
+    <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">
         {
             "@type":"WebPage",
@@ -23,4 +24,12 @@
             "@context":"https://schema.org"
         }
     </script>
+    {% page_languages page as languages %}
+    {% for lang_code in languages %}
+        {% language lang_code %}
+            {% if page.slug %}
+                <link rel="alternate" hreflang="{{ lang_code }}" href="{{ page.full_url }}">
+            {% endif %}
+        {% endlanguage %}
+    {% endfor %}
 {% endblock %}
