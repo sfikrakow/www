@@ -1,5 +1,3 @@
-from enum import Enum
-
 from django.core.validators import RegexValidator
 from django.db import models
 from django.forms.widgets import TextInput
