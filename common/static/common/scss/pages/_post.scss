@@ -194,6 +194,11 @@
     text-align: right;
     margin-right: 50px;
   }
+
+  &__link {
+    text-decoration: none;
+    color: $page_color_1;
+  }
 }
 
 //@media screen and (max-width: 1200px) {
