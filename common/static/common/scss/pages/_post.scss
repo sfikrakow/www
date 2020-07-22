@@ -34,7 +34,7 @@
         color: $page_color_10;
       }
 
-      .post-list__image > img {
+      .post-list__image>img {
         transform: scale(1.1);
       }
     }
@@ -45,7 +45,7 @@
     border-radius: 15px;
     overflow: hidden;
 
-    & > img {
+    &>img {
       width: 100%;
       height: auto;
       transition: transform .3s ease-in-out;
@@ -164,13 +164,35 @@
     flex-basis: 15%;
     text-align: right;
 
-    & > img {
+    &>img {
       border-radius: 15px;
     }
   }
 
   &__body-content {
     flex-basis: 60%;
+  }
+}
+
+.pagination {
+
+  display: flex;
+  width: 100%;
+  margin: 50px 0;
+
+  &__btn {
+    font-size: 30px;
+    flex-basis: 50%;
+  }
+
+  &__left {
+    text-align: left;
+    margin-left: 50px;
+  }
+
+  &__right {
+    text-align: right;
+    margin-right: 50px;
   }
 }
 

@@ -5,13 +5,14 @@
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
     {% endcompress %}
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'common/favicon/apple-touch-icon.png' %}">
@@ -27,27 +28,32 @@
     <meta name="theme-color" content="#333a6d">
 
     {% block head %}
-        <title>{% trans 'SFI IT Academic Festival' %}</title>
+    <title>{% trans 'SFI IT Academic Festival' %}</title>
     {% endblock %}
+
+    <!-- temporary, just for developlment purposes-->
+    <script src="https://kit.fontawesome.com/f0b3245525.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-{% wagtailuserbar %}
+    {% wagtailuserbar %}
 
-<div class="content">
-    {% include 'common/partials/navbar.html' %}
-    {% include 'common/partials/header.html' %}
-    <main>
-        {% block content %}
-        {% endblock content %}
-    </main>
-</div>
+    <div class="content">
+        {% include 'common/partials/navbar.html' %}
+        {% include 'common/partials/header.html' %}
+        <main>
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </div>
 
 
-{% include 'common/partials/footer.html' %}
+    {% include 'common/partials/footer.html' %}
 
-{% compress js %}
+    {% compress js %}
     <script type="text/javascript" src="{% static 'common/js/main.js' %}"></script>
-{% endcompress %}
+    {% endcompress %}
 </body>
+
 </html>

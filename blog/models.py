@@ -13,7 +13,7 @@ from common.utils import paginate
 class PostIndex(SFIPage):
     subpage_types = ['Post']
 
-    POSTS_PER_PAGE = 10
+    POSTS_PER_PAGE = 2
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
