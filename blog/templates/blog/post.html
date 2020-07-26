@@ -3,14 +3,14 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    {% include 'common/partials/post-header.html' %}
+{% include 'common/partials/post-header.html' %}
 
-    <section class="post">
-        <div class="post__body">
-            {% responsive_img page.featured_image 'fill-350x350' 'post__body-image' %}
-            <div class="post__body-content">
-                {{ page.content | richtext }}
-            </div>
+<section class="post">
+    <div class="post__body">
+        {% responsive_img page.featured_image 'fill-350x350' 'post__body-image' %}
+        <div class="post__body-content">
+            {{ page.content | richtext }}
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
