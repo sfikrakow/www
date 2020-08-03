@@ -1,4 +1,4 @@
-.speaker-list {
+.post_base-list {
   padding: 0.8rem 1rem;
 
   &__main-title {
@@ -16,7 +16,7 @@
     max-width: 90rem;
   }
 
-  &__single-speaker {
+  &__single-post {
     flex-basis: 45%;
 
     display: flex;
@@ -30,11 +30,11 @@
     text-decoration: none;
 
     &:hover {
-      .speaker-list__title {
+      .post_base-list__title {
         color: $page_color_10;
       }
 
-      .speaker-list__image > img {
+      .post_base-list__image > img {
         transform: scale(1.1);
       }
     }
@@ -52,7 +52,7 @@
     }
   }
 
-  &__speaker-info {
+  &__post-info {
     flex-basis: 60%;
     padding: 0 0.8rem;
 
@@ -78,7 +78,7 @@
     font-size: 0.8rem;
   }
 
-  &__speaker-content {
+  &__post-content {
     font-size: 1rem;
   }
 
@@ -89,7 +89,7 @@
   }
 }
 
-.speaker {
+.post_base {
   padding: 0.8rem 0;
 
   &__header {
@@ -145,6 +145,12 @@
     margin: 0 0 0.8rem 0;
   }
 
+  &__date {
+    font-size: 1rem;
+    color: $page_color_10;
+    margin: 0.2rem 0 0 0;
+  }
+
   &__body {
     padding: 2rem 0.8rem;
     margin: 0 auto;
@@ -169,7 +175,7 @@
 }
 
 //@media screen and (max-width: 1200px) {
-//  .speaker-list {
+//  .post-list {
 //    &__container {
 //      max-width: 95%;
 //    }
@@ -177,7 +183,7 @@
 //}
 
 @media screen and (max-width: 1210px) {
-  .speaker-list {
+  .post_base-list {
     &__container {
       flex-direction: column;
 
@@ -185,7 +191,7 @@
     }
   }
 
-  .speaker {
+  .post_base {
     &__header {
       flex-wrap: nowrap;
       flex-direction: column;
@@ -216,7 +222,7 @@
 }
 
 @media screen and (max-width: 680px) {
-  .speaker {
+  .post_base {
     &__header-title {
       padding: 0 1rem;
     }
@@ -242,8 +248,8 @@
 }
 
 @media screen and (max-width: 580px) {
-  .speaker-list {
-    &__single-speaker {
+  .post_base-list {
+    &__single-post {
       flex-basis: 100%;
 
       display: flex;

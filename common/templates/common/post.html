@@ -1,0 +1,17 @@
+{% extends 'common/page.html' %}
+{% load common_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% block header %}
+    {% endblock header %}
+
+    <section class="post_base">
+        <div class="post_base__body">
+            {% responsive_img page.featured_image 'fill-350x350' 'post_base__body-image' %}
+            <div class="post_base__body-content">
+                {{ page.content | richtext }}
+            </div>
+        </div>
+    </section>
+{% endblock %}

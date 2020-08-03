@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<div class="post_base__header">
+    <div class="post_base__header-image">
+        <div class="post_base__sfi-edition-info">
+            <p class="post_base__sfi-edition">16 edycja</p>
+            <p class="post_base__sfi-year">2020</p>
+        </div>
+    </div>
+    <div class="post_base__header-title">
+        <p class="post_base__title">{{ page.title }}</p>
+        {% block date %}
+        {% endblock date %}
+    </div>
+</div>

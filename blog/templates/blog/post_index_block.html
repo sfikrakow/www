@@ -3,8 +3,8 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    <section class="post-list">
-        <div class="post-list__container">
+    <section class="post_base-list">
+        <div class="post_base-list__container">
             {% for post in posts %}
                 {% include 'blog/partials/post_index_single.html' with post=post %}
             {% endfor %}
