@@ -1,0 +1,257 @@
+.speaker-list {
+  padding: 0.8rem 1rem;
+
+  &__main-title {
+    margin: 1.2rem auto;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    margin: 0 auto;
+    max-width: 90rem;
+  }
+
+  &__single-speaker {
+    flex-basis: 45%;
+
+    display: flex;
+    flex-wrap: nowrap;
+
+    background-color: $page_color_7;
+    margin: 1rem 0;
+    border-radius: 15px;
+
+    color: $page_color_1;
+    text-decoration: none;
+
+    &:hover {
+      .speaker-list__title {
+        color: $page_color_10;
+      }
+
+      .speaker-list__image > img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__image {
+    flex-basis: 40%;
+    border-radius: 15px;
+    overflow: hidden;
+
+    & > img {
+      width: 100%;
+      height: auto;
+      transition: transform .3s ease-in-out;
+    }
+  }
+
+  &__speaker-info {
+    flex-basis: 60%;
+    padding: 0 0.8rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__info-container {
+    flex: 1 0 auto;
+  }
+
+  &__title {
+    color: $page_color_11;
+    font-size: 1.3rem;
+    font-weight: 700;
+    transition: color 0.2s ease-in-out;
+
+    margin: 0.8rem 0;
+  }
+
+  &__date {
+    color: $page_color_6;
+    font-size: 0.8rem;
+  }
+
+  &__speaker-content {
+    font-size: 1rem;
+  }
+
+  &__read-more {
+    @extend %sticky-footer;
+    font-size: 1rem;
+    text-align: right;
+  }
+}
+
+.speaker {
+  padding: 0.8rem 0;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+  }
+
+  &__header-image {
+    flex-basis: 50%;
+
+    background: url('../img/post-header.png') no-repeat center center;
+    background-size: cover;
+    min-height: 270px;
+    border-radius: 0 15px 15px 0;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__sfi-edition-info {
+    background-color: $page_color_2;
+    border-radius: 15px 0 0 15px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  &__sfi-edition {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  &__sfi-year {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: $page_color_8;
+    margin: 0;
+  }
+
+  &__header-title {
+    flex-basis: 45%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 0 0 0.8rem 0;
+  }
+
+  &__body {
+    padding: 2rem 0.8rem;
+    margin: 0 auto;
+    max-width: 75%;
+
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__body-image {
+    flex-basis: 15%;
+    text-align: right;
+
+    & > img {
+      border-radius: 15px;
+    }
+  }
+
+  &__body-content {
+    flex-basis: 60%;
+  }
+}
+
+//@media screen and (max-width: 1200px) {
+//  .speaker-list {
+//    &__container {
+//      max-width: 95%;
+//    }
+//  }
+//}
+
+@media screen and (max-width: 1210px) {
+  .speaker-list {
+    &__container {
+      flex-direction: column;
+
+      max-width: 45rem;
+    }
+  }
+
+  .speaker {
+    &__header {
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+
+    &__header-image {
+      flex-basis: 100%;
+      width: 95%;
+      align-self: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    &__header-title {
+      flex-basis: 100%;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &__body {
+      max-width: 95%;
+
+      justify-content: space-around;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .speaker {
+    &__header-title {
+      padding: 0 1rem;
+    }
+
+    &__body {
+      max-width: 100%;
+
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &__body-image {
+      flex-basis: 100%;
+
+      margin: 0 auto 1.5rem auto;
+      text-align: center;
+    }
+
+    &__body-content {
+      flex-basis: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .speaker-list {
+    &__single-speaker {
+      flex-basis: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      background-color: $page_color_7;
+      margin: 1rem 0;
+      border-radius: 15px;
+    }
+  }
+}
