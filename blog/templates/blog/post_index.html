@@ -1,6 +1,5 @@
 {% extends 'common/post_index_base.html' %}
 
-<<<<<<< HEAD
 {% block content %}
 <section class="post-list">
     <h2 class="post-list__main-title">{{ page.title }}</h2>
@@ -23,10 +22,3 @@
     </div>
 </div>
 {% endblock %}
-=======
-{% block index %}
-    {% for post in posts %}
-        {% include 'blog/partials/post_index_single.html' with post=post %}
-    {% endfor %}
-{% endblock %}
->>>>>>> 7c1da903ff0447f11fe2e2f17943ca2ef13525b5
