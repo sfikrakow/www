@@ -1,12 +1,7 @@
-{% extends 'common/page.html' %}
+{% extends 'common/post_index_base.html' %}
 
-{% block content %}
-<section class="speaker-list">
-    <h2 class="speaker-list__main-title">{{ page.title }}</h2>
-    <div class="speaker-list__container">
-        {% for speaker in speakers %}
+{% block index %}
+    {% for speaker in speakers %}
         {% include 'agenda/partials/speaker_index_single.html' with speaker=speaker %}
-        {% endfor %}
-    </div>
-</section>
+    {% endfor %}
 {% endblock %}

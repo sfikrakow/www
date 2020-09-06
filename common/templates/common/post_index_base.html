@@ -1,0 +1,11 @@
+{% extends 'common/page.html' %}
+
+{% block content %}
+    <section class="post_base-list">
+        <h2 class="post_base-list__main-title">{{ page.title }}</h2>
+        <div class="post_base-list__container">
+            {% block index %}
+            {% endblock index %}
+        </div>
+    </section>
+{% endblock %}

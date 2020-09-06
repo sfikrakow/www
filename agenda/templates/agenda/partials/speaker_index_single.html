@@ -1,14 +1,14 @@
 {% load i18n %}
 {% load common_tags %}
 
-<a href="{{ speaker.url }}" class="speaker-list__single-speaker">
-  {% responsive_img speaker.featured_image 'fill-350x350' 'speaker-list__image' %}
-  <div class="speaker-list__speaker-info">
-    <div class="speaker-list__info-container">
-      <p class="speaker-list__title">{{ speaker.title }}</p>
-      <p class="speaker-list__date">{{ speaker.date }}</p>
-      <p class="speaker-list__speaker-content">{% get_description speaker %}</p>
+<a href="{{ speaker.url }}" class="post_base-list__single-post">
+  {% responsive_img speaker.featured_image 'fill-350x350' 'post_base-list__image' %}
+  <div class="post_base-list__post-info">
+    <div class="post_base-list__info-container">
+      <p class="post_base-list__title">{{ speaker.title }}</p>
+      <p class="post_base-list__date">{{ speaker.date }}</p>
+      <p class="post_base-list__post-content">{% get_description speaker %}</p>
     </div>
-    <p class="speaker-list__read-more">{% trans 'Read more...' %}</p>
+    <p class="post_base-list__read-more">{% trans 'Read more...' %}</p>
   </div>
 </a>

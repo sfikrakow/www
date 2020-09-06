@@ -1,16 +1,5 @@
-{% extends 'common/page.html' %}
-{% load common_tags %}
-{% load wagtailcore_tags %}
+{% extends 'common/post.html' %}
 
-{% block content %}
-{% include 'common/partials/speaker-header.html' %}
-
-<section class="speaker">
-  <div class="speaker__body">
-    {% responsive_img page.featured_image 'fill-350x350' 'speaker__body-image' %}
-    <div class="speaker__body-content">
-      {{ page.content | richtext }}
-    </div>
-  </div>
-</section>
-{% endblock %}
+{% block header %}
+    {% include 'common/partials/post_base_header.html' %}
+{% endblock header %}
