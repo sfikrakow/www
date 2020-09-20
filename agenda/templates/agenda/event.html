@@ -5,5 +5,36 @@
 {% endblock header %}
 
 {% block body_content %}
-    <h2>Test</h2>
+    <div class="event-info">
+        <div class="event-info__title">
+            Temat
+        </div> 
+        <div class="event-info__content event-info__content--event_name">
+            {{ page.title }}
+        </div>
+    </div>
+    <div class="event-info">
+        <div class="event-info__title">
+            Zapisy
+        </div> 
+        <div class="event-info__content">
+            TODO
+        </div>
+    </div>
+    <div class="event-info">
+        <div class="event-info__title">
+            Abstrakt
+        </div> 
+        <div class="event-info__content">
+            {{ page.content }}
+        </div>
+    </div>
+    <div class="event-info">
+        <div class="event-info__title">
+            Czas trwania
+        </div> 
+        <div class="event-info__content">
+            {{ page.duration_minutes }} min
+        </div>
+    </div>
 {% endblock body_content %}

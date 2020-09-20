@@ -5,11 +5,18 @@
 {% endblock %}
 
 {% block details %}
-    <div class="event_details">
-        <p>Typ: {{ page.event_category }}</p>
-        <p>Prelegent: {{ page.event_speaker }}</p>
-        <p>Sponsor: {{ page.sponsor }}</p>
-        <p>Język: {{ page.language }}</p>
-        <p>Edition: TODO</p>
+    <div class="event-header_details">
+        <p>Typ: <span class="event-header_details_value">{{ page.event_category }}</span></p>
+        <p>Prelegent: 
+            <a href={{ page.event_speaker.url }} class="
+                event-header_details_value 
+                event-header_details_value--link"
+            >
+                {{ page.event_speaker }}
+            </a>
+        </p>
+        <p>Sponsor: <span class="event-header_details_value">{{ page.sponsor }}</span></p>
+        <p>Język: <span class="event-header_details_value">{{ page.language }}</span></p>
+        <p>Edition: <span class="event-header_details_value">TODO</span></p>
     </div>
 {% endblock details %}

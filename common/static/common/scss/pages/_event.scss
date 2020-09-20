@@ -1,5 +1,45 @@
-.event_details {
+.event-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+
+    &__title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        flex-basis: 13%;
+        text-align: right;
+        color: $page_color_10;
+    }
+
+    &__content {
+        font-size: 1.2rem;
+        flex-basis: 80%;
+        text-align: left;
+
+        &--event_name {
+            font-size: 2rem;
+        }
+    }
+}
+
+.event-header_details {
     font-size: 1rem;
+
+    &_value {
+        color: $page_color_11;
+        &--link {
+            color: $page_color_10;
+            text-decoration: none;
+            transition: color 0.2s ease-in;
+            font-weight: 700;
+
+            &:hover {
+                color: $page_color_8;
+            }
+        }
+    }
 }
 
 .post_base {
@@ -8,7 +48,12 @@
         min-height: 400px;
 
         .post_base__header-image {
-            min-height: 500px;
+            flex-basis: 40%;
+            min-height: 400px;
+        }
+
+        .post_base__header-title {
+            flex-basis: 55%;
         }
     }
 }
