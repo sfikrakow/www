@@ -1,0 +1,14 @@
+.event_details {
+    font-size: 1rem;
+}
+
+.post_base {
+    &__header--event {
+        flex-basis: 40%;
+        min-height: 400px;
+
+        .post_base__header-image {
+            min-height: 500px;
+        }
+    }
+}

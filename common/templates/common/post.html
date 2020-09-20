@@ -10,7 +10,9 @@
         <div class="post_base__body">
             {% responsive_img page.featured_image 'fill-350x350' 'post_base__body-image' %}
             <div class="post_base__body-content">
-                {{ page.content | richtext }}
+                {% block body_content %}
+                    {{ page.content | richtext }}
+                {% endblock body_content %}
             </div>
         </div>
     </section>

@@ -1,7 +1,9 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
+{% block header_class_specifier%}
 <div class="post_base__header">
+{% endblock header_class_specifier%}
     <div class="post_base__header-image">
         <div class="post_base__sfi-edition-info">
             <p class="post_base__sfi-edition">16 edycja</p>
@@ -10,7 +12,7 @@
     </div>
     <div class="post_base__header-title">
         <p class="post_base__title">{{ page.title }}</p>
-        {% block date %}
-        {% endblock date %}
+        {% block details %}
+        {% endblock details %}
     </div>
 </div>

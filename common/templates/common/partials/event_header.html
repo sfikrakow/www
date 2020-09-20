@@ -1,0 +1,15 @@
+{% extends 'common/partials/post_base_header.html'%}
+
+{% block header_class_specifier %}
+    <div class="post_base__header post_base__header--event">
+{% endblock %}
+
+{% block details %}
+    <div class="event_details">
+        <p>Typ: {{ page.event_category }}</p>
+        <p>Prelegent: {{ page.event_speaker }}</p>
+        <p>Sponsor: {{ page.sponsor }}</p>
+        <p>Język: {{ page.language }}</p>
+        <p>Edition: TODO</p>
+    </div>
+{% endblock details %}
