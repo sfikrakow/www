@@ -1,16 +1,20 @@
 .event-info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.2rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
 
     &__title {
         font-size: 1.2rem;
         font-weight: 700;
         text-transform: uppercase;
-        flex-basis: 13%;
+        flex-basis: 15%;
         text-align: right;
         color: $page_color_10;
+
+        &--event-title {
+            align-self: center;
+        }
     }
 
     &__content {
@@ -18,8 +22,9 @@
         flex-basis: 80%;
         text-align: left;
 
-        &--event-name {
+        &--event-title {
             font-size: 2rem;
+            color: $page_color_11;
         }
     }
 }
@@ -47,6 +52,12 @@
         .post_base__header-image {
             flex-basis: 50%;
             min-height: 400px;
+        }
+    }
+
+    &__body--event {
+        .post_base__body-content {
+            flex-basis: 80%;
         }
     }
 }

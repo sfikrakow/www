@@ -1,15 +1,22 @@
 {% extends 'common/post.html' %}
+{% load common_tags %}
+{% load wagtailcore_tags %}
 
 {% block header %}
     {% include 'common/partials/event_header.html' %}
 {% endblock header %}
 
+{% block body_class_specifier %}
+    <div class="post_base__body post_base__body--event">
+{% endblock body_class_specifier %}
+
+
 {% block body_content %}
     <div class="event-info">
-        <div class="event-info__title">
+        <div class="event-info__title event-info__title--event-title">
             Temat
         </div> 
-        <div class="event-info__content event-info__content--event-name">
+        <div class="event-info__content event-info__content--event-title">
             {{ page.title }}
         </div>
     </div>
@@ -26,7 +33,7 @@
             Abstrakt
         </div> 
         <div class="event-info__content">
-            {{ page.content }}
+            {{ page.content | richtext }}
         </div>
     </div>
     <div class="event-info">
