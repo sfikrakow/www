@@ -18,7 +18,7 @@
         flex-basis: 80%;
         text-align: left;
 
-        &--event_name {
+        &--event-name {
             font-size: 2rem;
         }
     }
@@ -44,16 +44,9 @@
 
 .post_base {
     &__header--event {
-        flex-basis: 40%;
-        min-height: 400px;
-
         .post_base__header-image {
-            flex-basis: 40%;
+            flex-basis: 50%;
             min-height: 400px;
-        }
-
-        .post_base__header-title {
-            flex-basis: 55%;
         }
     }
 }
