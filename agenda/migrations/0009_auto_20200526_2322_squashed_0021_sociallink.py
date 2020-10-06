@@ -9,7 +9,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
     dependencies = [
         ('wagtailimages', '0001_squashed_0021'),
-        ('agenda', '0001_squashed_0008_auto_20200504_2015'),
         ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
         ('wagtailredirects', '0006_redirect_increase_max_length'),
         ('wagtailforms', '0004_add_verbose_name_plural'),
