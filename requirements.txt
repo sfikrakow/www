@@ -1,5 +1,5 @@
 Django>=3.1.2,<3.2
-wagtail>=2.10,<2.11
+wagtail>=2.10.2,<2.11
 -e git+https://github.com/sfikrakow/django-sfibase.git@5dfb2f269c791144304ac433f8aa4d03a9b9ac7c#egg=django_sfibase
 django_compressor>=2.4,<2.5
 django-libsass==0.8

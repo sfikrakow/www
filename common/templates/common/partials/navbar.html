@@ -12,18 +12,13 @@
     </a>
 
     <ul class="navbar__links">
-        <li class="navbar__li">
-            <a href="#" class="navbar__link">16. SFI przeniesione</a>
-        </li>
-        <li class="navbar__li">
-            <a href="#" class="navbar__link">O nas</a>
-        </li>
-        <li class="navbar__li">
-            <a href="#" class="navbar__link">FAQ</a>
-        </li>
-        <li class="navbar__li">
-            <a href="#" class="navbar__link">Newsletter</a>
-        </li>
+        {% for nav_item in settings.common.NavigationMenu.menu_items.all %}
+            <li class="navbar__li">
+                <a href="{{ nav_item.link }}" class="navbar__link"
+                   {% if nav_item.open_in_new_tab %}target="_blank"
+                   rel="noopener" {% endif %}>{{ nav_item.link_title }}</a>
+            </li>
+        {% endfor %}
         <li class="navbar__li" id="navbar__last">
             {% get_available_languages as languages %}
             {% get_current_language as lang %}
