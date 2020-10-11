@@ -1,18 +1,7 @@
-{% load wagtailcore_tags %}
-{% load wagtailimages_tags %}
+{% extends 'common/partials/edition_header.html' %}
 
-{% block header_class_specifier%}
-<div class="post_base__header">
-{% endblock header_class_specifier%}
-    <div class="post_base__header-image">
-        <div class="post_base__sfi-edition-info">
-            <p class="post_base__sfi-edition">16 edycja</p>
-            <p class="post_base__sfi-year">2020</p>
-        </div>
-    </div>
-    <div class="post_base__header-title">
-        <p class="post_base__title">{{ page.title }}</p>
-        {% block details %}
-        {% endblock details %}
-    </div>
-</div>
+{% block header_content %}
+    <p class="post_base__title">{{ page.title }}</p>
+    {% block details %}
+    {% endblock details %}
+{% endblock %}

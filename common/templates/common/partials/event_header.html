@@ -8,10 +8,7 @@
     <div class="event-header_details">
         <p>Typ: <span class="event-header_details_value">{{ page.event_category }}</span></p>
         <p>Prelegent: 
-            <a href={{ page.event_speaker.url }} class="
-                event-header_details_value 
-                event-header_details_value--link"
-            >
+            <a href="{{ page.event_speaker.url }}" class="event-header_details_value event-header_details_value--link">
                 {{ page.event_speaker }}
             </a>
         </p>

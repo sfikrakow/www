@@ -1,0 +1,7 @@
+{% extends 'common/partials/edition_header.html' %}
+
+{% load wagtailcore_tags %}
+
+{% block header_content %}
+    {{ value.content | richtext }}
+{% endblock %}

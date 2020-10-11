@@ -6,14 +6,17 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from blog.blocks import PostIndexBlock
 from common.models import SFIPage
+from pages.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock
 
 
 class StaticPage(SFIPage):
     content = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('post_index', PostIndexBlock()),
+        ('header', HeadingBlock()),
+        ('section_title', SectionTitleBlock()),
+        ('section_divider', SectionDividerBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
 
     content_panels = SFIPage.content_panels + [
