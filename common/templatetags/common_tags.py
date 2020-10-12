@@ -14,7 +14,7 @@ def unrich_text(value):
 
 
 @register.inclusion_tag('common/tags/responsive_img.html')
-def responsive_img(img, size: str, css_class='', placeholder=''):
+def responsive_img(img, size: str, css_class=''):
     if img:
         image_jpg = img.get_rendition(size + '|format-jpeg|jpegquality-70')
         image_webp = img.get_rendition(size + '|format-webp')
@@ -24,7 +24,6 @@ def responsive_img(img, size: str, css_class='', placeholder=''):
             'css_class': css_class,
         }
     else:
-        # TODO: placeholder
         return {}
 
 
@@ -46,14 +45,18 @@ def get_description(page):
         return ''
 
 
+@register.inclusion_tag('common/tags/responsive_img.html', takes_context=True)
+def responsive_featured_image(context, page, size: str, css_class=''):
+    return responsive_img(page.get_featured_image_or_default(context), size, css_class)
+
+
 @register.simple_tag(takes_context=True)
-def get_featured_image(context, page):
-    if page.featured_image:
-        img = page.featured_image.get_rendition('max-1200x1200|format-jpeg|jpegquality-70')
-        return context.request.build_absolute_uri(img.url)
-    else:
-        # TODO: fallback
-        return ''
+def get_featured_image_url(context, page):
+    image = page.get_featured_image_or_default(context)
+    if image:
+        rendition = image.get_rendition('max-1200x1200|format-jpeg|jpegquality-70')
+        return context['request'].build_absolute_uri(rendition.url)
+    return ''
 
 
 @register.simple_tag

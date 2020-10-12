@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 from django.core.validators import RegexValidator
 from django.db import models
 from django.forms.widgets import TextInput
@@ -113,10 +115,19 @@ class EditionIndex(SFIPage):
 class Edition(SFIPage):
     start_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition start date'))
     end_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition end date'))
+    default_featured_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('default featured image')
+    )
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('start_date'),
         FieldPanel('end_date'),
+        ImageChooserPanel('default_featured_image'),
         InlinePanel('event_categories', label='Event categories')
     ]
 
@@ -126,6 +137,21 @@ class Edition(SFIPage):
     class Meta:
         verbose_name = _('edition')
         verbose_name_plural = _('editions')
+
+
+class EditionSubpage(SFIPage):
+    @abstractmethod
+    def get_edition(self):
+        pass
+
+    def get_featured_image_or_default(self, context):
+        if self.featured_image:
+            return self.featured_image
+        else:
+            return self.get_edition().get_featured_image_or_default(context=context)
+
+    class Meta:
+        abstract = True
 
 
 class Category(models.Model):
@@ -153,7 +179,7 @@ class Category(models.Model):
         verbose_name_plural = _('event categories')
 
 
-class EventIndex(SFIPage):
+class EventIndex(EditionSubpage):
     parent_page_types = ['Edition']
     subpage_types = ['Event']
 
@@ -173,6 +199,9 @@ class EventIndex(SFIPage):
         # TODO: display agenda block??
         return context
 
+    def get_edition(self):
+        return self.get_parent()
+
     class Meta:
         verbose_name = _('event list')
         verbose_name_plural = _('event lists')
@@ -183,7 +212,7 @@ class LanguageChoice(models.TextChoices):
     ENGLISH = 'en', _('English')
 
 
-class Event(SFIPage):
+class Event(EditionSubpage):
     content = RichTextField(verbose_name=_('content'))
     date = models.DateTimeField(null=True, blank=True, verbose_name=_('date'))
     duration_minutes = models.IntegerField(null=True, blank=True, verbose_name=_('duration in minutes'))
@@ -220,6 +249,9 @@ class Event(SFIPage):
     @property
     def index(self):
         return self.get_parent()
+
+    def get_edition(self):
+        return self.get_parent().get_edition()
 
     class Meta:
         verbose_name = _('event')

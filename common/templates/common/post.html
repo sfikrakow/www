@@ -10,7 +10,7 @@
         {% block body_class_specifier %}
         <div class="post_base__body">
         {% endblock body_class_specifier %}
-            {% responsive_img page.featured_image 'fill-350x350' 'post_base__body-image' %}
+            {% responsive_img page.get_featured_image_or_default 'fill-350x350' 'post_base__body-image' %}
             <div class="post_base__body-content">
                 {% block body_content %}
                     {{ page.content | richtext }}

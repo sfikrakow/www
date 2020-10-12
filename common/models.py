@@ -29,6 +29,12 @@ class SFIPage(Page):
         verbose_name=_('featured image')
     )
 
+    def get_featured_image_or_default(self, context):
+        if self.featured_image:
+            return self.featured_image
+        else:
+            return ThemeSettings.for_request(context['request']).default_featured_image
+
     content_panels = Page.content_panels + [
         ImageChooserPanel('featured_image'),
     ]
@@ -83,3 +89,22 @@ class NavigationMenuEntry(Orderable, models.Model):
         elif self.link_url:
             return self.link_url
         return '#'
+
+
+@register_setting(icon='view')
+class ThemeSettings(BaseSetting):
+    default_featured_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('default featured image')
+    )
+
+    panels = [
+        ImageChooserPanel('default_featured_image'),
+    ]
+
+    class Meta:
+        verbose_name = _('theme settings')

@@ -3,5 +3,5 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    {{ page.content | default_if_none:"" }}
+    {% include_block page.content %}
 {% endblock content %}
