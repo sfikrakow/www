@@ -3,5 +3,7 @@
 {% load wagtailcore_tags %}
 
 {% block header_content %}
-    {{ value.content | richtext }}
+    <div class="rich-text">
+        {{ value.content | richtext }}
+    </div>
 {% endblock %}

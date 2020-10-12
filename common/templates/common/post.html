@@ -8,14 +8,16 @@
 
     <section class="post_base">
         {% block body_class_specifier %}
-        <div class="post_base__body">
+            <div class="post_base__body">
         {% endblock body_class_specifier %}
-            {% responsive_img page.get_featured_image_or_default 'fill-350x350' 'post_base__body-image' %}
-            <div class="post_base__body-content">
-                {% block body_content %}
+        {% responsive_featured_image page 'fill-350x350' 'post_base__body-image' %}
+        <div class="post_base__body-content">
+            {% block body_content %}
+                <div class="rich-text">
                     {{ page.content | richtext }}
-                {% endblock body_content %}
-            </div>
+                </div>
+            {% endblock body_content %}
+        </div>
         </div>
     </section>
 {% endblock %}

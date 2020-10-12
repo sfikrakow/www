@@ -1,28 +1,5 @@
 {% extends 'common/post_index_base.html' %}
 
-<section class="post-list">
-    <h2 class="post-list__main-title">{{ page.title }}</h2>
-    <div class="post-list__container">
-        {% block index %}
-            {% for post in posts %}
-                {% include 'blog/partials/post_index_single.html' with post=post %}
-            {% endfor %}
-        {% endblock index %}
-    </div>
-</section>
-{% block pagination %}
-    <div class="pagination">
-        <div class="pagination__left pagination__btn">
-            {% if posts.has_previous %}
-                <a class="pagination__link" href="{{ request.path }}?page={{ posts.previous_page_number }}"><i
-                        class="fas fa-arrow-circle-left"></i></a>
-            {% endif %}
-        </div>
-        <div class="pagination__right pagination__btn">
-            {% if posts.has_next %}
-                <a class="pagination__link" href="{{ request.path }}?page={{ posts.next_page_number }}"><i
-                        class="fas fa-arrow-circle-right"></i></a>
-            {% endif %}
-        </div>
-    </div>
-{% endblock pagination %}
+{% block single_post %}
+    {% include 'blog/partials/post_index_single.html' with post=post %}
+{% endblock %}
