@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 21:30+0200\n"
+"POT-Creation-Date: 2020-10-12 21:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,14 +169,10 @@ msgid "events"
 msgstr "wydarzenia"
 
 #: agenda/templates/agenda/event.html:17
-#, fuzzy
-#| msgid "speaker"
 msgid "Speaker"
 msgstr "prelegent"
 
 #: agenda/templates/agenda/event.html:30
-#, fuzzy
-#| msgid "sponsor"
 msgid "Sponsor"
 msgstr "Sponsor"
 
@@ -189,10 +185,8 @@ msgid "Duration"
 msgstr "Czas trwania"
 
 #: agenda/templates/agenda/partials/event_header.html:11
-#, fuzzy
-#| msgid "edition"
 msgid "Edition"
-msgstr "edycja"
+msgstr "Edycja"
 
 #: agenda/templates/agenda/partials/event_header.html:13
 msgid "Date"
@@ -203,14 +197,10 @@ msgid "Type"
 msgstr "Typ"
 
 #: agenda/templates/agenda/partials/event_header.html:19
-#, fuzzy
-#| msgid "category"
 msgid "Category"
 msgstr "Kategoria"
 
 #: agenda/templates/agenda/partials/event_header.html:22
-#, fuzzy
-#| msgid "language"
 msgid "Language"
 msgstr "Język"
 
