@@ -28,7 +28,7 @@
             {{ page.content | richtext }}
         </div>
     </div>
-    {% if page.social_links %}
+    {% if page.social_links.all %}
         <div class="event-info">
             <div class="event-info__title">
                 {% trans 'Where to find me' %}
@@ -62,6 +62,8 @@
                         </li>
                     {% endfor %}
                 </ul>
+            {% empty %}
+                <span class="event-header_details_value">TBA</span>
             {% endfor %}
         </div>
     </div>

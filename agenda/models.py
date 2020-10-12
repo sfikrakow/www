@@ -53,7 +53,7 @@ class SpeakerIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['speakers'] = paginate(
+        context['posts'] = paginate(
             Speaker.objects.live().public().descendant_of(self).order_by('title'),
             request, SpeakerIndex.SPEAKERS_PER_PAGE)
         return context
@@ -112,7 +112,7 @@ class EditionIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['editions'] = Edition.objects.live().public().descendant_of(self)
+        context['posts'] = Edition.objects.live().public().descendant_of(self).order_by("title")
         return context
 
     class Meta:
