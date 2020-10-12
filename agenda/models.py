@@ -200,7 +200,7 @@ class EventIndex(EditionSubpage):
         return context
 
     def get_edition(self):
-        return self.get_parent()
+        return self.get_parent().edition
 
     class Meta:
         verbose_name = _('event list')
@@ -246,12 +246,14 @@ class Event(EditionSubpage):
     parent_page_types = ['EventIndex']
     subpage_types = []
 
-    @property
     def index(self):
-        return self.get_parent()
+        return self.get_parent().eventindex
+
+    def get_type(self):
+        return self.index().title
 
     def get_edition(self):
-        return self.get_parent().get_edition()
+        return self.get_parent().get_parent().edition
 
     class Meta:
         verbose_name = _('event')

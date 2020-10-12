@@ -1,7 +1,5 @@
 {% extends 'common/post_index_base.html' %}
 
-{% block index %}
-    {% for speaker in speakers %}
-        {% include 'agenda/partials/speaker_index_single.html' with speaker=speaker %}
-    {% endfor %}
+{% block single_post %}
+    {% include 'agenda/partials/speaker_index_single.html' with speaker=post %}
 {% endblock %}

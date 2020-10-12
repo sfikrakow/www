@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 11:29+0200\n"
+"POT-Creation-Date: 2020-10-12 21:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,149 +20,199 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: agenda/models.py:20 agenda/models.py:131
+#: agenda/models.py:22 agenda/models.py:159
 msgid "name"
 msgstr "nazwa"
 
-#: agenda/models.py:27
+#: agenda/models.py:29
 msgid "logo"
 msgstr "logo"
 
-#: agenda/models.py:39 agenda/models.py:62 agenda/models.py:193
-msgid "sponsor"
-msgstr "sponsor"
-
-#: agenda/models.py:40
-msgid "sponsors"
-msgstr "sponsorzy"
-
-#: agenda/models.py:56
-msgid "speakers index"
-msgstr "lista prelegentów"
-
-#: agenda/models.py:57
-msgid "speakers indexes"
-msgstr "listy prelegentów"
-
-#: agenda/models.py:61 agenda/models.py:185
-msgid "content"
-msgstr "zawartość"
-
-#: agenda/models.py:74 agenda/models.py:188
-msgid "speaker"
-msgstr "prelegent"
-
-#: agenda/models.py:75
-msgid "speakers"
-msgstr "prelegenci"
-
-#: agenda/models.py:84
-msgid "Email"
-msgstr "Email"
-
-#: agenda/models.py:85
-msgid "Website"
-msgstr "Strona internetowa"
-
-#: agenda/models.py:86
-msgid "Other"
-msgstr "Inne"
-
-#: agenda/models.py:92
-msgid "type"
-msgstr "typ"
-
-#: agenda/models.py:93
+#: agenda/models.py:31 agenda/models.py:97
 msgid "link"
 msgstr "link"
 
-#: agenda/models.py:107
+#: agenda/models.py:43 agenda/models.py:66 agenda/models.py:224
+msgid "sponsor"
+msgstr "sponsor"
+
+#: agenda/models.py:44
+msgid "sponsors"
+msgstr "sponsorzy"
+
+#: agenda/models.py:60
+msgid "speakers index"
+msgstr "lista prelegentów"
+
+#: agenda/models.py:61
+msgid "speakers indexes"
+msgstr "listy prelegentów"
+
+#: agenda/models.py:65 agenda/models.py:216
+msgid "content"
+msgstr "zawartość"
+
+#: agenda/models.py:78 agenda/models.py:219
+msgid "speaker"
+msgstr "prelegent"
+
+#: agenda/models.py:79
+msgid "speakers"
+msgstr "prelegenci"
+
+#: agenda/models.py:88
+msgid "Email"
+msgstr "Email"
+
+#: agenda/models.py:89
+msgid "Website"
+msgstr "Strona internetowa"
+
+#: agenda/models.py:90
+msgid "Other"
+msgstr "Inne"
+
+#: agenda/models.py:96
+msgid "type"
+msgstr "typ"
+
+#: agenda/models.py:111
 msgid "edition index"
 msgstr "lista edycji"
 
-#: agenda/models.py:108
+#: agenda/models.py:112
 msgid "edition indexes"
 msgstr "listy edycji"
 
-#: agenda/models.py:112
+#: agenda/models.py:116
 msgid "edition start date"
 msgstr "data początku edycji"
 
-#: agenda/models.py:113
+#: agenda/models.py:117
 msgid "edition end date"
 msgstr "data końca edycji"
 
-#: agenda/models.py:125 agenda/models.py:130
+#: agenda/models.py:124
+msgid "default featured image"
+msgstr "domyślny wyróżniony obrazek"
+
+#: agenda/models.py:138 agenda/models.py:158
 msgid "edition"
 msgstr "edycja"
 
-#: agenda/models.py:126
+#: agenda/models.py:139
 msgid "editions"
 msgstr "edycje"
 
-#: agenda/models.py:132
+#: agenda/models.py:160
 msgid "icon"
 msgstr "ikona"
 
-#: agenda/models.py:137 agenda/models.py:162
+#: agenda/models.py:165 agenda/models.py:190
 msgid "Color must be in hex"
 msgstr "Kolor musi być w formie szesnastkowej"
 
-#: agenda/models.py:138 agenda/models.py:163
+#: agenda/models.py:166 agenda/models.py:191
 msgid "color"
 msgstr "kolor"
 
-#: agenda/models.py:150
+#: agenda/models.py:178
 msgid "event category"
 msgstr "kategoria wydarzeń"
 
-#: agenda/models.py:151
+#: agenda/models.py:179
 msgid "event categories"
 msgstr "kategorie wydarzeń"
 
-#: agenda/models.py:175
+#: agenda/models.py:206
 msgid "event list"
 msgstr "lista wydarzeń"
 
-#: agenda/models.py:176
+#: agenda/models.py:207
 msgid "event lists"
 msgstr "listy wydarzeń"
 
-#: agenda/models.py:180
+#: agenda/models.py:211
 msgid "Polish"
 msgstr "Polski"
 
-#: agenda/models.py:181
+#: agenda/models.py:212
 msgid "English"
 msgstr "Angielski"
 
-#: agenda/models.py:186
+#: agenda/models.py:217
 msgid "date"
 msgstr "data"
 
-#: agenda/models.py:187
+#: agenda/models.py:218
 msgid "duration in minutes"
 msgstr "czas trwania w minutach"
 
-#: agenda/models.py:190
+#: agenda/models.py:221
 msgid "category"
 msgstr "kategoria"
 
-#: agenda/models.py:192
+#: agenda/models.py:223
 msgid "language"
 msgstr "język"
 
-#: agenda/models.py:194
+#: agenda/models.py:225
 msgid "link to recording"
 msgstr "link do nagrania"
 
-#: agenda/models.py:223
+#: agenda/models.py:259
 msgid "event"
 msgstr "wydarzenie"
 
-#: agenda/models.py:224
+#: agenda/models.py:260
 msgid "events"
 msgstr "wydarzenia"
+
+#: agenda/templates/agenda/event.html:17
+#, fuzzy
+#| msgid "speaker"
+msgid "Speaker"
+msgstr "prelegent"
+
+#: agenda/templates/agenda/event.html:30
+#, fuzzy
+#| msgid "sponsor"
+msgid "Sponsor"
+msgstr "Sponsor"
+
+#: agenda/templates/agenda/event.html:41
+msgid "Abstract"
+msgstr "Abstrakt"
+
+#: agenda/templates/agenda/event.html:50
+msgid "Duration"
+msgstr "Czas trwania"
+
+#: agenda/templates/agenda/partials/event_header.html:11
+#, fuzzy
+#| msgid "edition"
+msgid "Edition"
+msgstr "edycja"
+
+#: agenda/templates/agenda/partials/event_header.html:13
+msgid "Date"
+msgstr "Data"
+
+#: agenda/templates/agenda/partials/event_header.html:15
+msgid "Type"
+msgstr "Typ"
+
+#: agenda/templates/agenda/partials/event_header.html:19
+#, fuzzy
+#| msgid "category"
+msgid "Category"
+msgstr "Kategoria"
+
+#: agenda/templates/agenda/partials/event_header.html:22
+#, fuzzy
+#| msgid "language"
+msgid "Language"
+msgstr "Język"
 
 #: agenda/templates/agenda/partials/speaker_index_single.html:12
 msgid "Read more..."

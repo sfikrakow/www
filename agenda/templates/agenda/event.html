@@ -1,47 +1,57 @@
 {% extends 'common/post.html' %}
+{% load i18n %}
 {% load common_tags %}
 {% load wagtailcore_tags %}
 
 {% block header %}
-    {% include 'common/partials/event_header.html' %}
+    {% include 'agenda/partials/event_header.html' %}
 {% endblock header %}
 
-{% block body_class_specifier %}
-    <div class="post_base__body post_base__body--event">
-{% endblock body_class_specifier %}
+{% block body_class_specifier %}post_base__body post_base__body--event{% endblock %}
 
 
 {% block body_content %}
-    <div class="event-info">
-        <div class="event-info__title event-info__title--event-title">
-            Temat
-        </div> 
-        <div class="event-info__content event-info__content--event-title">
-            {{ page.title }}
-        </div>
-    </div>
+    {% if page.event_speaker %}
     <div class="event-info">
         <div class="event-info__title">
-            Zapisy
-        </div> 
+            {% trans 'Speaker' %}
+        </div>
         <div class="event-info__content">
-            TODO
+            <a href="{% pageurl page.event_speaker %}"
+               class="event-header_details_value event-header_details_value--link">
+                {{ page.event_speaker.title }}
+            </a>
         </div>
     </div>
+    {% endif %}
+    {% if page.sponsor %}
+        <div class="event-info">
+            <div class="event-info__title">
+                {% trans 'Sponsor' %}
+            </div>
+            <div class="event-info__content">
+                <a href="{{ page.sponsor.link }}" rel="noreferrer noopener" target="_blank">
+                    {% responsive_img page.sponsor.logo 'max-500x100' 'nk-tu-wstawi-klase-css' %}
+                </a>
+            </div>
+        </div>
+    {% endif %}
     <div class="event-info">
         <div class="event-info__title">
-            Abstrakt
-        </div> 
-        <div class="event-info__content">
+            {% trans 'Abstract' %}
+        </div>
+        <div class="event-info__content rich-text">
             {{ page.content | richtext }}
         </div>
     </div>
-    <div class="event-info">
-        <div class="event-info__title">
-            Czas trwania
-        </div> 
-        <div class="event-info__content">
-            {{ page.duration_minutes }} min
+    {% if page.duration_minutes %}
+        <div class="event-info">
+            <div class="event-info__title">
+                {% trans 'Duration' %}
+            </div>
+            <div class="event-info__content">
+                {{ page.duration_minutes }} min
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock body_content %}

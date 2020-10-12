@@ -35,13 +35,13 @@
     &_value {
         color: $page_color_11;
         &--link {
-            color: $page_color_10;
+            color: $page_color_11;
             text-decoration: none;
             transition: color 0.2s ease-in;
             font-weight: 700;
 
             &:hover {
-                color: $page_color_8;
+                color: $page_color_10;
             }
         }
     }

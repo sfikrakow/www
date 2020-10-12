@@ -7,17 +7,15 @@
     {% endblock header %}
 
     <section class="post_base">
-        {% block body_class_specifier %}
-            <div class="post_base__body">
-        {% endblock body_class_specifier %}
-        {% responsive_featured_image page 'fill-350x350' 'post_base__body-image' %}
-        <div class="post_base__body-content">
-            {% block body_content %}
-                <div class="rich-text">
-                    {{ page.content | richtext }}
-                </div>
-            {% endblock body_content %}
-        </div>
+        <div class="{% block body_class_specifier %}post_base__body{% endblock %}">
+            {% responsive_featured_image page 'fill-350x350' 'post_base__body-image' %}
+            <div class="post_base__body-content">
+                {% block body_content %}
+                    <div class="rich-text">
+                        {{ page.content | richtext }}
+                    </div>
+                {% endblock body_content %}
+            </div>
         </div>
     </section>
 {% endblock %}

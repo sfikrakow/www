@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 11:29+0200\n"
+"POT-Creation-Date: 2020-10-12 21:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,45 +32,55 @@ msgstr "użytkownicy"
 msgid "featured image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:43
+#: common/models.py:49
 msgid "menu items"
 msgstr "elementy menu"
 
-#: common/models.py:47
+#: common/models.py:53
 msgid "navigation menu"
 msgstr "menu nawigacyjne"
 
-#: common/models.py:48
+#: common/models.py:54
 msgid "navigation menus"
 msgstr "menu nawigacyjne"
 
-#: common/models.py:52
+#: common/models.py:58
 msgid "menu item"
 msgstr "element menu"
 
-#: common/models.py:53
+#: common/models.py:59
 msgid "link title"
 msgstr "tytuł linku"
 
-#: common/models.py:60
+#: common/models.py:66
 msgid "linked page"
 msgstr "podlinkowana strona"
 
-#: common/models.py:61
+#: common/models.py:67
 msgid "Overrides the url field"
 msgstr "zastępuje pole adresu linku"
 
-#: common/models.py:67
+#: common/models.py:73
 msgid "link url"
 msgstr "adres linku"
 
-#: common/models.py:68
+#: common/models.py:74
 msgid "Overridden by linked page"
 msgstr "zastępowane przez adres podlinkowanej strony"
 
-#: common/models.py:70
+#: common/models.py:76
 msgid "open in new tab"
 msgstr "otwórz w nowej karcie"
+
+#: common/models.py:102
+#, fuzzy
+#| msgid "featured image"
+msgid "default featured image"
+msgstr "wyróżniony obrazek"
+
+#: common/models.py:110
+msgid "theme settings"
+msgstr "ustawienia motywu"
 
 #: common/templates/404.html:5 common/templates/404.html:12
 msgid "Page not found"

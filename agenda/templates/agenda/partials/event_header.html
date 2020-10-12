@@ -1,0 +1,27 @@
+{% extends 'common/partials/post_base_header.html' %}
+{% load i18n %}
+{% load wagtailcore_tags %}
+
+{% block header_class_specifier %}
+    <div class="post_base__header post_base__header--event">
+{% endblock %}
+
+{% block details %}
+    <div class="event-header_details">
+        <p>{% trans 'Edition' %}: <span class="event-header_details_value">{{ page.get_edition.title }}</span></p>
+        {% if page.date %}
+            <p>{% trans 'Date' %}: <span class="event-header_details_value">{{ page.date }}</span></p>
+        {% endif %}
+        <p>{% trans 'Type' %}: <a href="{% pageurl page.index %}"
+                                  class="event-header_details_value event-header_details_value--link">{{ page.get_type }}</a>
+        </p>
+        {% if page.event_category %}
+            <p>{% trans 'Category' %}: <span class="event-header_details_value">{{ page.event_category }}</span></p>
+        {% endif %}
+        {% if page.language %}
+            <p>{% trans 'Language' %}: <span class="event-header_details_value">{{ page.get_language_display }}</span>
+            </p>
+        {% endif %}
+
+    </div>
+{% endblock details %}
