@@ -26,10 +26,12 @@ class Sponsor(models.Model):
         related_name='+',
         verbose_name=_('logo')
     )
+    link = models.URLField(max_length=500, null=True, blank=True, verbose_name=_('link'))
 
     panels = [
         FieldPanel('name'),
         ImageChooserPanel('logo'),
+        FieldPanel('link'),
     ]
 
     def __str__(self):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 16:02+0200\n"
+"POT-Creation-Date: 2020-10-12 11:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,33 +20,74 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: common/models.py:13
+#: common/models.py:18
 msgid "user"
 msgstr "użytkownik"
 
-#: common/models.py:14
+#: common/models.py:19
 msgid "users"
 msgstr "użytkownicy"
 
-#: common/models.py:24
+#: common/models.py:29
 msgid "featured image"
 msgstr "wyróżniony obrazek"
 
-#: common/templates/404.html:8
+#: common/models.py:43
+msgid "menu items"
+msgstr "elementy menu"
+
+#: common/models.py:47
+msgid "navigation menu"
+msgstr "menu nawigacyjne"
+
+#: common/models.py:48
+msgid "navigation menus"
+msgstr "menu nawigacyjne"
+
+#: common/models.py:52
+msgid "menu item"
+msgstr "element menu"
+
+#: common/models.py:53
+msgid "link title"
+msgstr "tytuł linku"
+
+#: common/models.py:60
+msgid "linked page"
+msgstr "podlinkowana strona"
+
+#: common/models.py:61
+msgid "Overrides the url field"
+msgstr "zastępuje pole adresu linku"
+
+#: common/models.py:67
+msgid "link url"
+msgstr "adres linku"
+
+#: common/models.py:68
+msgid "Overridden by linked page"
+msgstr "zastępowane przez adres podlinkowanej strony"
+
+#: common/models.py:70
+msgid "open in new tab"
+msgstr "otwórz w nowej karcie"
+
+#: common/templates/404.html:5 common/templates/404.html:12
 msgid "Page not found"
 msgstr "Nie znaleziono strony"
 
-#: common/templates/404.html:9
+#: common/templates/404.html:13
 msgid "Sorry, the page you are looking for does not exist."
 msgstr "Przepraszamy, poszukiwana strona nie istnieje."
 
-#: common/templates/common/base.html:15 common/templates/common/base.html:22
-#: common/templates/common/base.html:46 common/templates/common/base.html:47
+#: common/templates/common/base.html:24 common/templates/common/base.html:25
+#: common/templates/common/base.html:31 common/templates/common/page.html:7
+#: common/templates/common/page.html:14
 #: common/templates/common/partials/footer.html:27
 msgid "SFI IT Academic Festival"
 msgstr "Studencki Festiwal Informatyczny"
 
-#: common/templates/common/base.html:17
+#: common/templates/common/page.html:9
 msgid "en_US"
 msgstr "pl_PL"
 

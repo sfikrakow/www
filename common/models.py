@@ -60,7 +60,7 @@ class NavigationMenuEntry(Orderable, models.Model):
         verbose_name=_('linked page'),
         help_text=_('Overrides the url field')
     )
-    link_url = models.CharField(
+    link_url = models.URLField(
         max_length=500,
         blank=True,
         null=True,

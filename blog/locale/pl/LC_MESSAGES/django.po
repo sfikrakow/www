@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 19:41+0200\n"
+"POT-Creation-Date: 2020-10-12 11:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,11 +44,10 @@ msgstr "post"
 msgid "posts"
 msgstr "posty"
 
-#: blog/templates/blog/post_index.html:19
-#: blog/templates/blog/post_index_block.html:18
+#: blog/templates/blog/partials/post_index_single.html:12
 msgid "Read more..."
 msgstr "Czytaj więcej..."
 
-#: blog/templates/blog/post_index_block.html:24
+#: blog/templates/blog/post_index_block.html:13
 msgid "More..."
 msgstr "Więcej..."
