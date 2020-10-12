@@ -1,4 +1,5 @@
 {% extends 'common/post.html' %}
+{% load wagtailembeds_tags %}
 {% load i18n %}
 {% load common_tags %}
 {% load wagtailcore_tags %}
@@ -12,17 +13,17 @@
 
 {% block body_content %}
     {% if page.event_speaker %}
-    <div class="event-info">
-        <div class="event-info__title">
-            {% trans 'Speaker' %}
+        <div class="event-info">
+            <div class="event-info__title">
+                {% trans 'Speaker' %}
+            </div>
+            <div class="event-info__content">
+                <a href="{% pageurl page.event_speaker %}"
+                   class="event-header_details_value event-header_details_value--link">
+                    {{ page.event_speaker.title }}
+                </a>
+            </div>
         </div>
-        <div class="event-info__content">
-            <a href="{% pageurl page.event_speaker %}"
-               class="event-header_details_value event-header_details_value--link">
-                {{ page.event_speaker.title }}
-            </a>
-        </div>
-    </div>
     {% endif %}
     {% if page.sponsor %}
         <div class="event-info">
@@ -51,6 +52,20 @@
             </div>
             <div class="event-info__content">
                 {{ page.duration_minutes }} min
+            </div>
+        </div>
+    {% endif %}
+    {% if page.recording %}
+        <div class="event-info">
+            <div class="event-info__title">
+                {% trans 'Recording' %}
+            </div>
+            <div class="event-info__content">
+                <div><a class="event-header_details_value event-header_details_value--link" href="{{ page.recording }}"
+                        rel="noreferrer noopener" target="_blank">{% trans 'link' %}</a></div>
+                <div>
+                    {% embed page.recording %}
+                </div>
             </div>
         </div>
     {% endif %}
