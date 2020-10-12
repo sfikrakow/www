@@ -1,4 +1,6 @@
 from abc import abstractmethod
+from collections import defaultdict
+from itertools import groupby
 
 from django.core.validators import RegexValidator
 from django.db import models
@@ -73,6 +75,12 @@ class Speaker(SFIPage):
 
     parent_page_types = ['SpeakerIndex']
     subpage_types = []
+
+    def get_all_events_by_edition(self):
+        by_edition = defaultdict(list)
+        for event in self.event_set.all():
+            by_edition[event.get_edition()].append(event)
+        return sorted(by_edition.items(), key=lambda x: x[0].start_date, reverse=True)
 
     class Meta:
         verbose_name = _('speaker')

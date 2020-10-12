@@ -1,5 +1,68 @@
 {% extends 'common/post.html' %}
+{% load common_tags %}
+{% load wagtailcore_tags %}
+{% load i18n %}
 
 {% block header %}
     {% include 'common/partials/post_base_header.html' %}
 {% endblock header %}
+
+{% block body_content %}
+    {% if page.sponsor %}
+        <div class="event-info">
+            <div class="event-info__title">
+                {% trans 'Sponsor' %}
+            </div>
+            <div class="event-info__content">
+                <a href="{{ page.sponsor.link }}" rel="noreferrer noopener" target="_blank">
+                    {% responsive_img page.sponsor.logo 'max-500x100' 'nk-tu-wstawi-klase-css' %}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="event-info">
+        <div class="event-info__title">
+            {% trans 'About me' %}
+        </div>
+        <div class="event-info__content rich-text">
+            {{ page.content | richtext }}
+        </div>
+    </div>
+    {% if page.social_links %}
+        <div class="event-info">
+            <div class="event-info__title">
+                {% trans 'Where to find me' %}
+            </div>
+            <div class="event-info__content">
+                <ul>
+                    {# TODO: icons? #}
+                    {% for link in page.social_links.all %}
+                        <li><a class="event-header_details_value event-header_details_value--link"
+                               href="{{ link.link }}" target="_blank"
+                               rel="noreferrer noopener">{{ link.get_type_display }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    <div class="event-info">
+        <div class="event-info__title">
+            {% trans 'My events' %}
+        </div>
+        <div class="event-info__content">
+            {% for edition, events in page.get_all_events_by_edition %}
+                <div><a href="{% pageurl edition %}"
+                        class="event-header_details_value event-header_details_value--link">{{ edition.title }}</a>
+                </div>
+                <ul>
+                    {% for event in events %}
+                        <li>
+                            <a href="{% pageurl event %}"
+                               class="event-header_details_value event-header_details_value--link">{{ event.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
