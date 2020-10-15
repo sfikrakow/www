@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 
-<div id="dropdown-{{ block_id }}">
-    <h2>{{ value.title }}</h2>
-    <div class="dropdown-{{ block_id }}-whatever-change-me">{{ value.content | richtext }}</div>
+<div class="dropdown">
+    <h2 class="dropdown__title">{{ value.title }} <i class="fas fa-caret-down dropdown__icon"></i></h2>
+    <div class="dropdown__content">{{ value.content | richtext }}</div>
 </div>
