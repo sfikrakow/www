@@ -6,7 +6,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from blog.blocks import PostIndexBlock
 from common.models import SFIPage
-from pages.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock
+from pages.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock, DropdownBlock
 
 
 class StaticPage(SFIPage):
@@ -17,6 +17,7 @@ class StaticPage(SFIPage):
         ('header', HeadingBlock()),
         ('section_title', SectionTitleBlock()),
         ('section_divider', SectionDividerBlock()),
+        ('dropdown', DropdownBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
 
     content_panels = SFIPage.content_panels + [

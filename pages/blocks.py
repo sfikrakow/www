@@ -1,4 +1,6 @@
-from wagtail.core.blocks import StructBlock, PageChooserBlock, IntegerBlock, RichTextBlock, TextBlock
+import random
+
+from wagtail.core.blocks import StructBlock, RichTextBlock, TextBlock
 
 
 class HeadingBlock(StructBlock):
@@ -20,3 +22,16 @@ class SectionDividerBlock(StructBlock):
 
     class Meta:
         template = 'pages/section_divider_block.html'
+
+
+class DropdownBlock(StructBlock):
+    title = TextBlock()
+    content = RichTextBlock()
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        context['block_id'] = random.randint(0, 100000000)
+        return context
+
+    class Meta:
+        template = 'pages/dropdown_block.html'
