@@ -20,6 +20,11 @@
     transition: max-height 0.2s ease-out;
     max-height: 0px;
     text-align: justify;
+
+    & > a {
+      color: $page_color_5;
+      text-decoration: none;
+    }
   }
 
   &.active  &__icon {
