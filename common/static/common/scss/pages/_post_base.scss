@@ -16,6 +16,22 @@
     max-width: 90rem;
   }
 
+  &__more {
+    text-align: right;
+    padding-right: 11rem;
+
+    &-link {
+      color: $page_color_5;
+      font-size: 21px;
+      font-weight: 700;
+      text-decoration: none;
+ 
+      &:hover {
+        color: $page_color_4;
+      }
+    }
+  }
+
   &__single-post {
     flex-basis: 45%;
 

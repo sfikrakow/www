@@ -9,7 +9,8 @@
                 {% include 'blog/partials/post_index_single.html' with post=post %}
             {% endfor %}
         </div>
-        {# TODO: style #}
-        <a href="{% pageurl value.index %}">{% trans 'More...' %}</a>
+        <div class="post_base-list__more">
+            <a class="post_base-list__more-link" href="{% pageurl value.index %}">{% trans 'More...' %}</a>
+        </div>
     </section>
 {% endblock %}
