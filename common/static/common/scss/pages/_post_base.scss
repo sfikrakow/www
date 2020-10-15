@@ -31,7 +31,7 @@
 
     &:hover {
       .post_base-list__title {
-        color: $page_color_10;
+        color: $page_color_4;
       }
 
       .post_base-list__image>img {
@@ -65,7 +65,7 @@
   }
 
   &__title {
-    color: $page_color_11;
+    color: $page_color_5;
     font-size: 1.3rem;
     font-weight: 700;
     transition: color 0.2s ease-in-out;
@@ -127,7 +127,7 @@
   &__sfi-year {
     font-size: 2.6rem;
     font-weight: 700;
-    color: $page_color_8;
+    color: $page_color_4;
     margin: 0;
   }
 
@@ -148,7 +148,7 @@
 
   &__date {
     font-size: 1rem;
-    color: $page_color_10;
+    color: $page_color_4;
     margin: 0.2rem 0 0 0;
   }
 

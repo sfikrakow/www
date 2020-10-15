@@ -10,7 +10,7 @@
         text-transform: uppercase;
         flex-basis: 15%;
         text-align: right;
-        color: $page_color_10;
+        color: $page_color_4;
 
         &--event-title {
             align-self: center;
@@ -24,7 +24,7 @@
 
         &--event-title {
             font-size: 2rem;
-            color: $page_color_11;
+            color: $page_color_5;
         }
     }
 }
@@ -33,15 +33,15 @@
     font-size: 1rem;
 
     &_value {
-        color: $page_color_11;
+        color: $page_color_5;
         &--link {
-            color: $page_color_11;
+            color: $page_color_5;
             text-decoration: none;
             transition: color 0.2s ease-in;
             font-weight: 700;
 
             &:hover {
-                color: $page_color_10;
+                color: $page_color_4;
             }
         }
     }
