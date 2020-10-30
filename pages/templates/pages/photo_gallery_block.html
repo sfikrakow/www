@@ -1,0 +1,11 @@
+{% load common_tags %}
+{% for entry in value.photos %}
+    {% if entry.link %}
+        <a href="{{ entry.link }}" rel="noopener noreferer" target="_blank">
+    {% endif %}
+{% responsive_img entry.photo image_format "some-css-class" %}
+{{ entry.title | linebreaks }}
+{% if entry.link %}
+    </a>
+{% endif %}
+{% endfor %}
