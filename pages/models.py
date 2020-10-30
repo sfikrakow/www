@@ -1,5 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.contrib.settings.models import BaseSetting
+from wagtail.contrib.settings.registry import register_setting
 from wagtail.core import blocks
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -28,3 +30,23 @@ class StaticPage(SFIPage):
     class Meta:
         verbose_name = _('page')
         verbose_name_plural = _('pages')
+
+
+@register_setting(icon='view')
+class FooterSettings(BaseSetting):
+    content = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('header', HeadingBlock()),
+        ('section_title', SectionTitleBlock()),
+        ('section_divider', SectionDividerBlock()),
+        ('dropdown', DropdownBlock()),
+        ('photo_gallery', PhotoGallery())
+    ], null=True, blank=True, verbose_name=_('content'))
+
+    panels = [
+        StreamFieldPanel('content'),
+    ]
+
+    class Meta:
+        verbose_name = _('footer settings')
