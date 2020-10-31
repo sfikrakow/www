@@ -1,0 +1,22 @@
+.block-photo_gallery {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px $page_color_7 solid;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 12%;
+    justify-content: space-between;
+    align-items: center;
+    
+    text-decoration: none;
+    color: $page_color_1;
+    font-size: 16px;
+    height: 250px;
+    margin: 10px;
+  }
+}
