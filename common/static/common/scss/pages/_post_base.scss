@@ -25,7 +25,7 @@
       font-size: 21px;
       font-weight: 700;
       text-decoration: none;
- 
+
       &:hover {
         color: $page_color_4;
       }
@@ -50,7 +50,7 @@
         color: $page_color_4;
       }
 
-      .post_base-list__image>img {
+      .post_base-list__image > img {
         transform: scale(1.1);
       }
     }
@@ -61,10 +61,10 @@
     border-radius: 15px;
     overflow: hidden;
 
-    &>img {
+    & > img {
       width: 100%;
       height: auto;
-      transition: transform .3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
     }
   }
 
@@ -110,7 +110,7 @@
 
   &__header {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     margin-top: 0.6rem;
   }
@@ -118,7 +118,7 @@
   &__header-image {
     flex-basis: 50%;
 
-    background: url('../img/post-header.png') no-repeat center center;
+    background: url("../img/post-header.png") no-repeat center center;
     background-size: cover;
     min-height: 270px;
     border-radius: 0 15px 15px 0;
@@ -153,7 +153,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 2.5rem;
+    padding-right: 2rem;
   }
 
   &__title {
@@ -181,7 +181,7 @@
     flex-basis: 15%;
     text-align: right;
 
-    &>img {
+    & > img {
       border-radius: 15px;
       max-height: 230px;
     }
@@ -193,7 +193,6 @@
 }
 
 .pagination {
-
   display: flex;
   width: 100%;
   margin: 50px 0;
