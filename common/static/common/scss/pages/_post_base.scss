@@ -1,9 +1,9 @@
 .post_base-list {
-  padding: 0.8rem 1rem;
+  padding: 0 0.8rem;
 
   &__main-title {
-    margin: 1.2rem auto;
-    font-size: 3rem;
+    margin: 2rem auto;
+    font-size: 48px;
     text-align: center;
   }
 
@@ -13,12 +13,13 @@
     justify-content: space-evenly;
 
     margin: 0 auto;
-    max-width: 90rem;
+    max-width: 80%;
   }
 
   &__more {
+    max-width: 75%;
+    margin: 0 auto;
     text-align: right;
-    padding-right: 11rem;
 
     &-link {
       color: $page_color_5;
@@ -39,7 +40,7 @@
     flex-wrap: nowrap;
 
     background-color: $page_color_7;
-    margin: 1rem 0;
+    margin-bottom: 2rem;
     border-radius: 15px;
 
     color: $page_color_1;
@@ -120,7 +121,7 @@
 
     background: url("../img/post-header.png") no-repeat center center;
     background-size: cover;
-    min-height: 270px;
+    min-height: 320px;
     border-radius: 0 15px 15px 0;
 
     display: flex;
@@ -131,17 +132,17 @@
   &__sfi-edition-info {
     background-color: $page_color_2;
     border-radius: 15px 0 0 15px;
-    padding: 1.2rem;
+    padding: 1rem;
     text-align: center;
   }
 
   &__sfi-edition {
-    font-size: 2rem;
+    font-size: 1.6rem;
     margin: 0;
   }
 
   &__sfi-year {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: $page_color_4;
     margin: 0;
@@ -171,7 +172,7 @@
   &__body {
     padding: 2rem 0.8rem;
     margin: 0 auto;
-    max-width: 75%;
+    max-width: 85%;
 
     display: flex;
     justify-content: space-evenly;
@@ -218,90 +219,171 @@
   }
 }
 
-//@media screen and (max-width: 1200px) {
-//  .post-list {
-//    &__container {
-//      max-width: 95%;
-//    }
-//  }
-//}
-
-@media screen and (max-width: 1210px) {
+// Large devices (desktops, less than 1200px)
+@media screen and (max-width: 1199.98px) {
   .post_base-list {
     &__container {
-      flex-direction: column;
+      max-width: 100%;
+    }
+    
+    &__more {
+      max-width: 92%;
+    }
+  }
+  
+  .post_base {
+    &__body {
+      max-width: 100%;
+      justify-content: space-around;
+    }
+  }
+}
 
-      max-width: 45rem;
+// Medium devices (tablets, less than 992px)
+@media screen and (max-width: 991.98px) {
+  .post_base-list {
+    &__container {
+      max-width: 80%;
+      
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &__more {
+      max-width: 80%;
+    }
+
+    &__single-post {
+      flex-basis: 100%;
+    }
+    
+    &__image {
+      flex-basis: 30%;
+    }
+    
+    &__post-info {
+      flex-basis: 70%;
     }
   }
 
   .post_base {
     &__header {
-      flex-wrap: nowrap;
       flex-direction: column;
+      justify-content: center;
     }
 
     &__header-image {
       flex-basis: 100%;
-      width: 95%;
-      align-self: flex-start;
+      width: 95%; // small gap on the right
+      min-height: 200px;
       margin-bottom: 1.5rem;
     }
 
     &__header-title {
       flex-basis: 100%;
       text-align: center;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: 0 1.2rem;
     }
 
     &__body {
-      max-width: 95%;
-
-      justify-content: space-around;
-    }
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .post_base {
-    &__header-title {
-      padding: 0 1rem;
-    }
-
-    &__body {
-      max-width: 100%;
-
+      max-width: 80%;
       flex-direction: column;
       justify-content: center;
+      padding-top: 1rem;
     }
-
+    
     &__body-image {
-      flex-basis: 100%;
-
-      margin: 0 auto 1.5rem auto;
       text-align: center;
+      flex-basis: 100%;
+      margin-bottom: 1.5rem;
     }
-
+    
     &__body-content {
       flex-basis: 100%;
     }
   }
 }
 
-@media screen and (max-width: 580px) {
+// Small devices (landscape phones, less than 768px)
+@media screen and (max-width: 767.98px) {
   .post_base-list {
-    &__single-post {
-      flex-basis: 100%;
-
-      display: flex;
-      flex-direction: column;
-
-      background-color: $page_color_7;
-      margin: 1rem 0;
-      border-radius: 15px;
+    &__main-title {
+      font-size: 36px;
     }
   }
 }
+
+@media (max-width: 575.98px) { 
+
+  .post_base-list {
+    &__single-post {
+      flex-direction: column;
+    }
+    
+    // TODO:
+    // image?
+  }
+  
+  .post_base {
+    &__title {
+      font-size: 2rem;
+    }
+    
+    &__sfi-edition-info {
+      padding: 0.6rem;
+    }
+
+    &__sfi-edition {
+      font-size: 1.2rem;
+    }
+    
+    &__sfi-year {
+      font-size: 1.6rem;
+    }
+    
+    &__body {
+      max-width: 90%;
+    }
+  }
+}
+
+// @media screen and (max-width: 680px) {
+//   .post_base {
+//     &__header-title {
+//       padding: 0 1rem;
+//     }
+
+//     &__body {
+//       max-width: 100%;
+
+//       flex-direction: column;
+//       justify-content: center;
+//     }
+
+//     &__body-image {
+//       flex-basis: 100%;
+
+//       margin: 0 auto 1.5rem auto;
+//       text-align: center;
+//     }
+
+//     &__body-content {
+//       flex-basis: 100%;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 580px) {
+//   .post_base-list {
+//     &__single-post {
+//       flex-basis: 100%;
+
+//       display: flex;
+//       flex-direction: column;
+
+//       background-color: $page_color_7;
+//       margin: 1rem 0;
+//       border-radius: 15px;
+//     }
+//   }
+// }

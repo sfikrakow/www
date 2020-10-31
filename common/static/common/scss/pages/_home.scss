@@ -2,3 +2,9 @@
   text-align: center;
   font-size: 48px;
 }
+
+@media screen and (max-width: 575.98px) {
+  .section_title {
+    font-size: 36px;
+  }
+}
