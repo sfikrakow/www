@@ -43,13 +43,20 @@
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 767.98px) {
   .home-header {
-   margin-top: 56px;
+    margin-top: 56px;
 
     &__sfi-title {
-    font-size: 1.1rem;
+      font-size: 1.8rem;
+    }
   }
+}
 
+@media screen and (max-width: 575.98px) {
+  .home-header {
+    &__sfi-title {
+      font-size: 1.5rem;
+    }
   }
 }

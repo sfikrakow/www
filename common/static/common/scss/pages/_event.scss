@@ -3,6 +3,10 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1.5rem;
+    
+    ul {
+        margin: 0;
+    }
 
     &__title {
         font-size: 1.2rem;
@@ -51,7 +55,6 @@
     &__header--event {
         .post_base__header-image {
             flex-basis: 50%;
-            min-height: 400px;
         }
     }
 
@@ -60,4 +63,28 @@
             flex-basis: 80%;
         }
     }
+}
+
+@media screen and (max-width: 1199.98px) {
+    .post_base__body.post_base__body--event {
+        flex-direction: column;
+        justify-content: center;
+        
+        .post_base__body-image {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .event-info {
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      
+      &__title {
+        margin-bottom: 0.6rem;
+      }
+    }    
 }
