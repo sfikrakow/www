@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 21:47+0200\n"
+"POT-Creation-Date: 2020-11-05 18:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,63 +20,63 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: common/models.py:18
+#: common/models.py:19
 msgid "user"
 msgstr "użytkownik"
 
-#: common/models.py:19
+#: common/models.py:20
 msgid "users"
 msgstr "użytkownicy"
 
-#: common/models.py:29
+#: common/models.py:30
 msgid "featured image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:49
+#: common/models.py:55
 msgid "menu items"
 msgstr "elementy menu"
 
-#: common/models.py:53
+#: common/models.py:59
 msgid "navigation menu"
 msgstr "menu nawigacyjne"
 
-#: common/models.py:54
+#: common/models.py:60
 msgid "navigation menus"
 msgstr "menu nawigacyjne"
 
-#: common/models.py:58
+#: common/models.py:64
 msgid "menu item"
 msgstr "element menu"
 
-#: common/models.py:59
+#: common/models.py:65
 msgid "link title"
 msgstr "tytuł linku"
 
-#: common/models.py:66
+#: common/models.py:72
 msgid "linked page"
 msgstr "podlinkowana strona"
 
-#: common/models.py:67
+#: common/models.py:73
 msgid "Overrides the url field"
 msgstr "zastępuje pole adresu linku"
 
-#: common/models.py:73
+#: common/models.py:79
 msgid "link url"
 msgstr "adres linku"
 
-#: common/models.py:74
+#: common/models.py:80
 msgid "Overridden by linked page"
 msgstr "zastępowane przez adres podlinkowanej strony"
 
-#: common/models.py:76
+#: common/models.py:82
 msgid "open in new tab"
 msgstr "otwórz w nowej karcie"
 
-#: common/models.py:102
+#: common/models.py:108
 msgid "default featured image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:110
+#: common/models.py:116
 msgid "theme settings"
 msgstr "ustawienia motywu"
 
@@ -91,7 +91,8 @@ msgstr "Przepraszamy, poszukiwana strona nie istnieje."
 #: common/templates/common/base.html:24 common/templates/common/base.html:25
 #: common/templates/common/base.html:31 common/templates/common/page.html:7
 #: common/templates/common/page.html:14
-#: common/templates/common/partials/footer.html:27
+#: common/templates/common/partials/footer.html:30
+#: common/templates/common/partials/header.html:4
 msgid "SFI IT Academic Festival"
 msgstr "Studencki Festiwal Informatyczny"
 
@@ -99,6 +100,14 @@ msgstr "Studencki Festiwal Informatyczny"
 msgid "en_US"
 msgstr "pl_PL"
 
-#: common/templates/common/partials/footer.html:28
+#: common/templates/common/partials/edition_header.html:7
+msgid "16th edition"
+msgstr "16 edycja"
+
+#: common/templates/common/partials/footer.html:31
 msgid "All rights reserved"
 msgstr "Wszelkie prawa zastrzeżone"
+
+#: common/templates/common/partials/header.html:4
+msgid "16th"
+msgstr "16."

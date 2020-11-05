@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 21:47+0200\n"
+"POT-Creation-Date: 2020-11-05 18:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,14 +20,18 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: pages/models.py:20
+#: pages/models.py:24 pages/models.py:45
 msgid "content"
 msgstr "zawartość"
 
-#: pages/models.py:27
+#: pages/models.py:31
 msgid "page"
 msgstr "strona"
 
-#: pages/models.py:28
+#: pages/models.py:32
 msgid "pages"
 msgstr "strony"
+
+#: pages/models.py:52
+msgid "footer settings"
+msgstr "ustawienia stopki"
