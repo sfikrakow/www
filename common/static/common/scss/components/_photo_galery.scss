@@ -18,5 +18,30 @@
     font-size: 16px;
     height: 250px;
     margin: 10px;
+
+    & > p {
+      width: 100%;
+      text-align: center;
+    }
   }
+
+  &__photo-container {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // temporary
+  @media (max-width: 400px) {
+    &__image img {
+      width: 120px;
+    }
+
+    &__container {
+      height: 200px;
+    }
+  }
+
 }

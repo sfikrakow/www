@@ -3,7 +3,9 @@
     {% if entry.link %}
         <a href="{{ entry.link }}" rel="noopener noreferer" target="_blank" class="block-photo_gallery__container">
     {% endif %}
-{% responsive_img entry.photo image_format "block-photo_gallery__image" %}
+        <div class='block-photo_gallery__photo-container'>
+            {% responsive_img entry.photo image_format "block-photo_gallery__image" %}
+        </div>
 {{ entry.title | linebreaks }}
 {% if entry.link %}
     </a>
