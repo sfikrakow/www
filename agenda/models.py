@@ -15,12 +15,13 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
+from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
 from common.utils import paginate
 
 
 @register_snippet
-class Sponsor(models.Model):
+class Sponsor(InvalidateCacheMixin, models.Model):
     name = models.CharField(max_length=128, verbose_name=_('name'))
     logo = models.ForeignKey(
         'wagtailimages.Image',
@@ -98,7 +99,7 @@ class SocialLinkTypes(models.TextChoices):
     OTHER = 'other', _('Other')
 
 
-class SocialLink(models.Model):
+class SocialLink(InvalidateCacheMixin, models.Model):
     speaker = ParentalKey(Speaker, on_delete=models.CASCADE, related_name='social_links')
     type = models.CharField(max_length=16, choices=SocialLinkTypes.choices, default=SocialLinkTypes.OTHER,
                             verbose_name=_('type'))
@@ -162,7 +163,7 @@ class EditionSubpage(SFIPage):
         abstract = True
 
 
-class Category(models.Model):
+class Category(InvalidateCacheMixin, models.Model):
     edition = ParentalKey(Edition, on_delete=models.CASCADE, related_name='event_categories', verbose_name=_('edition'))
     name = models.CharField(max_length=100, verbose_name=_('name'))
     icon = models.CharField(max_length=300, verbose_name=_('icon'))

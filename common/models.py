@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.http import http_date
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -8,6 +9,8 @@ from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
+
+from common.cache import InvalidateCacheMixin, cache_page
 
 
 class User(AbstractUser):
@@ -19,7 +22,7 @@ class User(AbstractUser):
         verbose_name_plural = _('users')
 
 
-class SFIPage(Page):
+class SFIPage(Page, InvalidateCacheMixin):
     featured_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -28,6 +31,9 @@ class SFIPage(Page):
         related_name='+',
         verbose_name=_('featured image')
     )
+
+    def serve(self, request, *args, **kwargs):
+        return cache_page(request, self, lambda: super(SFIPage, self).serve(request, *args, **kwargs))
 
     def get_featured_image_or_default(self, context):
         if self.featured_image:
@@ -44,7 +50,7 @@ class SFIPage(Page):
 
 
 @register_setting(icon='list-ul')
-class NavigationMenu(BaseSetting, ClusterableModel):
+class NavigationMenu(BaseSetting, ClusterableModel, InvalidateCacheMixin):
     panels = [
         InlinePanel('menu_items', label=_('menu items'))
     ]
@@ -54,7 +60,7 @@ class NavigationMenu(BaseSetting, ClusterableModel):
         verbose_name_plural = _('navigation menus')
 
 
-class NavigationMenuEntry(Orderable, models.Model):
+class NavigationMenuEntry(Orderable, InvalidateCacheMixin, models.Model):
     menu = ParentalKey(NavigationMenu, on_delete=models.CASCADE, related_name='menu_items', verbose_name=_('menu item'))
     link_title = models.CharField(max_length=128, verbose_name=_('link title'))
     link_page = models.ForeignKey(
@@ -92,7 +98,7 @@ class NavigationMenuEntry(Orderable, models.Model):
 
 
 @register_setting(icon='view')
-class ThemeSettings(BaseSetting):
+class ThemeSettings(BaseSetting, InvalidateCacheMixin):
     default_featured_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

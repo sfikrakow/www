@@ -34,9 +34,13 @@ CACHES = {
         'LOCATION': 'redis://127.0.0.1:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            "IGNORE_EXCEPTIONS": True,
         }
     }
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 
 EMAIL_HOST = '10.20.10.102'
 EMAIL_PORT = 25
