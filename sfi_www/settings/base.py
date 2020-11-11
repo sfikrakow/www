@@ -205,7 +205,7 @@ COMPRESS_PRECOMPILERS = (
 
 COMPRESS_OFFLINE = True
 
-COMPRESS_STORAGE = 'compressor.storage.BrotliCompressorFileStorage'
+COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 COMPRESS_CLOSURE_COMPILER_BINARY = '/usr/bin/env closure'
 COMPRESS_CLOSURE_COMPILER_ARGUMENTS = '--compilation_level=ADVANCED --warning_level=VERBOSE ' \
                                       '--summary_detail_level=3 --language_out=ECMASCRIPT5_STRICT'
