@@ -12,14 +12,18 @@
     align-items: center;
     
     text-decoration: none;
-    color: $page_color_1;
-    font-size: 16px;
+    color: $page_color_6;
+    font-size: 14px;
     height: 250px;
     margin: 10px;
 
     & > p {
       width: 100%;
       text-align: center;
+    }
+
+    &:hover {
+      color: $page_color_4;
     }
   }
 
