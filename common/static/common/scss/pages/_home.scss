@@ -1,4 +1,4 @@
-.section_title {
+.section_title-divider {
   text-align: center;
   font-size: 48px;
   text-transform: uppercase;
@@ -25,8 +25,15 @@
   }
 }
 
+.section_title {
+  text-align: center;
+  font-size: 48px;
+  text-transform: uppercase;
+  color: $page_color_1;
+}
+
 @media screen and (max-width: 575.98px) {
-  .section_title {
+  .section_title-divider, .section_title {
     font-size: 36px;
   }
 }
