@@ -8,13 +8,14 @@ from django.core.cache import cache
 from django.db import models
 from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
-from django.utils.cache import get_conditional_response, get_cache_key, learn_cache_key
+from django.utils.cache import get_conditional_response, _generate_cache_key
 from django.utils.http import http_date
 
 LAST_MODIFIED_KEY = 'last_modified_date'
 CACHE_PREFIX = 'PageCache'
 CACHE_MAX_TTL = 7 * 60 * 60 * 24
 PAGE_MAX_TTL = 60 * 60 * 24
+SFI_CACHE_HEADER = 'X-SFI-Cache'
 
 
 def update_last_modified_stamp(last_modified=None):
@@ -61,11 +62,15 @@ class FetchPageFromCacheMiddleware:
 
     def __call__(self, request: HttpRequest):
         if settings.DEBUG:
-            return self.get_response(request)
+            response = self.get_response(request)
+            response['Cache-Control'] = 'max-age=0, private, must-revalidate'
+            response[SFI_CACHE_HEADER] = 'DEBUG_BYPASS'
+            return response
 
         if not request.path.startswith(PAGE_CACHE_URLS) or not self._is_request_cacheable(request):
             response = self.get_response(request)
             response['Cache-Control'] = 'max-age=0, private, must-revalidate'
+            response[SFI_CACHE_HEADER] = 'BYPASS'
             return response
 
         last_modified = get_last_modified_stamp()
@@ -74,24 +79,29 @@ class FetchPageFromCacheMiddleware:
         # Try getting a Not Modified response.
         response = get_conditional_response(request, etag, last_modified)
         if response:
+            response[SFI_CACHE_HEADER] = 'NON_MODIFIED'
             return response
 
         # Lookup cache
         entry = self._try_get_cache(request)
         if entry and entry.created_date > last_modified:
-            return entry.response
+            response = entry.response
+            response[SFI_CACHE_HEADER] = 'HIT'
+            return response
 
         request._cache_update_cache = True
-        return self.get_response(request)
+        response = self.get_response(request)
+        response[SFI_CACHE_HEADER] = 'MISS'
+        return response
 
     @staticmethod
     def _try_get_cache(request: HttpRequest) -> Optional[CacheEntry]:
-        cache_key = get_cache_key(request, CACHE_PREFIX, 'GET', cache=cache)
+        cache_key = _generate_cache_key(request, 'GET', [], CACHE_PREFIX)
         if cache_key is None:
             return None
         entry = cache.get(cache_key)
         if entry is None and request.method == 'HEAD':
-            cache_key = get_cache_key(request, CACHE_PREFIX, 'HEAD', cache=cache)
+            cache_key = _generate_cache_key(request, 'HEAD', [], CACHE_PREFIX)
             entry = cache.get(cache_key)
         return entry
 
@@ -120,7 +130,7 @@ class UpdatePageCacheMiddleware:
         response['ETag'] = etag
         response['Cache-Control'] = 'max-age=0, public, s-maxage=60'
 
-        cache_key = learn_cache_key(request, response, PAGE_MAX_TTL, CACHE_PREFIX, cache=cache)
+        cache_key = _generate_cache_key(request, request.method, [], CACHE_PREFIX)
         if hasattr(response, 'render') and callable(response.render):
             response.add_post_render_callback(
                 lambda rendered: cache.set(cache_key, CacheEntry(rendered, timezone.now()), PAGE_MAX_TTL)
