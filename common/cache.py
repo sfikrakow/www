@@ -17,8 +17,8 @@ CACHE_MAX_TTL = 7 * 60 * 60 * 24
 PAGE_MAX_TTL = 60 * 60 * 24
 
 
-def update_last_modified_stamp(last_modified=timezone.now()):
-    cache.set(LAST_MODIFIED_KEY, last_modified, CACHE_MAX_TTL)
+def update_last_modified_stamp(last_modified=None):
+    cache.set(LAST_MODIFIED_KEY, last_modified if last_modified else timezone.now(), CACHE_MAX_TTL)
 
 
 def get_last_modified_stamp():
