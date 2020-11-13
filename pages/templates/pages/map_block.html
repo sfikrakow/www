@@ -1,0 +1,37 @@
+<div class="page-map" id="map-{{ random_id }}"></div>
+<script id="map-script-{{ random_id }}" src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js' async
+        defer></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+      href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css'/>
+<script>
+    document.getElementById("map-script-{{ random_id }}").onload = function () {
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2Zpa3Jha293IiwiYSI6ImNraGdxdTh6cjBhZWYyeXA5eDcyeXd6Y2cifQ.-NAKKJp7riuLG6qdWcExvw';
+        const map = new mapboxgl.Map({
+            container: "map-{{ random_id }}",
+            style: 'mapbox://styles/mapbox/dark-v9?optimize=true',
+            center: [{{ value.center_longitude }}, {{ value.center_latitude }}],
+            zoom: {{ value.zoom }},
+            pitch: {{ value.pitch }},
+            bearing: {{ value.bearing }}
+        });
+        map.addControl(new mapboxgl.NavigationControl, "bottom-left");
+        map.scrollZoom.disable();
+        let markers = {
+            type: "FeatureCollection",
+            features: [
+                {% for marker in value.markers %}
+                    {
+                        type: "Feature",
+                        geometry: {type: "Point", coordinates: [{{ marker.longitude }}, {{ marker.latitude }}]},
+                        properties: {description: "SFI location"}
+                    },
+                {% endfor %}
+            ]
+        };
+        markers.features.forEach(function (e) {
+            let element = document.createElement("div");
+            element.className = "page-map__marker";
+            new mapboxgl.Marker(element).setLngLat(e.geometry.coordinates).addTo(map)
+        });
+    }
+</script>

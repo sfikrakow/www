@@ -9,7 +9,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from blog.blocks import PostIndexBlock
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
-from pages.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery
+from pages.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, MapBlock
 
 
 class StaticPage(SFIPage):
@@ -21,7 +21,8 @@ class StaticPage(SFIPage):
         ('section_title', SectionTitleBlock()),
         ('section_divider', SectionDividerBlock()),
         ('dropdown', DropdownBlock()),
-        ('photo_gallery', PhotoGallery())
+        ('photo_gallery', PhotoGallery()),
+        ('map', MapBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
 
     content_panels = SFIPage.content_panels + [

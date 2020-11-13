@@ -1,6 +1,7 @@
 import random
 
-from wagtail.core.blocks import StructBlock, RichTextBlock, TextBlock, ListBlock, URLBlock, IntegerBlock, BooleanBlock
+from wagtail.core.blocks import StructBlock, RichTextBlock, TextBlock, ListBlock, URLBlock, IntegerBlock, BooleanBlock, \
+    FloatBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -55,3 +56,25 @@ class PhotoGallery(StructBlock):
 
     class Meta:
         template = 'pages/photo_gallery_block.html'
+
+
+class MapMarker(StructBlock):
+    longitude = FloatBlock()
+    latitude = FloatBlock()
+
+
+class MapBlock(StructBlock):
+    center_longitude = FloatBlock()
+    center_latitude = FloatBlock()
+    zoom = FloatBlock()
+    bearing = FloatBlock()
+    pitch = FloatBlock()
+    markers = ListBlock(MapMarker)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        context['random_id'] = random.randint(1, 1000000000)
+        return context
+
+    class Meta:
+        template = 'pages/map_block.html'

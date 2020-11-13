@@ -1,0 +1,18 @@
+.page-map {
+  width: 100%;
+  min-height: 475px;
+  max-height: 700px;
+  height: 50vh;
+
+  &__marker {
+    background: url("../img/sfi-marker.png") no-repeat center center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  }
+}
