@@ -80,17 +80,17 @@ OVERRIDE_APPS = [
 INSTALLED_APPS = OVERRIDE_APPS + DJANGO_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + MY_APPS
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'common.cache.UpdatePageCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-
     'mozilla_django_oidc.middleware.SessionRefresh',
-
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'common.cache.FetchPageFromCacheMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 

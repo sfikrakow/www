@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.http import http_date
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -10,7 +9,7 @@ from wagtail.contrib.settings.registry import register_setting
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from common.cache import InvalidateCacheMixin, cache_page
+from common.cache import InvalidateCacheMixin
 
 
 class User(AbstractUser):
@@ -31,9 +30,6 @@ class SFIPage(Page, InvalidateCacheMixin):
         related_name='+',
         verbose_name=_('featured image')
     )
-
-    def serve(self, request, *args, **kwargs):
-        return cache_page(request, self, lambda: super(SFIPage, self).serve(request, *args, **kwargs))
 
     def get_featured_image_or_default(self, context):
         if self.featured_image:
