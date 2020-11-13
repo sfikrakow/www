@@ -1,6 +1,28 @@
 .section_title {
   text-align: center;
   font-size: 48px;
+  text-transform: uppercase;
+  color: lighten($page_color_6, 20%);
+  position: relative;
+
+  &__span {
+    z-index: 2;
+    padding: 0 15px;
+    background-color: $page_color_2;
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: lighten($page_color_6, 20%);
+    bottom: 25px;
+    left: 0;
+    z-index: 1;
+  }
 }
 
 @media screen and (max-width: 575.98px) {
