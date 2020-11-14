@@ -1,13 +1,10 @@
 {% load common_tags %}
 {% for entry in value.photos %}
-    {% if entry.link %}
-        <a href="{{ entry.link }}" rel="noopener noreferer" target="_blank" class="block-photo_gallery__container">
-    {% endif %}
+    <a {% if entry.link %} href="{{ entry.link }}" {% endif %} rel="noopener noreferer" target="_blank"
+                           class="block-photo_gallery__container">
         <div class='block-photo_gallery__photo-container'>
             {% responsive_img entry.photo image_format "block-photo_gallery__image" %}
         </div>
-{{ entry.title | linebreaks }}
-{% if entry.link %}
+        {{ entry.title | linebreaks }}
     </a>
-{% endif %}
 {% endfor %}
