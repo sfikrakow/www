@@ -13,13 +13,57 @@
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2Zpa3Jha293IiwiYSI6ImNraGdxdTh6cjBhZWYyeXA5eDcyeXd6Y2cifQ.-NAKKJp7riuLG6qdWcExvw';
         const map = new mapboxgl.Map({
             container: "map-{{ random_id }}",
-            style: 'mapbox://styles/mapbox/dark-v9?optimize=true',
+            style: 'mapbox://styles/mapbox/dark-v9',
             center: [{{ value.center_longitude }}, {{ value.center_latitude }}],
             zoom: {{ value.zoom }},
             pitch: {{ value.pitch }},
             bearing: {{ value.bearing }}
         });
         map.addControl(new mapboxgl.NavigationControl, "bottom-left");
+        map.on('load', function () {
+            const layers = map.getStyle().layers;
+
+            let labelLayerId;
+            for (let i = 0; i < layers.length; i++) {
+                if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                    labelLayerId = layers[i].id;
+                    break;
+                }
+            }
+            map.addLayer(
+                {
+                    'id': '3d-buildings',
+                    'source': 'composite',
+                    'source-layer': 'building',
+                    'filter': ['==', 'extrude', 'true'],
+                    'type': 'fill-extrusion',
+                    'minzoom': 15,
+                    'paint': {
+                        'fill-extrusion-color': '#aaa',
+                        'fill-extrusion-height': [
+                            'interpolate',
+                            ['linear'],
+                            ['zoom'],
+                            15,
+                            0,
+                            15.05,
+                            ['get', 'height']
+                        ],
+                        'fill-extrusion-base': [
+                            'interpolate',
+                            ['linear'],
+                            ['zoom'],
+                            15,
+                            0,
+                            15.05,
+                            ['get', 'min_height']
+                        ],
+                        'fill-extrusion-opacity': 0.6
+                    }
+                },
+                labelLayerId
+            );
+        });
         let markers = {
             type: "FeatureCollection",
             features: [
@@ -42,7 +86,7 @@
     document.getElementById("map-placeholder-{{ random_id }}").onclick = function () {
         document.getElementById("map-text-{{ random_id }}").style.display = 'none'
         document.getElementById("map-loader-{{ random_id }}").style.display = 'block'
-        document.addEventListener("dynmap-loaded", function (e) {
+        document.addEventListener("dynmap-loaded", function () {
             loadMap();
         })
 
