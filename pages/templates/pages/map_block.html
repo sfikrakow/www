@@ -1,10 +1,15 @@
-<div class="page-map" id="map-{{ random_id }}"></div>
-<script id="map-script-{{ random_id }}" src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js' async
-        defer></script>
-<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
-      href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css'/>
+{% load i18n %}
+{% load common_tags %}
+
+<div class="page-map" id="map-{{ random_id }}">
+    <div id="map-placeholder-{{ random_id }}" class="page-map__placeholder">
+        {% responsive_img value.placeholder "fill-2560x600" %}
+        <div class="page-map__placeholder__text" id="map-text-{{ random_id }}">{% trans 'Click to interact' %}</div>
+        <div class="page-map__loader" id="map-loader-{{ random_id }}"></div>
+    </div>
+</div>
 <script>
-    document.getElementById("map-script-{{ random_id }}").onload = function () {
+    function loadMap() {
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2Zpa3Jha293IiwiYSI6ImNraGdxdTh6cjBhZWYyeXA5eDcyeXd6Y2cifQ.-NAKKJp7riuLG6qdWcExvw';
         const map = new mapboxgl.Map({
             container: "map-{{ random_id }}",
@@ -15,7 +20,6 @@
             bearing: {{ value.bearing }}
         });
         map.addControl(new mapboxgl.NavigationControl, "bottom-left");
-        map.scrollZoom.disable();
         let markers = {
             type: "FeatureCollection",
             features: [
@@ -33,5 +37,38 @@
             element.className = "page-map__marker";
             new mapboxgl.Marker(element).setLngLat(e.geometry.coordinates).addTo(map)
         });
+    }
+
+    document.getElementById("map-placeholder-{{ random_id }}").onclick = function () {
+        document.getElementById("map-text-{{ random_id }}").style.display = 'none'
+        document.getElementById("map-loader-{{ random_id }}").style.display = 'block'
+        document.addEventListener("dynmap-loaded", function (e) {
+            loadMap();
+        })
+
+        if (window.dynMap !== undefined) {
+            return;
+        }
+        window.dynMap = {}
+
+        const css = document.createElement('link');
+        document.body.appendChild(css);
+        css.onload = function () {
+            window.dynMap.css = true
+            if (window.dynMap.script === true) {
+                document.dispatchEvent(new CustomEvent("dynmap-loaded"));
+            }
+        }
+        css.rel = 'stylesheet';
+        css.href = 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css';
+        const script = document.createElement('script');
+        document.body.appendChild(script);
+        script.onload = function () {
+            window.dynMap.script = true
+            if (window.dynMap.css === true) {
+                document.dispatchEvent(new CustomEvent("dynmap-loaded"));
+            }
+        }
+        script.src = 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'
     }
 </script>

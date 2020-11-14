@@ -70,6 +70,7 @@ class MapBlock(StructBlock):
     bearing = FloatBlock()
     pitch = FloatBlock()
     markers = ListBlock(MapMarker)
+    placeholder = ImageChooserBlock(help_text="Insert a screenshot of the map here")
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
