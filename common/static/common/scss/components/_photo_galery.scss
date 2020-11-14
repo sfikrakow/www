@@ -1,21 +1,19 @@
 .block-photo_gallery {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: start;
   justify-content: center;
 
   &__container {
     display: flex;
     flex-direction: column;
-    flex-basis: 12%;
     justify-content: space-between;
     align-items: center;
     
     text-decoration: none;
     color: $page_color_6;
     font-size: 14px;
-    height: 250px;
-    margin: 10px;
+    margin: 15px;
     transition: 0.3s;
     & > p {
       width: 100%;

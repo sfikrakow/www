@@ -52,6 +52,12 @@ class PhotoGallery(StructBlock):
             'fill' if value['crop_to_fit'] else 'max',
             value['image_width'],
             value['image_height'])
+        photo_sizes = [(p['photo'].width, p['photo'].height) for p in value['photos']]
+        if value['crop_to_fit']:
+            context['max_height'] = int(min(value['image_height'], max((p[1] for p in photo_sizes))))
+        else:
+            context['max_height'] = int(min(value['image_height'],
+                                            max((min(h, value['image_width'] * (h / w)) for w, h in photo_sizes))))
         return context
 
     class Meta:
