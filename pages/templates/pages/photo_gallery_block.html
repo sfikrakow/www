@@ -5,6 +5,8 @@
         <div class='block-photo_gallery__photo-container' style="height: {{ max_height }}px;">
             {% responsive_img entry.photo image_format "block-photo_gallery__image" %}
         </div>
-        {{ entry.title | linebreaks }}
+        {% if entry.title %}
+            {{ entry.title | linebreaks }}
+        {% endif %}
     </a>
 {% endfor %}
