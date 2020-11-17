@@ -45,9 +45,11 @@ class FooterSettings(BaseSetting, InvalidateCacheMixin):
         ('image', ImageChooserBlock()),
         ('header', HeadingBlock()),
         ('section_title', SectionTitleBlock()),
+        ('section_subtitle', SectionSubtitleBlock()),
         ('section_divider', SectionDividerBlock()),
         ('dropdown', DropdownBlock()),
-        ('photo_gallery', PhotoGallery())
+        ('photo_gallery', PhotoGallery()),
+        ('raw_html', RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
 
     panels = [
