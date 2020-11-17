@@ -19,6 +19,13 @@ class SectionTitleBlock(StructBlock):
         template = 'pages/section_title_block.html'
 
 
+class SectionSubtitleBlock(StructBlock):
+    title = TextBlock()
+
+    class Meta:
+        template = 'pages/section_subtitle_block.html'
+
+
 class SectionDividerBlock(StructBlock):
     title = TextBlock()
 
