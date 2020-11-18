@@ -4,6 +4,36 @@
 {% include 'pages/static_footer.html' %}
 
 <footer class="footer">
+    <div class="footer-contact">
+        <div class="footer-contact__socials">
+            <h2>Contact with us</h2>
+            <section>
+                <p>xxx</p>
+                <p>xxx</p>
+                <p>xxx</p>
+                <p>xxx</p>
+            </section>
+        </div>
+        <form class="footer-contact__form" action="">
+            <section>
+                <label for="name">Name and surname *</label>
+                <input  id="name" name="name" type="text" required>
+            </section>
+            <section>
+                <label for="email">Adres email *</label>
+                <input  id="email" name="email" type="email" required>
+            </section>
+            <section>
+                <label for="topic">Temat *</label>
+                <input id="topic" name="topic" type="text" required>
+            </section>
+            <section>
+                <label for="message">Your message *</label>
+                <textarea id="message" name="message" rows="5" cols="60" required></textarea>
+            </section>
+            <button>Send!</button>
+        </form>
+    </div>
     <div class="footer__orgs">
         <a href="https://ksi.ii.uj.edu.pl/" target="_blank" rel="noopener" title="Koło Studentów Informatyki UJ"
            class="footer__orgs__single">
