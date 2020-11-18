@@ -24,29 +24,32 @@ if(dropdowns) {
 
 // Mail handling
 
-const inputName = document.querySelector('#name');
-const inputEmail = document.querySelector('#email');
-const inputTopic = document.querySelector('#topic');
-const inputMessage = document.querySelector('#message');
+
 const sendMailBtn = document.querySelector('#sendMail');
+
+const cleanForm = () => {
+  document.querySelector('#name').value = '';
+  document.querySelector('#email').value = '';
+  document.querySelector('#topic').value = '';
+  document.querySelector('#message').value = '';
+}
 
 const showStatus = async (e) => {
   e.preventDefault();
   const URL = '/contact_form/';
-  const data = {
-    name: inputName.value,
-    email: inputEmail.value,
-    topic: inputTopic.value,
-    message: inputMessage.value,
-  }
+  const data = new URLSearchParams(new FormData(document.querySelector("form")));
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
   const response = await fetch(URL, {
     method: 'POST',
     body: data,
+    headers: headers,
   });
 
   // Temporary
   if (response.status === 200) {
+    cleanForm();
     console.log('Succes');
   } else {
     console.log('Error');
