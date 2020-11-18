@@ -36,7 +36,7 @@ const showStatus = async (e) => {
   const data = {
     name: inputName.value,
     email: inputEmail.value,
-    topic: inputTopc.value,
+    topic: inputTopic.value,
     message: inputMessage.value,
   }
 
