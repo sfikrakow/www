@@ -44,8 +44,11 @@ SESSION_CACHE_ALIAS = "default"
 
 EMAIL_HOST = '10.20.10.102'
 EMAIL_PORT = 25
+# EMAIL_HOST_USER = None
+# EMAIL_HOST_PASSWORD = None
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SERVER_EMAIL = 'www@sfi.pl'
+CONTACT_EMAIL = 'kontakt@sfi.pl'
 
 OIDC_ADMIN_ROLE = 'wwwadmin'
 OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/auth'
@@ -55,6 +58,9 @@ OIDC_OP_JWKS_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-conn
 OIDC_OP_LOGOUT_ENDPOINT = 'https://sso.sfi.pl/auth/realms/SFI/protocol/openid-connect/logout'
 OIDC_RP_CLIENT_ID = 'www'
 OIDC_RP_CLIENT_SECRET = ''
+
+RECAPTCHA_PUBLIC_KEY = None
+RECAPTCHA_PRIVATE_KEY = None
 
 try:
     from .local import *

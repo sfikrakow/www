@@ -17,6 +17,8 @@ MIDDLEWARE += [
     'livereload.middleware.LiveReloadScript',
 ]
 
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
 try:
     from .local import *
 except ImportError:

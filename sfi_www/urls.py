@@ -9,6 +9,8 @@ from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from forms.views import ContactFormView
+
 urlpatterns = [
     url(r'^oidc/', include('sfi_base.urls')),
     url(r'^admin/login/$', RedirectView.as_view(pattern_name=settings.LOGIN_URL, query_string=True)),
@@ -17,6 +19,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^sitemap\.xml$', sitemap),
+    url(r'^contact_form/', ContactFormView.as_view())
 ]
 
 if settings.DEBUG:
