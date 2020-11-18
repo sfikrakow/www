@@ -32,7 +32,7 @@ const sendMailBtn = document.querySelector('#sendMail');
 
 const showStatus = async (e) => {
   e.preventDefault();
-  const URL = '/contact_form';
+  const URL = '/contact_form/';
   const data = {
     name: inputName.value,
     email: inputEmail.value,
