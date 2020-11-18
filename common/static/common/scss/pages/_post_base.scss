@@ -154,34 +154,29 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 2rem;
   }
 
   &__title {
     font-size: 2.6rem;
     font-weight: 700;
-    margin: 0 0 0.8rem 0;
+    margin: 0 2rem 0.8rem 2rem;
   }
 
   &__date {
     font-size: 1rem;
     color: $page_color_4;
-    margin: 0.2rem 0 0 0;
+    margin: 0.2rem 2rem 0 2rem;
   }
 
   &__body {
     padding: 2rem 0.8rem;
     margin: 0 auto;
-    max-width: 85%;
+    max-width: 65%;
 
     display: flex;
-    justify-content: space-evenly;
   }
 
   &__body-image {
-    flex-basis: 15%;
-    text-align: right;
-
     & > img {
       border-radius: 15px;
       max-height: 230px;
@@ -189,7 +184,7 @@
   }
 
   &__body-content {
-    flex-basis: 60%;
+    padding-left: 3rem;
   }
 }
 
@@ -225,16 +220,15 @@
     &__container {
       max-width: 100%;
     }
-    
+
     &__more {
       max-width: 92%;
     }
   }
-  
+
   .post_base {
     &__body {
-      max-width: 100%;
-      justify-content: space-around;
+      max-width: 80%;
     }
   }
 }
@@ -244,7 +238,7 @@
   .post_base-list {
     &__container {
       max-width: 80%;
-      
+
       flex-direction: column;
       justify-content: center;
     }
@@ -256,11 +250,11 @@
     &__single-post {
       flex-basis: 100%;
     }
-    
+
     &__image {
       flex-basis: 30%;
     }
-    
+
     &__post-info {
       flex-basis: 70%;
     }
@@ -286,20 +280,18 @@
     }
 
     &__body {
-      max-width: 80%;
       flex-direction: column;
       justify-content: center;
       padding-top: 1rem;
     }
-    
+
     &__body-image {
       text-align: center;
-      flex-basis: 100%;
       margin-bottom: 1.5rem;
     }
-    
+
     &__body-content {
-      flex-basis: 100%;
+      padding-left: 0;
     }
   }
 }
@@ -313,22 +305,21 @@
   }
 }
 
-@media (max-width: 575.98px) { 
-
+@media (max-width: 575.98px) {
   .post_base-list {
     &__single-post {
       flex-direction: column;
     }
-    
+
     // TODO:
     // image?
   }
-  
+
   .post_base {
     &__title {
       font-size: 2rem;
     }
-    
+
     &__sfi-edition-info {
       padding: 0.6rem;
     }
@@ -336,11 +327,11 @@
     &__sfi-edition {
       font-size: 1.2rem;
     }
-    
+
     &__sfi-year {
       font-size: 1.6rem;
     }
-    
+
     &__body {
       max-width: 90%;
     }
