@@ -20,3 +20,38 @@ function handleDropdown() {
 if(dropdowns) {
   dropdowns.forEach(dropdown => dropdown.addEventListener('click', handleDropdown));
 }
+
+
+// Mail handling
+
+const inputName = document.querySelector('#name');
+const inputEmail = document.querySelector('#email');
+const inputTopic = document.querySelector('#topic');
+const inputMessage = document.querySelector('#message');
+const sendMailBtn = document.querySelector('#sendMail');
+
+const showStatus = async (e) => {
+  e.preventDefault();
+  const URL = '/contact_form';
+  const data = {
+    name: inputName.value,
+    email: inputEmail.value,
+    topic: inputTopc.value,
+    message: inputMessage.value,
+  }
+
+  const response = await fetch(URL, {
+    method: 'POST',
+    body: data,
+  });
+
+  // Temporary
+  if (response.status === 200) {
+    console.log('Succes');
+  } else {
+    console.log('Error');
+  }
+
+}
+
+sendMailBtn.addEventListener('click', (e) => showStatus(e));
