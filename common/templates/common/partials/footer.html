@@ -16,19 +16,19 @@
         </div>
         <form class="footer-contact__form" action="">
             <section>
-                <label for="name">Name and surname *</label>
+                <label for="name">{% trans 'Name and surname' %}*</label>
                 <input  id="name" name="name" type="text" required>
             </section>
             <section>
-                <label for="email">Adres email *</label>
+                <label for="email">{% trans 'Email address' %}*</label>
                 <input  id="email" name="email" type="email" required>
             </section>
             <section>
-                <label for="topic">Temat *</label>
+                <label for="topic">{% trans 'Topic' %}*</label>
                 <input id="topic" name="topic" type="text" required>
             </section>
             <section>
-                <label for="message">Your message *</label>
+                <label for="message">{% trans 'Your message' %}*</label>
                 <textarea id="message" name="message" rows="5" cols="60" required></textarea>
             </section>
             <button>Send!</button>
