@@ -64,6 +64,7 @@ THIRD_PARTY_APPS = [
     'wagtail_modeltranslation.makemigrations',
     'wagtail_modeltranslation.migrate',
     'livereload',
+    'captcha'
 ]
 
 MY_APPS = [
@@ -71,6 +72,7 @@ MY_APPS = [
     'blog',
     'agenda',
     'pages',
+    'forms',
 ]
 
 OVERRIDE_APPS = [
@@ -223,6 +225,9 @@ WAGTAIL_SITE_NAME = 'SFI Academic IT Festival'
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'https://www.sfi.pl'
 
+SERVER_EMAIL = 'www@sfi.pl'
+CONTACT_EMAIL = 'kontakt@sfi.pl'
+
 WAGTAIL_APPEND_SLASH = True
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
@@ -238,3 +243,6 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 WAGTAILMODELTRANSLATION_LOCALE_PICKER = False
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
+
+RECAPTCHA_PUBLIC_KEY = 'MyRecaptchaKey123'
+RECAPTCHA_PRIVATE_KEY = 'MyRecaptchaPrivateKey456'

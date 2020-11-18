@@ -12,3 +12,4 @@ django-livereload-server==0.3.2
 django-redis>=4.12.1,<4.13
 numpy>=1.19.2,<1.20
 opencv-contrib-python-headless>=4.4.0.44,<4.4.1
+django-recaptcha==2.0.6
