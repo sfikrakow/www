@@ -197,7 +197,7 @@ COMPRESS_FILTERS = {
         'compressor.filters.cssmin.rCSSMinFilter',
     ],
     'js': [
-#        'compressor.filters.closure.ClosureCompilerFilter', # TODO: enable it after fixing globals.
+        #        'compressor.filters.closure.ClosureCompilerFilter', # TODO: enable it after fixing globals.
     ],
 }
 
@@ -243,6 +243,3 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 WAGTAILMODELTRANSLATION_LOCALE_PICKER = False
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
-
-RECAPTCHA_PUBLIC_KEY = 'MyRecaptchaKey123'
-RECAPTCHA_PRIVATE_KEY = 'MyRecaptchaPrivateKey456'
