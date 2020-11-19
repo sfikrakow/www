@@ -1,9 +1,6 @@
 const hamburgerBtn = document.querySelector('.hamburger');
 const navbarLinks = document.querySelector('.navbar__links');
 
-// Hack for closure compiler. Replace with extern,
-var grecaptcha = {}
-
 // Toggle the hamburger button and the navbar links on click
 hamburgerBtn.addEventListener('click', (e) => {
     hamburgerBtn.classList.toggle('is-active');
@@ -30,7 +27,6 @@ if (dropdowns) {
 
 const contactForm = document.querySelector('#contact-form');
 
-/** @export */
 function captchaSubmit(token) {
     const URL = '/contact_form/';
     const data = new URLSearchParams(new FormData(contactForm));
@@ -52,7 +48,6 @@ function captchaSubmit(token) {
     });
 }
 
-/** @export */
 function doCaptcha() {
     grecaptcha.reset();
     grecaptcha.execute();

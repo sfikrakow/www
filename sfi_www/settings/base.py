@@ -209,7 +209,7 @@ COMPRESS_OFFLINE = True
 
 COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 COMPRESS_CLOSURE_COMPILER_BINARY = '/usr/bin/env closure'
-COMPRESS_CLOSURE_COMPILER_ARGUMENTS = '--compilation_level=ADVANCED --warning_level=VERBOSE ' \
+COMPRESS_CLOSURE_COMPILER_ARGUMENTS = '--compilation_level=WHITESPACE_ONLY --warning_level=VERBOSE ' \
                                       '--summary_detail_level=3 --language_out=ECMASCRIPT5_STRICT'
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_OUTPUT_DIR = 'min'
