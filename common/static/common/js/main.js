@@ -27,26 +27,26 @@ if (dropdowns) {
 
 const contactForm = document.querySelector('#contact-form');
 
-function captchaSubmit(token) {
+async function captchaSubmit(token) {
   const URL = '/contact_form/';
   const data = new URLSearchParams(new FormData(contactForm));
   const headers = new Headers();
   headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  fetch(URL, {
+  const response = await fetch(URL, {
     method: 'POST',
     body: data,
     headers: headers,
-    })
-    .then(function (response) {
-      // Temporary
-      if (response.status === 200) {
-        contactForm.reset();
-        console.log('Succes');
-      } else {
-        console.log('Error');
-      }
   });
+ 
+  // Temporary
+  if (response.status === 200) {
+    contactForm.reset();
+    console.log('Succes');
+  } else {
+    console.log('Error');
+  }
+
 }
 
 function doCaptcha() {
