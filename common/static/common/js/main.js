@@ -3,22 +3,22 @@ const navbarLinks = document.querySelector('.navbar__links');
 
 // Toggle the hamburger button and the navbar links on click
 hamburgerBtn.addEventListener('click', (e) => {
-    hamburgerBtn.classList.toggle('is-active');
-    navbarLinks.classList.toggle('is-active');
+  hamburgerBtn.classList.toggle('is-active');
+  navbarLinks.classList.toggle('is-active');
 });
 
 // Dropdown logic
 const dropdowns = [...document.querySelectorAll('.dropdown__title')];
 
 function handleDropdown() {
-    this.parentNode.classList.toggle('active');
-    const answer = this.nextElementSibling;
-    const height = `${answer.scrollHeight}px`;
-    answer.style.maxHeight = !answer.style.maxHeight ? height : null;
+  this.parentNode.classList.toggle('active');
+  const answer = this.nextElementSibling;
+  const height = `${answer.scrollHeight}px`;
+  answer.style.maxHeight = !answer.style.maxHeight ? height : null;
 }
 
 if (dropdowns) {
-    dropdowns.forEach(dropdown => dropdown.addEventListener('click', handleDropdown));
+  dropdowns.forEach(dropdown => dropdown.addEventListener('click', handleDropdown));
 }
 
 
@@ -28,43 +28,44 @@ if (dropdowns) {
 const contactForm = document.querySelector('#contact-form');
 
 function captchaSubmit(token) {
-    const URL = '/contact_form/';
-    const data = new URLSearchParams(new FormData(contactForm));
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  const URL = '/contact_form/';
+  const data = new URLSearchParams(new FormData(contactForm));
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-    fetch(URL, {
-        method: 'POST',
-        body: data,
-        headers: headers,
-    }).then(function (response) {
-        // Temporary
-        if (response.status === 200) {
-            contactForm.reset();
-            console.log('Succes');
-        } else {
-            console.log('Error');
-        }
-    });
+  fetch(URL, {
+    method: 'POST',
+    body: data,
+    headers: headers,
+    })
+    .then(function (response) {
+      // Temporary
+      if (response.status === 200) {
+        contactForm.reset();
+        console.log('Succes');
+      } else {
+        console.log('Error');
+      }
+  });
 }
 
 function doCaptcha() {
-    grecaptcha.reset();
-    grecaptcha.execute();
+  grecaptcha.reset();
+  grecaptcha.execute();
 }
 
 function submitContactForm(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (window.captcha !== undefined) {
-        doCaptcha();
-        return;
-    }
-    window.captcha = true
+  if (window.captcha !== undefined) {
+    doCaptcha();
+    return;
+  }
+  window.captcha = true;
 
-    const script = document.createElement('script');
-    document.body.appendChild(script);
-    script.src = 'https://www.google.com/recaptcha/api.js?onload=doCaptcha';
+  const script = document.createElement('script');
+  document.body.appendChild(script);
+  script.src = 'https://www.google.com/recaptcha/api.js?onload=doCaptcha';
 }
 
 contactForm.addEventListener('submit', submitContactForm);
