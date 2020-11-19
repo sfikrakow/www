@@ -7,4 +7,4 @@ class ContactForm(forms.Form):
     email = forms.EmailField(max_length=100)
     topic = forms.CharField(max_length=200)
     message = forms.CharField(max_length=1000)
-# captcha = ReCaptchaField(required=False)  # TODO: switch to true
+    captcha = ReCaptchaField()
