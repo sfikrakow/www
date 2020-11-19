@@ -197,7 +197,7 @@ COMPRESS_FILTERS = {
         'compressor.filters.cssmin.rCSSMinFilter',
     ],
     'js': [
-        'compressor.filters.closure.ClosureCompilerFilter',
+#        'compressor.filters.closure.ClosureCompilerFilter', # TODO: enable it after fixing globals.
     ],
 }
 
