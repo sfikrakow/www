@@ -30,6 +30,7 @@ if (dropdowns) {
 
 const contactForm = document.querySelector('#contact-form');
 
+/** @export */
 function captchaSubmit(token) {
     const URL = '/contact_form/';
     const data = new URLSearchParams(new FormData(contactForm));
@@ -51,6 +52,7 @@ function captchaSubmit(token) {
     });
 }
 
+/** @export */
 function doCaptcha() {
     grecaptcha.reset();
     grecaptcha.execute();
