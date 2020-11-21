@@ -1,6 +1,5 @@
 from abc import abstractmethod
 from collections import defaultdict
-from itertools import groupby
 
 from django.core.validators import RegexValidator
 from django.db import models
@@ -79,8 +78,8 @@ class Speaker(SFIPage):
 
     def get_all_events_by_edition(self):
         by_edition = defaultdict(list)
-        for event in self.event_set.all():
-            by_edition[event.get_edition()].append(event)
+        for event_speaker in self.event_speakers.all():
+            by_edition[event_speaker.event.get_edition()].append(event_speaker.event)
         return sorted(by_edition.items(), key=lambda x: x[0].start_date, reverse=True)
 
     class Meta:
@@ -192,6 +191,8 @@ class EventIndex(EditionSubpage):
     parent_page_types = ['Edition']
     subpage_types = ['Event']
 
+    EVENTS_PER_PAGE = 10
+
     color = models.CharField(max_length=7,
                              default='#23211f',
                              validators=[RegexValidator(
@@ -205,7 +206,9 @@ class EventIndex(EditionSubpage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        # TODO: display agenda block??
+        context['posts'] = paginate(
+            Event.objects.live().public().descendant_of(self).order_by('title'),
+            request, EventIndex.EVENTS_PER_PAGE)
         return context
 
     def get_edition(self):
@@ -225,13 +228,12 @@ class Event(EditionSubpage):
     content = RichTextField(verbose_name=_('content'))
     date = models.DateTimeField(null=True, blank=True, verbose_name=_('date'))
     duration_minutes = models.IntegerField(null=True, blank=True, verbose_name=_('duration in minutes'))
-    event_speaker = models.ForeignKey(Speaker, null=True, on_delete=models.PROTECT, verbose_name=_('speaker'))
     event_category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL,
                                        verbose_name=_('category'))
     language = models.CharField(max_length=5, choices=LanguageChoice.choices, null=True, blank=True,
                                 verbose_name=_('language'))
     sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
-    recording = models.URLField(max_length=512, null=True, blank=True, verbose_name=_('link to recording'))
+    recording_link = models.URLField(max_length=512, null=True, blank=True, verbose_name=_('link to recording'))
 
     class EventCategoryFieldPanel(FieldPanel):
         # Terrible hack to limit category choices to edition.
@@ -245,11 +247,11 @@ class Event(EditionSubpage):
         FieldPanel('content'),
         FieldPanel('date'),
         FieldPanel('duration_minutes'),
-        PageChooserPanel('event_speaker'),
+        InlinePanel('event_speakers', label='Event speakers'),
         EventCategoryFieldPanel('event_category'),
         FieldPanel('language'),
         SnippetChooserPanel('sponsor'),
-        FieldPanel('recording')
+        FieldPanel('recording_link')
     ]
 
     parent_page_types = ['EventIndex']
@@ -267,3 +269,17 @@ class Event(EditionSubpage):
     class Meta:
         verbose_name = _('event')
         verbose_name_plural = _('events')
+
+
+class EventSpeaker(InvalidateCacheMixin, models.Model):
+    event = ParentalKey(Event, on_delete=models.CASCADE, related_name='event_speakers')
+    speaker = models.ForeignKey(Speaker, null=True, on_delete=models.PROTECT, verbose_name=_('speaker'),
+                                related_name='event_speakers')
+
+    panels = [
+        PageChooserPanel('speaker'),
+    ]
+
+    class Meta:
+        verbose_name = _('event speaker')
+        verbose_name_plural = _('event speakers')

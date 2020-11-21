@@ -1,0 +1,16 @@
+{% load common_tags %}
+{% load i18n %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <section class="post_base-list">
+        <div class="post_base-list__container">
+            {% for post in posts %}
+                {% include 'agenda/partials/event_index_single.html' with event=post %}
+            {% endfor %}
+        </div>
+        <div class="post_base-list__more">
+            <a class="post_base-list__more-link" href="{% pageurl value.index %}">{% trans 'More...' %}</a>
+        </div>
+    </section>
+{% endblock %}

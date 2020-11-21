@@ -7,6 +7,7 @@ from wagtail.core.blocks import RawHTMLBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 
+from agenda.blocks import EventIndexBlock
 from blog.blocks import PostIndexBlock
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
@@ -19,6 +20,7 @@ class StaticPage(SFIPage):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('post_index', PostIndexBlock()),
+        ('event_index', EventIndexBlock()),
         ('header', HeadingBlock()),
         ('section_title', SectionTitleBlock()),
         ('section_subtitle', SectionSubtitleBlock()),

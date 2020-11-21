@@ -12,16 +12,21 @@
 
 
 {% block body_content %}
-    {% if page.event_speaker %}
+    {% if page.event_speakers %}
         <div class="event-info">
             <div class="event-info__title">
-                {% trans 'Speaker' %}
+                {% if page.event_speakers.count > 1 %}
+                    {% trans 'Speakers' %}
+                {% else %}
+                    {% trans 'Speaker' %}
+                {% endif %}
             </div>
             <div class="event-info__content">
-                <a href="{% pageurl page.event_speaker %}"
-                   class="event-header_details_value event-header_details_value--link">
-                    {{ page.event_speaker.title }}
-                </a>
+                {% for event_speaker in page.event_speakers.all %}
+                    <a href="{% pageurl event_speaker.speaker %}"
+                       class="event-header_details_value event-header_details_value--link">
+                        {{ event_speaker.speaker.title }}</a>{% if not forloop.last %},{% endif %}
+                {% endfor %}
             </div>
         </div>
     {% endif %}
@@ -55,16 +60,16 @@
             </div>
         </div>
     {% endif %}
-    {% if page.recording %}
+    {% if page.recording_link %}
         <div class="event-info">
             <div class="event-info__title">
                 {% trans 'Recording' %}
             </div>
             <div class="event-info__content">
-                <div><a class="event-header_details_value event-header_details_value--link" href="{{ page.recording }}"
+                <div><a class="event-header_details_value event-header_details_value--link" href="{{ page.recording_link }}"
                         rel="noreferrer noopener" target="_blank">{% trans 'link' %}</a></div>
                 <div>
-                    {% embed page.recording %}
+                    {% embed page.recording_link %}
                 </div>
             </div>
         </div>

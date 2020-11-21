@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load common_tags %}
+
+<a href="{{ event.url }}" class="post_base-list__single-post">
+  {% responsive_featured_image event 'fill-350x350' 'post_base-list__image' %}
+  <div class="post_base-list__post-info">
+    <div class="post_base-list__info-container">
+      <p class="post_base-list__title">{{ event.title }}</p>
+      <p class="post-list__date">{{ event.date }}</p>
+      <p class="post_base-list__post-content">{% get_description event %}</p>
+    </div>
+    <p class="post_base-list__read-more">{% trans 'Read more...' %}</p>
+  </div>
+</a>
