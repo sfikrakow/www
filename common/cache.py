@@ -1,4 +1,5 @@
 import hashlib
+from calendar import timegm
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
@@ -22,13 +23,12 @@ def update_last_modified_stamp(last_modified=None):
     cache.set(LAST_MODIFIED_KEY, last_modified if last_modified else timezone.now(), CACHE_MAX_TTL)
 
 
-def get_last_modified_stamp():
-    last_modified = cache.get_or_set(LAST_MODIFIED_KEY, timezone.now(), CACHE_MAX_TTL)
-    return last_modified
+def get_last_modified_stamp() -> datetime:
+    return cache.get_or_set(LAST_MODIFIED_KEY, timezone.now(), CACHE_MAX_TTL)
 
 
 def get_last_modified_and_etag(request: HttpRequest):
-    last_modified_stamp = http_date(get_last_modified_stamp().timestamp())
+    last_modified_stamp = http_date(timegm(get_last_modified_stamp().utctimetuple()))
     md5 = hashlib.md5(request.get_full_path().encode('utf-8'))
     md5.update(last_modified_stamp.encode('utf-8'))
     etag = 'W/"{}"'.format(md5.hexdigest())
@@ -77,7 +77,7 @@ class FetchPageFromCacheMiddleware:
         last_modified_stamp, etag = get_last_modified_and_etag(request)
 
         # Try getting a Not Modified response.
-        response = get_conditional_response(request, etag, last_modified)
+        response = get_conditional_response(request, etag, timegm(last_modified.utctimetuple()))
         if response:
             response[SFI_CACHE_HEADER] = 'NON_MODIFIED'
             return response
