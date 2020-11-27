@@ -38,6 +38,10 @@ body {
     &:first-child {
       margin-top: 0;
     }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   hr {
@@ -66,6 +70,10 @@ body {
       color: $page_color_4;
     }
   }
+}
+
+.rich-text.post_base__title-richtext {
+  font-size: 1.2rem; 
 }
 
 .block {
