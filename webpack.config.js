@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     context: __dirname,
@@ -50,5 +51,9 @@ module.exports = {
         new BundleTracker({filename: './webpack-stats.json'}),
         new MiniCssExtractPlugin({filename: "[name]-[hash].css"}),
         new CleanWebpackPlugin(),
+        new CompressionPlugin({
+            test: /\.(js|css|html|svg)$/,
+            threshold: 10240,
+        }),
     ]
 }
