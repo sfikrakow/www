@@ -27,7 +27,7 @@ if (dropdowns) {
 
 const contactForm = document.querySelector('#contact-form');
 
-async function captchaSubmit(token) {
+global.captchaSubmit = async function (token) {
   const URL = '/contact_form/';
   const data = new URLSearchParams(new FormData(contactForm));
   const headers = new Headers();
@@ -38,7 +38,7 @@ async function captchaSubmit(token) {
     body: data,
     headers: headers,
   });
- 
+
   // Temporary
   if (response.status === 200) {
     contactForm.reset();
@@ -49,7 +49,7 @@ async function captchaSubmit(token) {
 
 }
 
-function doCaptcha() {
+global.doCaptcha = function () {
   grecaptcha.reset();
   grecaptcha.execute();
 }
