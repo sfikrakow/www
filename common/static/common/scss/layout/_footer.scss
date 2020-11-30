@@ -27,6 +27,9 @@
 
       .fab {
         font-size: 50px;
+        &:hover {
+          color: $page_color_1;
+        }
       }
 
       p {
