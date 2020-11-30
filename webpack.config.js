@@ -14,7 +14,7 @@ module.exports = {
     output: {
         path: path.resolve('./assets/webpack_bundles/'),
         publicPath: "/static/webpack_bundles/",
-        filename: "[name]-[hash].js"
+        filename: "[name]-[fullhash].js"
     },
     module: {
         rules: [
@@ -49,7 +49,7 @@ module.exports = {
     },
     plugins: [
         new BundleTracker({filename: './webpack-stats.json'}),
-        new MiniCssExtractPlugin({filename: "[name]-[hash].css"}),
+        new MiniCssExtractPlugin({filename: "[name]-[fullhash].css"}),
         new CleanWebpackPlugin(),
         new CompressionPlugin({
             test: /\.(js|css|html|svg)$/,
