@@ -7,11 +7,15 @@
     width: 100%;
     font-size: 22px;
     color: $page_color_6;
-    margin: 30px 0;
+    margin: 50px 0 30px;
+    flex-wrap: wrap;
 
     &__socials {
+      flex-basis: 40%;
+
       section {
         display: flex;
+        justify-content: center;
       }
 
       h2 {
@@ -41,6 +45,8 @@
 
     &__form {
       text-align: center;
+      flex-basis: 40%;
+      width: 80%;
       section {
         text-align: left;
         display: flex;
