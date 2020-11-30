@@ -39,7 +39,8 @@
                  data-callback="captchaSubmit"
                  data-size="invisible">
             </div>
-            <button type="submit">{% trans 'Send' %}</button>
+            <script>document.write('<button type="submit">{% trans "Send" %}</button>');</script>
+            <noscript>JavaScript support is required to use this form</noscript>
         </form>
     </div>
     <div class="footer__orgs">
