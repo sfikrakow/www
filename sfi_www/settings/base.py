@@ -58,13 +58,13 @@ WAGTAIL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'compressor',
     'sfi_base',
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
     'wagtail_modeltranslation.migrate',
     'livereload',
-    'captcha'
+    'captcha',
+    'webpack_loader'
 ]
 
 MY_APPS = [
@@ -176,11 +176,10 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
-    # os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(BASE_DIR, 'assets'),
 ]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
@@ -191,28 +190,17 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-COMPRESS_FILTERS = {
-    'css': [
-        'compressor.filters.css_default.CssAbsoluteFilter',
-        'compressor.filters.cssmin.rCSSMinFilter',
-    ],
-    'js': [
-        #        'compressor.filters.closure.ClosureCompilerFilter', # TODO: enable it after fixing globals.
-    ],
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'webpack_bundles/', # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+    }
 }
-
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-
-COMPRESS_OFFLINE = True
-
-COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
-COMPRESS_CLOSURE_COMPILER_BINARY = '/usr/bin/env closure'
-COMPRESS_CLOSURE_COMPILER_ARGUMENTS = '--compilation_level=WHITESPACE_ONLY --warning_level=VERBOSE ' \
-                                      '--summary_detail_level=3 --language_out=ECMASCRIPT5_STRICT'
-COMPRESS_CSS_HASHING_METHOD = 'content'
-COMPRESS_OUTPUT_DIR = 'min'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

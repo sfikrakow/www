@@ -1,7 +1,7 @@
+{% load webpack_loader %}
 {% load wagtailcore_tags %}
 {% load i18n %}
 {% load static wagtailuserbar %}
-{% load compress %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
@@ -11,24 +11,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static 'common/scss/main.scss' %}">
-    {% endcompress %}
+    {% render_bundle 'css' 'css' %}
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'common/favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'common/favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'common/favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'common/site.webmanifest' %}">
-    <link rel="mask-icon" href="{% static 'common/favicon/safari-pinned-tab.svg' %}" color="#333a6d">
-    <link rel="shortcut icon" href="{% static 'common/favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#333a6d">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
     <meta name="apple-mobile-web-app-title" content="{% trans 'SFI IT Academic Festival' %}">
     <meta name="application-name" content="{% trans 'SFI IT Academic Festival' %}">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="{% static 'common/browserconfig.xml' %}">
+    <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}">
     <meta name="theme-color" content="#333a6d">
 
     {% block head %}
-    <title>{% trans 'SFI IT Academic Festival' %}</title>
+        <title>{% trans 'SFI IT Academic Festival' %}</title>
     {% endblock %}
 
     <!-- temporary, just for developlment purposes-->
@@ -37,23 +35,22 @@
 </head>
 
 <body>
-    {% wagtailuserbar %}
+{% wagtailuserbar %}
 
-    <div class="content">
-        {% include 'common/partials/navbar.html' %}
-        {% include 'common/partials/header.html' %}
-        <main>
-            {% block content %}
-            {% endblock content %}
-        </main>
-    </div>
+<div class="content">
+    {% include 'common/partials/navbar.html' %}
+    {% include 'common/partials/header.html' %}
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+</div>
 
 
-    {% include 'common/partials/footer.html' %}
+{% include 'common/partials/footer.html' %}
 
-    {% compress js %}
-    <script type="text/javascript" src="{% static 'common/js/main.js' %}"></script>
-    {% endcompress %}
+{% render_bundle 'js' 'js' %}
+
 </body>
 
 </html>

@@ -6,8 +6,8 @@
 <nav class="navbar">
     <a class="navbar__logo" href="{% slugurl_trans 'home' %}">
         <picture>
-            <source srcset="{% static 'common/img/logo.webp' %}" type="image/webp">
-            <img src="{% static 'common/img/logo.png' %}" alt="sfi logo">
+            <source srcset="{% static 'img/logo.webp' %}" type="image/webp">
+            <img src="{% static 'img/logo.png' %}" alt="sfi logo">
         </picture>
     </a>
 
@@ -26,7 +26,7 @@
                 {% if page and lang != lang_code %}
                     {% language lang_code %}
                         <a class="navbar__link" href="{{ page.url }}">
-                            {% with lang_icon='common/img/icon-'|add:lang_code|add:'.png'  lang_icon_webp='common/img/icon-'|add:lang_code|add:'.webp' %}
+                            {% with lang_icon='img/icon-'|add:lang_code|add:'.png'  lang_icon_webp='img/icon-'|add:lang_code|add:'.webp' %}
                                 <picture>
                                     <source srcset="{% static lang_icon_webp %}" type="image/webp">
                                     <img class="navbar__image" src="{% static lang_icon %}"

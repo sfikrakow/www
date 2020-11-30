@@ -11,7 +11,8 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py sync_page_translation_fields
 python manage.py update_translation_fields
-python manage.py runserver
+yarn install
+yarn dev && python manage.py runserver
 ```
 ### (alternative) setup with PyCharm
 * (from start screen) `Get from version control`
@@ -28,6 +29,8 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py sync_page_translation_fields
 python manage.py update_translation_fields
+yarn install
+yarn dev &
 ```
 * Click on the `manage.py`, PyCharm should reindex the project
 * `Add Configuration...` -> `+` -> `Django Server` -> `OK`

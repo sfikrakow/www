@@ -16,8 +16,7 @@ class EventIndexBlock(StructBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context['posts'] = Event.objects.live().public() \
-                               .descendant_of(value['index']).order_by('-date')[
+        context['posts'] = Event.objects.live().public().descendant_of(value['index']).order_by('-date')[
                            :value['shown_posts']]
         return context
 
