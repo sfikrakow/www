@@ -31,14 +31,19 @@
 
       .fab {
         font-size: 50px;
+        transition: filter 0.3s;
         &:hover {
-          color: $page_color_1;
+          filter: brightness(250%);
         }
       }
 
       p {
         font-size: 30px;
         text-align: center;
+        transition: filter 0.3s;
+        &:hover {
+          filter: brightness(250%);
+        }
       }
 
     }
@@ -103,7 +108,7 @@
 
     &__single {
       & img {
-        height: 8rem;
+        height: 9rem;
         width: auto;
         color: $page_color_6;
         transition: filter 0.3s;
