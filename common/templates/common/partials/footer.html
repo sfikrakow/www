@@ -39,7 +39,11 @@
                  data-callback="captchaSubmit"
                  data-size="invisible">
             </div>
-            <script>document.write('<button type="submit">{% trans "Send" %}</button>');</script>
+            <script>
+               const btn = document.createElement('button');
+               btn.innerText = '{% trans "Send" %}'; 
+               document.querySelector('.footer-contact__form').appendChild(btn);
+            </script>
             <noscript>JavaScript support is required to use this form</noscript>
         </form>
     </div>
