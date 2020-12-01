@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 18:54+0100\n"
+"POT-Creation-Date: 2020-12-01 01:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,18 +20,22 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: pages/models.py:24 pages/models.py:45
+#: pages/models.py:32 pages/models.py:55
 msgid "content"
 msgstr "zawartość"
 
-#: pages/models.py:31
+#: pages/models.py:39
 msgid "page"
 msgstr "strona"
 
-#: pages/models.py:32
+#: pages/models.py:40
 msgid "pages"
 msgstr "strony"
 
-#: pages/models.py:52
+#: pages/models.py:62
 msgid "footer settings"
 msgstr "ustawienia stopki"
+
+#: pages/templates/pages/map_block.html:7
+msgid "Click to interact"
+msgstr "Kliknij aby aktywować"
