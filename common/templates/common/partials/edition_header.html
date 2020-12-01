@@ -1,8 +1,15 @@
 {% load i18n %}
+{% load static %}
 {% block header_class_specifier %}
     <div class="post_base__header">
 {% endblock header_class_specifier %}
-<div class="post_base__header-image">
+
+<div class ="post_base__header-container" >
+    <picture class="post_base__header-image">
+        <source srcset=" {% static "img/CoverSSO.webp" %}" type="image/webp"> 
+        <source srcset=" {% static "img/CoverSSO.png" %}" type="image/png"> 
+        <img src="{% static "img/CoverSSO.png" %}" alt="header image">
+    </picture>
     <div class="post_base__sfi-edition-info">
         <p class="post_base__sfi-edition">{% trans '16th edition' %}</p>
         <p class="post_base__sfi-year">2021</p>

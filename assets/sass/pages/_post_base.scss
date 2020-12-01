@@ -114,19 +114,21 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-top: 0.6rem;
+    height: 400px;
+    overflow: hidden;
   }
 
-  &__header-image {
+  &__header-container {
+    position: relative;
     flex-basis: 50%;
-
-    background: url("../img/motyw-1.png") no-repeat center center;
-    background-size: cover;
-    min-height: 320px;
-    border-radius: 0 15px 15px 0;
-
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  }
+  
+  &__header-image img{
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    max-height: 100%;
+    border-radius: 0 25px 25px 0;
   }
 
   &__sfi-edition-info {
@@ -134,15 +136,19 @@
     border-radius: 15px 0 0 15px;
     padding: 1rem;
     text-align: center;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
   }
 
   &__sfi-edition {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin: 0;
   }
 
   &__sfi-year {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: $page_color_4;
     margin: 0;
