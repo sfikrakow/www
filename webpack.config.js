@@ -7,13 +7,13 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     context: __dirname,
-    entry: {
-        js: './assets/js/main.js',
-        css: './assets/sass/main.scss'
-    },
+    entry: [
+        './assets/js/main.js',
+        './assets/sass/main.scss'
+    ],
     output: {
-        path: path.resolve('./assets/webpack_bundles/'),
-        publicPath: "/static/webpack_bundles/",
+        path: path.resolve('./assets/bundles/'),
+        publicPath: "/static/bundles/",
         filename: "[name]-[fullhash].js"
     },
     module: {

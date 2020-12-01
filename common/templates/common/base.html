@@ -11,7 +11,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {% render_bundle 'css' 'css' %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {% render_bundle 'main' 'css' %}
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
@@ -49,7 +50,7 @@
 
 {% include 'common/partials/footer.html' %}
 
-{% render_bundle 'js' 'js' %}
+{% render_bundle 'main' 'js' %}
 
 </body>
 

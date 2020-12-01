@@ -132,5 +132,6 @@ dmypy.json
 /media/
 /static/
 assets/webpack_bundles/
+assets/bundles/
 node_modules/
 webpack-stats.json
