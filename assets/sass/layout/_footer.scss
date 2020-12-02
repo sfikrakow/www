@@ -1,13 +1,59 @@
 .footer {
   @extend %sticky-footer;
 
-  &-contact{
+  &-divider {
+    width: 100%;
+    position: relative;
+    margin-top: 30px;
+
+    &__before-left, &__before-right, &__after-left, &__after-right {
+      position: absolute;
+      padding: 0 4vw;
+    }
+
+    &__before-left {
+      border-top: 3em solid $page_color_2;
+      border-right: 3em solid transparent;
+      top: 0;
+      left: 0;
+    }
+
+    &__before-right {
+      border-top: 3em solid $page_color_2;
+      border-left: 3em solid transparent;
+      top: 0;
+      right: 0;
+    }
+
+    &__after-left {
+      border-bottom: 3em solid $page_color_2;
+      border-right: 3em solid transparent;
+      bottom: 0;
+      left: 0;
+    }
+
+    &__after-right {
+      border-bottom: 3em solid $page_color_2;
+      border-left: 3em solid transparent;
+      bottom: 0;
+      right: 0;
+    }
+
+    &__image img {
+      display: block;
+      width: 100%;
+      height: 15em;
+      object-fit: cover;
+    }
+  }
+
+  &-contact {
     display: flex;
     justify-content: space-around;
     width: 100%;
     font-size: 22px;
     color: $page_color_6;
-    margin: 50px 0 30px;
+    margin: 30px 0 30px;
     flex-wrap: wrap;
 
     &__socials {
@@ -32,6 +78,7 @@
       .fab {
         font-size: 50px;
         transition: filter 0.3s;
+
         &:hover {
           filter: brightness(250%);
         }
@@ -41,6 +88,7 @@
         font-size: 30px;
         text-align: center;
         transition: filter 0.3s;
+
         &:hover {
           filter: brightness(250%);
         }
@@ -52,6 +100,7 @@
       text-align: center;
       flex-basis: 40%;
       width: 80%;
+
       section {
         text-align: left;
         display: flex;
@@ -71,7 +120,7 @@
         border-bottom: solid 2px $page_color_6;
       }
 
-      textarea:focus, input:focus{
+      textarea:focus, input:focus {
         outline: none;
       }
 
@@ -91,6 +140,7 @@
         cursor: pointer;
         margin-top: 15px;
       }
+
       button:hover {
         background-color: $page_color_4;
       }
@@ -135,5 +185,5 @@
 }
 
 .grecaptcha-badge {
-  display:none !important;
+  display: none !important;
 }
