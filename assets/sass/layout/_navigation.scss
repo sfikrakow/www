@@ -28,6 +28,8 @@
     margin-right: 50px;
     display: flex;
     list-style-type: none;
+    align-items: center;
+    text-transform: uppercase;
   }
 
   &__li {
@@ -46,6 +48,12 @@
     align-content: center;
     &:hover {
       color: $page_color_4;
+    }
+
+    picture { //lang verion icon
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
