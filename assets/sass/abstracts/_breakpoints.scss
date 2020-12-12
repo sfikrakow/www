@@ -1,0 +1,20 @@
+$breakpoints: (
+  tablet_portrait: 768px,
+  tablet_landscape: 1024px,
+  laptop: 1366px,
+	fhd: 1920px,
+);
+
+@mixin breakpoint($size) {
+  @each $device, $sizePx in $breakpoints {
+    @if $size == $device {
+      @media screen and(min-width: $sizePx) { @content;  }
+		}
+	}
+}
+
+// HOW TO USE
+// @include breakpoint(fhd) {
+//   color: red;
+// } 
+// Use names from $breakpoints, that's all
