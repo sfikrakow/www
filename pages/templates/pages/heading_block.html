@@ -6,4 +6,10 @@
     <div class="rich-text post_base__title-richtext">
         {{ value.content | richtext }}
     </div>
+    <div>
+        {% for button in value.buttons %}
+            <a class="post_base__header-title__button" href="{% if button.link_page %}{{ button.link_page.url }}{% else %}
+            {{ button.link_url }}{% endif %}">{{ button.name }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}

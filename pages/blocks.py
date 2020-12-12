@@ -1,12 +1,19 @@
 import random
 
 from wagtail.core.blocks import StructBlock, RichTextBlock, TextBlock, ListBlock, URLBlock, IntegerBlock, BooleanBlock, \
-    FloatBlock
+    FloatBlock, PageChooserBlock, CharBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
+class MenuItem(StructBlock):
+    name = CharBlock(max_length=100)
+    link_page = PageChooserBlock(required=False)
+    link_url = URLBlock(required=False)
+
+
 class HeadingBlock(StructBlock):
-    content = RichTextBlock()
+    content = RichTextBlock(features=['h1', 'h2', 'h3', 'h4', 'bold', 'italic', 'ol', 'ul', 'link', 'document-link'])
+    buttons = ListBlock(MenuItem(), required=False, default=[])
 
     class Meta:
         template = 'pages/heading_block.html'

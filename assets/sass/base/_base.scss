@@ -31,6 +31,7 @@ body {
   font-size: 1rem;
   line-height: 1.4;
 
+  h1,
   h2,
   h3,
   h4,
@@ -73,7 +74,11 @@ body {
 }
 
 .rich-text.post_base__title-richtext {
-  font-size: 1.2rem; 
+  font-size: 1.35rem;
+
+  & b {
+    color: $page_color_4
+  }
 }
 
 .block {

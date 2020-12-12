@@ -1,7 +1,6 @@
 import functools
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.templatetags.static import static
 
 
 def paginate(query, request, items_per_page):
@@ -31,10 +30,3 @@ def with_context(func):
         return RenderWithContext(func, args, kwargs)
 
     return wrapper
-
-
-def or_static_placeholder(img, placeholder):
-    if img:
-        return img
-    else:
-        return static(placeholder)
