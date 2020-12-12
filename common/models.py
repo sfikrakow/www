@@ -10,6 +10,7 @@ from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from common.cache import InvalidateCacheMixin
+from common.utils import with_context
 
 
 class User(AbstractUser):
@@ -31,6 +32,7 @@ class SFIPage(Page, InvalidateCacheMixin):
         verbose_name=_('featured image')
     )
 
+    @with_context
     def get_featured_image_or_default(self, context):
         if self.featured_image:
             return self.featured_image

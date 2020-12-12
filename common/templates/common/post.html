@@ -8,7 +8,7 @@
 
     <section class="post_base">
         <div class="{% block body_class_specifier %}post_base__body{% endblock %}">
-            {% responsive_featured_image page 'fill-350x350' 'post_base__body-image' %}
+            {% responsive_img page.get_featured_image_or_default 'fill-350x350' 'post_base__body-image' %}
             <div class="post_base__body-content">
                 {% block body_content %}
                     <div class="rich-text">

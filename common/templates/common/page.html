@@ -12,13 +12,13 @@
     <link rel="canonical" href="{{ page.full_url }}">
     <meta property="og:url" content="{{ page.full_url }}">
     <meta property="og:site_name" content="{% trans 'SFI IT Academic Festival' %}">
-    <meta property="og:image" content="{% get_featured_image_url page %}">
+    <meta property="og:image" content="{% get_featured_image_url page.get_featured_image_or_default %}">
     <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">
         {
             "@type":"WebPage",
             "headline":"{% get_title page %}",
-            "image":"{% get_featured_image_url page %}",
+            "image":"{% get_featured_image_url page.get_featured_image_or_default %}",
             "url":"{{ page.full_url }}",
             "description":"{% get_description page %}",
             "@context":"https://schema.org"

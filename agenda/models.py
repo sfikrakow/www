@@ -16,7 +16,7 @@ from wagtail.snippets.models import register_snippet
 
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
-from common.utils import paginate
+from common.utils import paginate, with_context
 
 
 @register_snippet
@@ -152,6 +152,7 @@ class EditionSubpage(SFIPage):
     def get_edition(self):
         pass
 
+    @with_context
     def get_featured_image_or_default(self, context):
         if self.featured_image:
             return self.featured_image

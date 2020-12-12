@@ -2,7 +2,7 @@
 {% load common_tags %}
 
 <a href="{{ speaker.url }}" class="post_base-list__single-post">
-  {% responsive_featured_image speaker 'fill-350x350' 'post_base-list__image' %}
+  {% responsive_img speaker.get_featured_image_or_default 'fill-350x350' 'post_base-list__image' %}
   <div class="post_base-list__post-info">
     <div class="post_base-list__info-container">
       <p class="post_base-list__title">{{ speaker.title }}</p>

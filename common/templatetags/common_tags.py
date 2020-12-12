@@ -2,6 +2,9 @@ from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter, truncatewords
 from django.utils.html import strip_tags
+from wagtail.images.models import Image
+
+from common.utils import RenderWithContext
 
 register = template.Library()
 
@@ -13,9 +16,11 @@ def unrich_text(value):
     return strip_tags(value)
 
 
-@register.inclusion_tag('common/tags/responsive_img.html')
-def responsive_img(img, size: str, css_class=''):
-    if img:
+@register.inclusion_tag('common/tags/responsive_img.html', takes_context=True)
+def responsive_img(context, img, size: str, css_class=''):
+    if isinstance(img, RenderWithContext):
+        img = img.render(context)
+    if isinstance(img, Image):
         image_jpg = img.get_rendition(size + '|format-jpeg|jpegquality-70')
         image_webp = img.get_rendition(size + '|format-webp')
         return {
@@ -23,8 +28,7 @@ def responsive_img(img, size: str, css_class=''):
             'image_webp': image_webp,
             'css_class': css_class,
         }
-    else:
-        return {}
+    return {}
 
 
 @register.simple_tag
@@ -45,16 +49,12 @@ def get_description(page):
         return ''
 
 
-@register.inclusion_tag('common/tags/responsive_img.html', takes_context=True)
-def responsive_featured_image(context, page, size: str, css_class=''):
-    return responsive_img(page.get_featured_image_or_default(context), size, css_class)
-
-
 @register.simple_tag(takes_context=True)
-def get_featured_image_url(context, page):
-    image = page.get_featured_image_or_default(context)
-    if image:
-        rendition = image.get_rendition('max-1200x1200|format-jpeg|jpegquality-70')
+def get_featured_image_url(context, img):
+    if isinstance(img, RenderWithContext):
+        img = img.render(context)
+    if isinstance(img, Image):
+        rendition = img.get_rendition('max-1200x1200|format-jpeg|jpegquality-70')
         return context['request'].build_absolute_uri(rendition.url)
     return ''
 
