@@ -1,5 +1,4 @@
 @import 'abstracts/variables';
-@import 'abstracts/functions';
 @import 'abstracts/breakpoints';
 
 @import 'components/hamburgers';
@@ -11,14 +10,11 @@
 @import 'layout/navigation';
 @import 'layout/header';
 @import 'layout/footer';
-@import 'layout/forms';
 
 @import 'components/photo_galery';
-@import 'components/buttons';
 @import 'components/dropdown';
 @import 'components/map';
-//@import 'components/carousel';
-//@import 'components/slider';
+
 
 @import 'pages/home';
 @import 'pages/post_base';
