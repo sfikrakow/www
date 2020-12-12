@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -10,7 +11,7 @@ from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from common.cache import InvalidateCacheMixin
-from common.utils import with_context
+from common.utils import with_context, or_static_placeholder
 
 
 class User(AbstractUser):
@@ -33,11 +34,19 @@ class SFIPage(Page, InvalidateCacheMixin):
     )
 
     @with_context
-    def get_featured_image_or_default(self, context):
+    def get_featured_image(self, context):
         if self.featured_image:
             return self.featured_image
         else:
             return ThemeSettings.for_request(context['request']).default_featured_image
+
+    @with_context
+    def get_edition_image(self, context):
+        return ThemeSettings.for_request(context['request']).default_edition_image
+
+    @with_context
+    def get_footer_image(self, context):
+        return ThemeSettings.for_request(context['request']).default_footer_image
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('featured_image'),
@@ -106,8 +115,48 @@ class ThemeSettings(BaseSetting, InvalidateCacheMixin):
         verbose_name=_('default featured image')
     )
 
+    default_edition_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('default edition image')
+    )
+
+    default_footer_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('default footer image')
+    )
+
+    slider_primary_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('default primary image')
+    )
+
+    slider_secondary_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('default secondary image')
+    )
+
     panels = [
         ImageChooserPanel('default_featured_image'),
+        ImageChooserPanel('default_edition_image'),
+        ImageChooserPanel('default_footer_image'),
+        ImageChooserPanel('slider_primary_image'),
+        ImageChooserPanel('slider_secondary_image'),
     ]
 
     class Meta:

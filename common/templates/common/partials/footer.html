@@ -1,3 +1,4 @@
+{% load common_tags %}
 {% load recaptcha %}
 {% load static %}
 {% load i18n %}
@@ -8,10 +9,7 @@
     <div class="footer-divider">
         <div class="footer-divider__before-left"></div>
         <div class="footer-divider__before-right"></div>
-        <picture class="footer-divider__image">
-            <source srcset=" {% static "img/footer.webp" %}" type="image/webp">
-            <img src="{% static "img/footer.png" %}" alt="header image">
-        </picture>
+        {% responsive_img page.get_footer_image 'max-2560x500' 'footer-divider__image' placeholder='img/footer.png' placeholder_webp='img/footer.webp' %}
         <div class="footer-divider__after-left"></div>
         <div class="footer-divider__after-right"></div>
     </div>

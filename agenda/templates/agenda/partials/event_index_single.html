@@ -2,7 +2,7 @@
 {% load common_tags %}
 
 <a href="{{ event.url }}" class="post_base-list__single-post">
-  {% responsive_img event.get_featured_image_or_default 'fill-350x350' 'post_base-list__image' %}
+  {% responsive_img event.get_featured_image 'fill-350x350' 'post_base-list__image' %}
   <div class="post_base-list__post-info">
     <div class="post_base-list__info-container">
       <p class="post_base-list__title">{{ event.title }}</p>

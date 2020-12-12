@@ -153,11 +153,11 @@ class EditionSubpage(SFIPage):
         pass
 
     @with_context
-    def get_featured_image_or_default(self, context):
+    def get_featured_image(self, context):
         if self.featured_image:
             return self.featured_image
         else:
-            return self.get_edition().get_featured_image_or_default(context=context)
+            return self.get_edition().get_featured_image(context=context)
 
     class Meta:
         abstract = True

@@ -1,5 +1,7 @@
 {% load wagtailimages_tags %}
 <picture class="{{ css_class }}">
-    <source srcset="{{ image_webp.url }}" type="image/webp">
-    <img src="{{ image_jpg.url }}" alt="{{ image_jpg.alt }}">
+    {% if image_webp %}
+        <source srcset="{{ image_webp }}" type="image/webp">
+    {% endif %}
+    <img src="{{ image_jpg }}" alt="{{ alt }}">
 </picture>

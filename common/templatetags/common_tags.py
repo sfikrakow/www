@@ -1,6 +1,7 @@
 from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter, truncatewords
+from django.templatetags.static import static
 from django.utils.html import strip_tags
 from wagtail.images.models import Image
 
@@ -17,16 +18,24 @@ def unrich_text(value):
 
 
 @register.inclusion_tag('common/tags/responsive_img.html', takes_context=True)
-def responsive_img(context, img, size: str, css_class=''):
+def responsive_img(context, img, size: str, css_class='', placeholder=None, placeholder_webp=None):
     if isinstance(img, RenderWithContext):
         img = img.render(context)
     if isinstance(img, Image):
         image_jpg = img.get_rendition(size + '|format-jpeg|jpegquality-70')
         image_webp = img.get_rendition(size + '|format-webp')
         return {
-            'image_jpg': image_jpg,
-            'image_webp': image_webp,
+            'image_jpg': image_jpg.url,
+            'image_webp': image_webp.url,
             'css_class': css_class,
+            'alt': image_jpg.alt
+        }
+    if placeholder:
+        return {
+            'image_jpg': static(placeholder),
+            'image_webp': static(placeholder_webp) if placeholder_webp else None,
+            'css_class': css_class,
+            'alt': 'placeholder'
         }
     return {}
 

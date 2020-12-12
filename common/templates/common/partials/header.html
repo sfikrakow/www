@@ -1,17 +1,10 @@
+{% load common_tags %}
 {% load i18n %}
 {% load static %}
 
 <header class="home-header">
-    <picture class="home-header__header-image slide1">
-        <source srcset=" {% static "img/slide-1.webp" %}" type="image/webp"> 
-        <source srcset=" {% static "img/slide-1.webp" %}" type="image/jpg"> 
-        <img src="{% static "img/slide-1.jpg" %}" alt="header image">
-    </picture>
-    <picture class="home-header__header-image slide2">
-        <source srcset=" {% static "img/slide-2.webp" %}" type="image/webp"> 
-        <source srcset=" {% static "img/slide-2.webp" %}" type="image/jpg"> 
-        <img src="{% static "img/slide-2.jpg" %}" alt="header image">
-    </picture>
+    {% responsive_img settings.common.ThemeSettings.slider_primary_image 'max-2560x600' 'home-header__header-image slide1' placeholder='img/slide-1.png' placeholder_webp='img/slide-1.webp' %}
+    {% responsive_img settings.common.ThemeSettings.slider_secondary_image 'max-2560x600' 'home-header__header-image slide2' placeholder='img/slide-2.png' placeholder_webp='img/slide-2.webp' %}
     <div class="home-header__sfi-title">
         <span class="home-header__sfi-edition">{% trans '16th' %}</span> {% trans 'SFI IT Academic Festival' %}
     </div>
