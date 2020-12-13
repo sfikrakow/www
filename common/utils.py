@@ -1,4 +1,5 @@
 import functools
+from urllib.parse import quote
 
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -59,4 +60,5 @@ def oidc_op_logout(request):
     redirect_url = get_next_url_post(request, redirect_field_name)
     if redirect_url is None:
         redirect_url = getattr(settings, 'LOGOUT_REDIRECT_URL', '/')
-    return '{}?redirect_uri={}'.format(oidc_op_logout_endpoint, request.build_absolute_uri(redirect_url))
+    redirect_url = request.build_absolute_uri(redirect_url)
+    return '{}?redirect_uri={}'.format(oidc_op_logout_endpoint, quote(redirect_url, safe=''))
