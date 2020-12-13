@@ -1,0 +1,61 @@
+{% extends "wagtailadmin/admin_base.html" %}
+{% load i18n wagtailadmin_tags %}
+{% block titletag %}{% trans "Sign in" %}{% endblock %}
+{% block bodyclass %}login{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% versioned_static 'wagtailadmin/css/layouts/login.css' %}" type="text/css"/>
+{% endblock %}
+
+{% block furniture %}
+    <main class="content-wrapper" role="main">
+        {% if messages or form.errors %}
+            <div class="messages">
+                <ul>
+                    {% if form.errors %}
+                        <li class="error">{% blocktrans %}Your {{ username_field }} and password didn't match. Please
+                            try again.{% endblocktrans %}</li>
+                    {% endif %}
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if not request.user.is_authenticated %}
+            <form action="{% url 'oidc_authentication_init' %}" method="get" autocomplete="off" novalidate
+                  id="login_sso">
+                {% csrf_token %}
+                {% url 'wagtailadmin_home' as home_url %}
+                <input type="hidden" name="next" value="{{ next|default:home_url }}"/>
+
+                <h1>{% trans "Sign in to WWW.SFI" %}</h1>
+
+                <ul class="fields">
+                    <li class="submit">
+                        {% block submit_buttons %}
+                            <button type="submit" class="button button-longrunning" id="login_sso_button"
+                                    data-clicked-text="{% trans 'Signing in…' %}">{% icon name="spinner" %}<em>{% trans 'Sign in with SSO' %}</em>
+                            </button>
+                        {% endblock %}
+                    </li>
+                </ul>
+            </form>
+        {% else %}
+            <form action="{% url 'oidc_logout' %}" method="post">
+                <h1>{% trans "Access denied" %}</h1>
+                <ul class="fields">
+                    {% csrf_token %}
+                    {% url 'wagtailadmin_home' as home_url %}
+                    <input type="hidden" name="next" value="{{ next|default:home_url }}"/>
+                    <li class="submit">
+                        <button type="submit" class="button button-longrunning"
+                                data-clicked-text="{% trans 'Ending session…' %}">{% icon name="spinner" %}<em>{% trans 'Logout' %}</em>
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        {% endif %}
+    </main>
+{% endblock %}

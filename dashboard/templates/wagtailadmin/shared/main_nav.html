@@ -1,0 +1,22 @@
+{% load wagtailadmin_tags %}
+{% load i18n %}
+<nav class="nav-main">
+    <ul>
+        {{ menu_html }}
+
+        <li class="footer" id="footer">
+            <div class="account" id="account-settings" title="{% trans 'Edit your account' %}">
+                <span class="avatar square avatar-on-dark">
+                    <img src="{% avatar_url request.user size=50 %}" alt="" />
+                </span>
+                <em class="icon icon-arrow-up-after">{{ request.user.first_name|default:request.user.get_username }}</em>
+            </div>
+
+            <ul class="footer-submenu">
+                <li><a href="{% url 'wagtailadmin_account' %}" class="icon icon-user">{% trans "Account settings" %}</a></li>
+                <li><a href="javascript:{}" onclick="document.getElementById('admin_logout_form').submit();" class="icon icon-logout">{% trans "Log out" %}</a>
+            </ul>
+            <form id="admin_logout_form" action="{% url 'oidc_logout' %}" method="post">{% csrf_token %}</form>
+        </li>
+    </ul>
+</nav>

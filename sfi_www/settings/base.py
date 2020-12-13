@@ -14,7 +14,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 from django.conf.global_settings import gettext_noop
-from sfi_base.base_settings import *
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -58,7 +57,6 @@ WAGTAIL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'sfi_base',
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
     'wagtail_modeltranslation.migrate',
@@ -129,7 +127,7 @@ DATABASES = {
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'sfi_base.auth.OIDCAuthenticationBackend',
+    'common.auth.OIDCAuthenticationBackend',
 )
 
 # Password validation
@@ -231,3 +229,11 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 WAGTAILMODELTRANSLATION_LOCALE_PICKER = False
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
+
+OIDC_OP_LOGOUT_URL_METHOD = 'common.utils.oidc_op_logout'
+OIDC_RP_SIGN_ALGO = 'RS256'
+OIDC_RP_SCOPES = 'openid email'
+
+LOGIN_URL = 'oidc_authentication_init'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

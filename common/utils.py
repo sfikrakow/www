@@ -1,6 +1,8 @@
 import functools
 
+from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.utils.http import is_safe_url
 
 
 def paginate(query, request, items_per_page):
@@ -30,3 +32,31 @@ def with_context(func):
         return RenderWithContext(func, args, kwargs)
 
     return wrapper
+
+
+def get_next_url_post(request, redirect_field_name):
+    next_url = request.POST.get(redirect_field_name)
+    if next_url:
+        kwargs = {
+            'url': next_url,
+            'require_https': getattr(settings,
+                                     'OIDC_REDIRECT_REQUIRE_HTTPS', request.is_secure())
+        }
+
+        hosts = list(getattr(settings, 'OIDC_REDIRECT_ALLOWED_HOSTS', []))
+        hosts.append(request.get_host())
+        kwargs['allowed_hosts'] = hosts
+
+        is_safe = is_safe_url(**kwargs)
+        if is_safe:
+            return next_url
+    return None
+
+
+def oidc_op_logout(request):
+    oidc_op_logout_endpoint = settings.OIDC_OP_LOGOUT_ENDPOINT
+    redirect_field_name = getattr(settings, 'OIDC_REDIRECT_FIELD_NAME', 'next')
+    redirect_url = get_next_url_post(request, redirect_field_name)
+    if redirect_url is None:
+        redirect_url = getattr(settings, 'LOGOUT_REDIRECT_URL', '/')
+    return '{}?redirect_uri={}'.format(oidc_op_logout_endpoint, request.build_absolute_uri(redirect_url))

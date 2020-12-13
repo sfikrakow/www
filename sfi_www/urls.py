@@ -12,8 +12,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from forms.views import ContactFormView
 
 urlpatterns = [
-    url(r'^oidc/', include('sfi_base.urls')),
-    url(r'^admin/login/$', RedirectView.as_view(pattern_name=settings.LOGIN_URL, query_string=True)),
+    url(r'^oidc/', include('mozilla_django_oidc.urls')),
 
     url(r'^django-admin/', admin.site.urls),
     url(r'^admin/', include(wagtailadmin_urls)),

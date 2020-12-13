@@ -14,6 +14,13 @@ ALLOWED_HOSTS = ['*']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 OIDC_ADMIN_ROLE = 'sfi'
+OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://sso.sfi.pl/auth/realms/public/protocol/openid-connect/auth'
+OIDC_OP_TOKEN_ENDPOINT = 'https://sso.sfi.pl/auth/realms/public/protocol/openid-connect/token'
+OIDC_OP_USER_ENDPOINT = 'https://sso.sfi.pl/auth/realms/public/protocol/openid-connect/userinfo'
+OIDC_OP_JWKS_ENDPOINT = 'https://sso.sfi.pl/auth/realms/public/protocol/openid-connect/certs'
+OIDC_OP_LOGOUT_ENDPOINT = 'https://sso.sfi.pl/auth/realms/public/protocol/openid-connect/logout'
+OIDC_RP_CLIENT_ID = 'dev'
+OIDC_RP_CLIENT_SECRET = None
 
 MIDDLEWARE += [
     'livereload.middleware.LiveReloadScript',
