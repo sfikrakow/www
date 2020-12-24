@@ -65,7 +65,7 @@
       }
 
       h2 {
-        font-size: 50px;
+        font-size: 40px;
         text-align: center;
       }
 
@@ -76,7 +76,7 @@
       }
 
       .fab {
-        font-size: 50px;
+        font-size: 30px;
         transition: filter 0.3s;
 
         &:hover {
@@ -99,7 +99,7 @@
     &__form {
       text-align: center;
       flex-basis: 40%;
-      width: 80%;
+      width: 75%;
 
       section {
         text-align: left;
@@ -158,7 +158,7 @@
 
     &__single {
       & img {
-        height: 9rem;
+        height: 7rem;
         width: auto;
         color: $page_color_6;
         transition: filter 0.3s;
@@ -186,4 +186,71 @@
 
 .grecaptcha-badge {
   display: none !important;
+}
+
+
+@include breakpoint(tablet_portrait) {
+  .footer {
+    &-contact {
+      &__socials {
+  
+        h2 {
+          font-size: 45px;
+        }
+  
+        .fab {
+          font-size: 45px;
+        }
+      }
+  
+      &__form {
+        width: 80%;
+      }
+    }
+  
+    &__orgs {
+      &__single {
+        & img {
+          height: 6rem;
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint(laptop) {
+  .footer {
+    &__orgs {
+      &__single {
+        & img {
+          height: 8rem;
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint(fhd) {
+  .footer {
+    &-contact {
+      &__socials {
+  
+        h2 {
+          font-size: 50px;
+        }
+  
+        .fab {
+          font-size: 50px;
+        }
+      }
+    }
+  
+    &__orgs {
+      &__single {
+        & img {
+          height: 9rem;
+        }
+      }
+    }
+  }
 }

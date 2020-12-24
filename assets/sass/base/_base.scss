@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -28,9 +29,8 @@ body {
 // WAGTAIL styles
 .rich-text,
 .block-paragraph {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.4;
-
   h1,
   h2,
   h3,
@@ -66,7 +66,7 @@ body {
     color: $page_color_5;
     text-decoration: none;
     transition: all .3s ease-in-out;
-
+    word-wrap: break-word;
     &:hover {
       color: $page_color_4;
     }

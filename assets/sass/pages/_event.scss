@@ -1,8 +1,10 @@
 .event-info {
   display: flex;
-  //   justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: normal;
+  justify-content: center;
   margin-bottom: 1.5rem;
+  margin-top: 15px;
 
   ul {
     margin: 0;
@@ -13,8 +15,10 @@
     font-weight: 700;
     text-transform: uppercase;
     flex-basis: 30%;
-    text-align: right;
+    text-align: center;
     color: $page_color_4;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
 
     &--event-title {
       align-self: center;
@@ -24,7 +28,7 @@
   &__content {
     font-size: 1.2rem;
     flex-basis: 70%;
-    padding-left: 2rem;
+    padding-left: 0;
 
     &--event-title {
       font-size: 2rem;
@@ -38,12 +42,14 @@
 
   &_value {
     color: $page_color_5;
+    line-height: 1.4;
+
     &--link {
       color: $page_color_5;
       text-decoration: none;
       transition: color 0.2s ease-in;
       font-weight: 700;
-
+      
       &:hover {
         color: $page_color_4;
       }
@@ -65,30 +71,30 @@
   }
 }
 
-@media screen and (max-width: 1199.98px) {
-  .post_base__body.post_base__body--event {
-    flex-direction: column;
-    justify-content: center;
 
-    .post_base__body-image {
-      text-align: center;
-      margin-bottom: 1.5rem;
+@include breakpoint(tablet_portrait) {
+  .event-info {
+    flex-direction: row;
+    justify-content: normal;
+    align-items: flex-start;
+    margin-top: 0;
+
+    &__title {
+      margin-bottom: 0;
+      text-align: right;
+    }
+
+    &__content {
+      padding-left: 2rem;
     }
   }
 }
 
-@media screen and (max-width: 767.98px) {
+
+@include breakpoint(fhd) {
   .event-info {
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-
-    &__title {
-      margin-bottom: 0.6rem;
-    }
-
-    &__content {
-      padding-left: 0;
+    &__title, &__content {
+      font-size: 1.3rem;
     }
   }
 }

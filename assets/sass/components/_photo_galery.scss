@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    
+    height: 200px;
     text-decoration: none;
     color: $page_color_6;
     font-size: 14px;
@@ -34,15 +34,32 @@
     justify-content: center;
   }
 
-  // temporary
-  @media (max-width: 400px) {
+  &__image img {
+    width: 120px;
+  }
+
+}
+
+@include breakpoint(tablet_portrait) {
+  .block-photo_gallery {
     &__image img {
-      width: 120px;
+      width: 180px;
     }
 
     &__container {
-      height: 200px;
+      height: 230px;
     }
   }
+}
 
+@include breakpoint(fhd) {
+  .block-photo_gallery {
+    &__image img {
+      width: auto;
+    }
+
+    &__container {
+      height: auto;
+    }
+  }
 }

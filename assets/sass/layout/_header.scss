@@ -23,7 +23,7 @@
     padding: 0.8rem;
     border-radius: 0.8rem;
 
-    font-size: 2.3rem;
+    font-size: 1.8rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -54,20 +54,10 @@
   }
 }
 
-@media screen and (max-width: 767.98px) {
-  .home-header {
-    margin-top: 56px;
-
-    &__sfi-title {
-      font-size: 1.8rem;
-    }
-  }
-}
-
-@media screen and (max-width: 575.98px) {
+@include breakpoint(tablet_portrait) {
   .home-header {
     &__sfi-title {
-      font-size: 1.5rem;
+      font-size: 2.3rem;
     }
   }
 }

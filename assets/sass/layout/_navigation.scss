@@ -7,8 +7,9 @@
   align-items: center;
   width: 100%;
   height: 40px;
-  border-bottom: solid 1px $page_color_9;
+  border-bottom: solid 1px $page_color_6;
   z-index: 9997;
+  max-width: 100%;
 
   &__logo {
     &:focus {
@@ -19,21 +20,37 @@
       position: relative;
       margin-top: 30px;
       top: 0;
-      left: 70px;
-      width: 70px;
+      left: 0;
+      width: 40px;
+      z-index: 9999;
     }
   }
 
   &__links {
-    margin-right: 50px;
     display: flex;
     list-style-type: none;
     align-items: center;
     text-transform: uppercase;
+
+    margin: 0;
+    position: fixed;
+    flex-direction: column;
+    background-color: $page_color_2;
+    border-bottom: solid 1px $page_color_6;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding-top: 70px;
+    padding-left: 0;
+    justify-content: center;
+    align-content: center;
+    transform: translateY(-100%);
+    z-index: 9998;
+    transition: 0.3s;
   }
 
   &__li {
-    margin-right: 15px;
+    margin: 0 auto 5px auto;
     display: flex;
     align-content: center;
   }
@@ -43,7 +60,6 @@
     color: $page_color_1;
     font-size: 1.3rem;
     transition: 0.3s;
-    //line-height: 100%;
     display: flex;
     align-content: center;
     &:hover {
@@ -58,7 +74,7 @@
   }
 
   &__image {
-    margin-left: 20px;
+    margin-left: 0px;
     width: 1.6rem;
   }
 }
@@ -69,52 +85,40 @@
   }
 }
 
-@media (max-width: 768px) {
+.navbar .is-active {
+  transform: translateY(0);
+}
+
+@include breakpoint(tablet_landscape) {
   .navbar {
-    height: 30px;
-    z-index: 9997;
-    border-bottom: solid 1px $page_color_6;
+    border-bottom: solid 1px $page_color_9;
 
     &__logo {
-      & img {
-        width: 40px;
-        left: 0;
+  
+      & img {    
+        left: 70px;
+        width: 70px;
       }
     }
-
+  
     &__links {
-      margin: 0;
-      position: fixed;
-      flex-direction: column;
-      background-color: $page_color_2;
-      border-bottom: solid 1px $page_color_6;
-      width: 100%;
-      top: 0;
-      left: 0;
-      padding-top: 70px;
-      padding-left: 0;
-      justify-content: center;
-      align-content: center;
-      transform: translateY(-100%);
-      z-index: 9998;
-      transition: 0.3s;
+      margin-right: 50px;
+      transform: translateY(0);
+      position: static;
+      width: auto;
+      padding-top: 0;
+      transition-property: none;
+      flex-direction: row;
+      border-bottom: none;
     }
-
-    &__image {
-      margin-left: 0;
-    }
-
+  
     &__li {
-      margin: 0 auto 5px auto;
+      margin: 0;
+      margin-right: 15px;
     }
-
-    &__logo {
-      & img {
-        z-index: 9999;
-      }
+  
+    &__image {
+      margin-left: 20px;
     }
-  }
-  .navbar .is-active {
-    transform: translateY(0);
   }
 }

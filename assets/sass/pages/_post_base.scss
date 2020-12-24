@@ -10,14 +10,15 @@
   &__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
 
     margin: 0 auto;
     max-width: 80%;
   }
 
   &__more {
-    max-width: 75%;
+    max-width: 92%;
     margin: 0 auto;
     text-align: right;
 
@@ -34,10 +35,10 @@
   }
 
   &__single-post {
-    flex-basis: 45%;
-
     display: flex;
+    flex-basis: 100%;
     flex-wrap: nowrap;
+    flex-direction: column;
 
     background-color: $page_color_7;
     margin-bottom: 2rem;
@@ -58,7 +59,7 @@
   }
 
   &__image {
-    flex-basis: 40%;
+    flex-basis: 30%;
     border-radius: 15px;
     overflow: hidden;
 
@@ -70,7 +71,7 @@
   }
 
   &__post-info {
-    flex-basis: 60%;
+    flex-basis: 70%;
     padding: 0 0.8rem;
 
     display: flex;
@@ -112,9 +113,9 @@
   &__header {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 0.6rem;
-    height: 400px;
     overflow: hidden;
   }
 
@@ -125,41 +126,46 @@
   
   &__header-image img{
     display: block;
-    width: 100%;
+    width: 95%;
     object-fit: cover;
     max-height: 100%;
     border-radius: 0 25px 25px 0;
+    margin-bottom: 1.5rem;
+      min-height: 200px;
   }
+
 
   &__sfi-edition-info {
     background-color: $page_color_2;
     border-radius: 15px 0 0 15px;
-    padding: 1rem;
+    padding: 0.6rem;
     text-align: center;
     position: absolute;
     top: 50%;
-    right: 0%;
+    right: 5%;
     transform: translateY(-50%);
   }
 
   &__sfi-edition {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     margin: 0;
   }
 
   &__sfi-year {
-    font-size: 2.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: $page_color_4;
     margin: 0;
   }
 
   &__header-title {
-    flex-basis: 46%;
+    flex-basis: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    padding: 0 1.2rem;
 
     &__button {
       background-color: $page_color_5;
@@ -189,7 +195,7 @@
   }
 
   &__title {
-    font-size: 2.6rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
   }
@@ -203,12 +209,18 @@
   &__body {
     padding: 2rem 0.8rem;
     margin: 0 auto;
-    max-width: 65%;
+    max-width: 90%;
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 1rem;
   }
 
   &__body-image {
+    text-align: center;
+    margin-bottom: 1.5rem;
+
     & > img {
       border-radius: 15px;
       max-height: 230px;
@@ -216,14 +228,15 @@
   }
 
   &__body-content {
-    padding-left: 3rem;
+    padding-left: 0;
   }
 }
 
 .pagination {
   display: flex;
-  width: 100%;
-  margin: 50px 0;
+  width: 80%;
+  margin: 30px auto;
+  justify-self: center;
 
   &__btn {
     font-size: 30px;
@@ -232,140 +245,123 @@
 
   &__left {
     text-align: left;
-    margin-left: 50px;
   }
 
   &__right {
     text-align: right;
-    margin-right: 50px;
   }
 
   &__link {
     text-decoration: none;
-    color: $page_color_1;
+    color: $page_color_5;
+    font-size: 45px;
+    &:hover {
+      color: $page_color_4;
+    }
   }
 }
 
-// Large devices (desktops, less than 1200px)
-@media screen and (max-width: 1199.98px) {
+@include breakpoint(tablet_portrait) {
   .post_base-list {
-    &__container {
-      max-width: 100%;
+    &__single-post {
+      flex-direction: row;
+      flex-basis: 45%;
     }
 
-    &__more {
-      max-width: 92%;
+    &__image {
+      flex-basis: 40%;
+    }
+
+    &__post-info {
+      flex-basis: 60%;
     }
   }
-
+  
   .post_base {
+    &__title {
+      font-size: 2.6rem;
+    }
+
+    &__sfi-edition-info {
+      padding: 1rem;
+    }
+
+    &__sfi-edition {
+      font-size: 1.8rem;
+    }
+
+    &__sfi-year {
+      font-size: 2.8rem;
+    }
+
     &__body {
       max-width: 80%;
     }
   }
+
+  .pagination {
+    margin: 50px auto;
+  }
 }
 
-// Medium devices (tablets, less than 992px)
-@media screen and (max-width: 991.98px) {
+@include breakpoint(tablet_landscape) {
   .post_base-list {
     &__container {
+      flex-direction: row;
+      justify-content: space-evenly;
       max-width: 80%;
-
-      flex-direction: column;
-      justify-content: center;
     }
 
     &__more {
-      max-width: 80%;
-    }
-
-    &__single-post {
-      flex-basis: 100%;
-    }
-
-    &__image {
-      flex-basis: 30%;
-    }
-
-    &__post-info {
-      flex-basis: 70%;
+      max-width: 75%;
     }
   }
 
   .post_base {
     &__header {
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
-    &__header-image {
-      flex-basis: 100%;
-      width: 95%; // small gap on the right
-      min-height: 200px;
-      margin-bottom: 1.5rem;
+    &__header-image img{
+      width: 100%;
     }
 
     &__header-title {
-      flex-basis: 100%;
-      text-align: center;
-      padding: 0 1.2rem;
+      flex-basis: 46%;
+      text-align: left;
+      padding: 0;
     }
 
     &__body {
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 1rem;
+      flex-direction: row;
+      justify-content: normal;
+      padding-top: 2rem;
     }
 
     &__body-image {
-      text-align: center;
-      margin-bottom: 1.5rem;
+      text-align: left;
+      margin-bottom: 0;
     }
 
     &__body-content {
-      padding-left: 0;
+      padding-left: 3rem;
     }
   }
 }
 
-// Small devices (landscape phones, less than 768px)
-@media screen and (max-width: 767.98px) {
-  .post_base-list {
-    &__main-title {
-      font-size: 36px;
-    }
-  }
-}
-
-@media (max-width: 575.98px) {
-  .post_base-list {
-    &__single-post {
-      flex-direction: column;
-    }
-
-    // TODO:
-    // image?
-  }
-
+@include breakpoint(laptop) {
   .post_base {
-    &__title {
-      font-size: 2rem;
+    &__header {
+      height: 400px;
     }
 
     &__sfi-edition-info {
-      padding: 0.6rem;
-    }
-
-    &__sfi-edition {
-      font-size: 1.2rem;
-    }
-
-    &__sfi-year {
-      font-size: 1.6rem;
+      right: 0;
     }
 
     &__body {
-      max-width: 90%;
+      max-width: 65%;
     }
   }
 }

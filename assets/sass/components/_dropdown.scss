@@ -3,24 +3,25 @@
   max-width: 720px;
   margin: 0 auto;
   overflow: hidden;
-
+  text-align: center;
+  padding: 0 10px;
   &__title {
     color: $page_color_5;
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
   }
-
+  
   &__icon {
-    margin-left: 5px;
+    margin-left: 2px;
   }
-
+  
   &__content {
     color: $page_color_1;
     font-size: 16px;
     transition: max-height 0.2s ease-out;
     max-height: 0px;
     text-align: justify;
-
+    padding: 0 30px;
     & > a {
       color: $page_color_5;
       text-decoration: none;
@@ -31,4 +32,46 @@
     transform: rotate(180deg);
   }
 
+}
+
+@include breakpoint(tablet_portrait) {
+  .dropdown {
+    text-align: left;
+    padding: 0 30px;
+
+    &__title {
+      font-size: 32px;
+    }
+  
+    &__content {
+      font-size: 24px;
+      padding: 0;
+    }
+  }
+}
+
+@include breakpoint(tablet_landscape) {
+  .dropdown {
+    &__title {
+      font-size: 30px;
+    }
+  
+    &__content {
+      font-size: 22px;
+    }
+  }
+}
+
+
+@include breakpoint(fhd) {
+  .dropdown {
+
+    &__title {
+      font-size: 32px;
+    }
+  
+    &__content {
+      font-size: 24px;
+    }
+  }
 }
