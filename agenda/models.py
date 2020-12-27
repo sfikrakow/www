@@ -6,10 +6,12 @@ from django.db import models
 from django.forms.widgets import TextInput
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
-from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel, StreamFieldPanel
+from wagtail.core import blocks
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.embeds.models import Embed
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -17,6 +19,7 @@ from wagtail.snippets.models import register_snippet
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
 from common.utils import paginate, with_context
+from pages.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery
 
 
 @register_snippet
@@ -131,12 +134,26 @@ class Edition(SFIPage):
         related_name='+',
         verbose_name=_('default featured image')
     )
+    edition_footer = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('section_title', SectionTitleBlock()),
+        ('section_subtitle', SectionSubtitleBlock()),
+        ('section_divider', SectionDividerBlock()),
+        ('dropdown', DropdownBlock()),
+        ('photo_gallery', PhotoGallery()),
+        ('raw_html', blocks.RawHTMLBlock()),
+    ], null=True, blank=True, verbose_name=_('edition footer'))
+
+    def get_edition_footer(self):
+        return self.edition_footer
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('start_date'),
         FieldPanel('end_date'),
         ImageChooserPanel('default_featured_image'),
-        InlinePanel('event_categories', label='Event categories')
+        InlinePanel('event_categories', label='Event categories'),
+        StreamFieldPanel('edition_footer'),
     ]
 
     parent_page_types = ['EditionIndex']
@@ -158,6 +175,9 @@ class EditionSubpage(SFIPage):
             return self.featured_image
         else:
             return self.get_edition().get_featured_image(context=context)
+
+    def get_edition_footer(self):
+        return self.get_edition().get_edition_footer()
 
     class Meta:
         abstract = True

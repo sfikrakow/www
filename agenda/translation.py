@@ -21,7 +21,7 @@ class EditionIndexTR(TranslationOptions):
 
 @register(Edition)
 class EditionTR(TranslationOptions):
-    pass
+    fields = ('edition_footer',)
 
 
 @register(Category)
