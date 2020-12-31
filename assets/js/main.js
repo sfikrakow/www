@@ -1,3 +1,4 @@
+
 const hamburgerBtn = document.querySelector('.hamburger');
 const navbarLinks = document.querySelector('.navbar__links');
 
@@ -23,9 +24,17 @@ if (dropdowns) {
 
 
 // Mail handling
-
-
 const contactForm = document.querySelector('#contact-form');
+
+function handleResultMessage(hasSucceeded) {
+  document.querySelectorAll('.form-result').forEach(p => p.style.display = 'none');
+
+  if (hasSucceeded) {
+    document.querySelector('.footer-contact__form-positive').style.display = 'block';
+  } else {
+    document.querySelector('.footer-contact__form-negative').style.display = 'block';
+  }
+}
 
 global.captchaSubmit = async function (token) {
   const URL = '/contact_form/';
@@ -39,17 +48,15 @@ global.captchaSubmit = async function (token) {
     headers: headers,
   });
 
-  // Temporary
   if (response.status === 200) {
     contactForm.reset();
-    console.log('Succes');
+    handleResultMessage(true);
   } else {
-    console.log('Error');
+    handleResultMessage(false);
   }
-
 }
 
-global.doCaptcha = function () {
+global.doCaptcha = function() {
   grecaptcha.reset();
   grecaptcha.execute();
 }
