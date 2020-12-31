@@ -158,13 +158,30 @@
   }
 
   &__orgs {
-    padding: 2rem 0;
-    background: $page_color_7;
-    color: $page_color_6;
-
     display: flex;
     flex-flow: row wrap;
+    width: 100%;
+    background: $page_color_7;
     justify-content: center;
+
+    h3 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: $page_color_6;
+    }
+
+    div {
+      padding-bottom: 2rem;
+      color: $page_color_6;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+    
+    div.container-orgs {
+      padding-bottom: 0;
+    }
 
     &__single {
       & img {
@@ -223,6 +240,22 @@
         & img {
           height: 6rem;
         }
+      }
+    }
+  }
+}
+
+@include breakpoint(tablet_landscape) {
+  .footer {
+    &__orgs {
+      &__single {
+        & img {
+          padding: 1.2rem;
+        }
+      }
+      .container-academica img{
+        margin-left: 2rem;
+        border-left: 1px solid $page_color_6;
       }
     }
   }

@@ -63,26 +63,36 @@
         </form>
     </div>
     <div class="footer__orgs">
-        <a href="https://ksi.ii.uj.edu.pl/" target="_blank" rel="noopener" title="Koło Studentów Informatyki UJ"
-           class="footer__orgs__single">
-            <img src="{% static 'img/orgs/logo-ksi.svg' %}" alt="KSI UJ logo">
-        </a>
-        <a href="https://www.facebook.com/knbit" target="_blank" rel="noopener" title="Koło Naukowe BIT AGH"
-           class="footer__orgs__single">
-            <img src="{% static 'img/orgs/logo-bit.svg' %}" alt="BIT AGHlogo">
-        </a>
-        <a href="https://www.facebook.com/KNIUEK" target="_blank" rel="noopener" title="Koło Naukowe i::team UEK"
-           class="footer__orgs__single">
-            <img src="{% static 'img/orgs/logo-iteam.svg' %}" alt="iTEAM UEKlogo">
-        </a>
-        <a href="https://www.facebook.com/KniOnPk/" target="_blank" rel="noopener" title="Koło Naukowe Informatyki PK"
-           class="footer__orgs__single">
-            <img src="{% static 'img/orgs/logo-pk.svg' %}" alt="KNII PK logo">
-        </a>
-        <a href="https://www.academica.org.pl/" target="_blank" rel="noopener"
-           title="Fundacja Studentów i Absolwentów AGH w Krakowie ACADEMICA" class="footer__orgs__single">
-            <img src="{% static 'img/orgs/logo-aca.svg' %}" alt="ACADEMICA logo">
-        </a>
+        <section class="footer__orgs-orgs">
+            <h3>{% trans 'Organizers' %}</h3>
+            <div class="container-orgs">
+                <a href="https://ksi.ii.uj.edu.pl/" target="_blank" rel="noopener" title="Koło Studentów Informatyki UJ"
+                   class="footer__orgs__single">
+                    <img src="{% static 'img/orgs/logo-ksi.svg' %}" alt="KSI UJ logo">
+                </a>
+                <a href="https://www.facebook.com/knbit" target="_blank" rel="noopener" title="Koło Naukowe BIT AGH"
+                   class="footer__orgs__single">
+                    <img src="{% static 'img/orgs/logo-bit.svg' %}" alt="BIT AGHlogo">
+                </a>
+                <a href="https://www.facebook.com/KNIUEK" target="_blank" rel="noopener" title="Koło Naukowe i::team UEK"
+                   class="footer__orgs__single">
+                    <img src="{% static 'img/orgs/logo-iteam.svg' %}" alt="iTEAM UEKlogo">
+                </a>
+                <a href="https://www.facebook.com/KniOnPk/" target="_blank" rel="noopener" title="Koło Naukowe Informatyki PK"
+                   class="footer__orgs__single">
+                    <img src="{% static 'img/orgs/logo-pk.svg' %}" alt="KNII PK logo">
+                </a>
+            </div>
+        </section>
+        <section class="footer__orgs-orgs">
+            <h3>{% trans 'Helps us' %}</h3>
+            <div class="container-academica">
+                <a href="https://www.academica.org.pl/" target="_blank" rel="noopener"
+                   title="Fundacja Studentów i Absolwentów AGH w Krakowie ACADEMICA" class="footer__orgs__single">
+                    <img src="{% static 'img/orgs/logo-aca.svg' %}" alt="ACADEMICA logo">
+                </a>
+            </div>
+        </section>
     </div>
     <div class="footer__copyright">
         <div>© 2018 - {% now  'Y' %} {% trans 'SFI IT Academic Festival' %}</div>
