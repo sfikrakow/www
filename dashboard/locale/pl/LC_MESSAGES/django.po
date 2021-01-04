@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-01 01:41+0100\n"
+"POT-Creation-Date: 2020-12-27 20:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,3 +23,50 @@ msgstr ""
 #: dashboard/templates/wagtailadmin/home.html:4
 msgid "SFI Academic IT Festival CMS"
 msgstr "CMS Studenckiego Festiwalu Informatycznego"
+
+#: dashboard/templates/wagtailadmin/login.html:3
+msgid "Sign in"
+msgstr "Zaloguj się"
+
+#: dashboard/templates/wagtailadmin/login.html:16
+#, python-format
+msgid ""
+"Your %(username_field)s and password didn't match. Please\n"
+"                            try again."
+msgstr ""
+
+#: dashboard/templates/wagtailadmin/login.html:33
+msgid "Sign in to WWW.SFI"
+msgstr "Zaloguj się do WWW.SFI"
+
+#: dashboard/templates/wagtailadmin/login.html:39
+msgid "Signing in…"
+msgstr "Logowanie…"
+
+#: dashboard/templates/wagtailadmin/login.html:39
+msgid "Sign in with SSO"
+msgstr "Zaloguj się przez SSO"
+
+#: dashboard/templates/wagtailadmin/login.html:47
+msgid "Access denied"
+msgstr "Dostęp zabroniony"
+
+#: dashboard/templates/wagtailadmin/login.html:54
+msgid "Ending session…"
+msgstr "Zamykanie sesji…"
+
+#: dashboard/templates/wagtailadmin/login.html:54
+msgid "Logout"
+msgstr "Wyloguj się"
+
+#: dashboard/templates/wagtailadmin/shared/main_nav.html:8
+msgid "Edit your account"
+msgstr "Edytuj swoje konto"
+
+#: dashboard/templates/wagtailadmin/shared/main_nav.html:16
+msgid "Account settings"
+msgstr "Ustawienia konta"
+
+#: dashboard/templates/wagtailadmin/shared/main_nav.html:17
+msgid "Log out"
+msgstr "Wyloguj się"

@@ -1,4 +1,6 @@
 {% extends 'common/base.html' %}
+{% load wagtailcore_tags %}
+{% load footer %}
 {% load common_tags %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -32,4 +34,8 @@
             {% endif %}
         {% endlanguage %}
     {% endfor %}
+{% endblock %}
+
+{% block extra_footer %}
+    {% get_footer page as footer %}{% include_block footer %}
 {% endblock %}

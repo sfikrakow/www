@@ -12,7 +12,7 @@
 
 
 {% block body_content %}
-    {% if page.event_speakers %}
+    {% if page.event_speakers and page.event_speakers > 0 %}
         <div class="event-info">
             <div class="event-info__title">
                 {% if page.event_speakers.count > 1 %}
