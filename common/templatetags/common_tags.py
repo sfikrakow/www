@@ -18,21 +18,24 @@ def unrich_text(value):
 
 
 @register.inclusion_tag('common/tags/responsive_img.html', takes_context=True)
-def responsive_img(context, img, size: str, css_class='', placeholder=None, placeholder_webp=None):
+def responsive_img(context, img, size: str, css_class='', placeholder=None, placeholder_webp=None, transparent=False):
     if isinstance(img, RenderWithContext):
         img = img.render(context)
     if isinstance(img, Image):
-        image_jpg = img.get_rendition(size + '|format-jpeg|jpegquality-70')
+        if transparent:
+            image = img.get_rendition(size + '|format-png')
+        else:
+            image = img.get_rendition(size + '|format-jpeg|jpegquality-70')
         image_webp = img.get_rendition(size + '|format-webp')
         return {
-            'image_jpg': image_jpg.url,
+            'image': image.url,
             'image_webp': image_webp.url,
             'css_class': css_class,
-            'alt': image_jpg.alt
+            'alt': image.alt
         }
     if placeholder:
         return {
-            'image_jpg': static(placeholder),
+            'image': static(placeholder),
             'image_webp': static(placeholder_webp) if placeholder_webp else None,
             'css_class': css_class,
             'alt': 'placeholder'

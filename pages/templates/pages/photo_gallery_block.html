@@ -3,7 +3,7 @@
     <a {% if entry.link %} href="{{ entry.link }}" {% endif %} rel="noopener noreferer" target="_blank"
                            class="block-photo_gallery__container">
         <div class='block-photo_gallery__photo-container' style="height: {{ max_height }}px;">
-            {% responsive_img entry.photo image_format "block-photo_gallery__image" %}
+            {% responsive_img entry.photo image_format "block-photo_gallery__image" transparent=True %}
         </div>
         {% if entry.title %}
             {{ entry.title | linebreaks }}
