@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 200px;
+    //height: 200px;
     text-decoration: none;
     color: $page_color_6;
     font-size: 14px;
@@ -46,9 +46,9 @@
       width: 180px;
     }
 
-    &__container {
-      height: 230px;
-    }
+    //&__container {
+    //  height: 230px;
+    //}
   }
 }
 
@@ -58,8 +58,8 @@
       width: auto;
     }
 
-    &__container {
-      height: auto;
-    }
+    //&__container {
+    //  height: auto;
+    //}
   }
 }
