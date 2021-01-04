@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   align-items: start;
   justify-content: center;
+  flex-shrink: 0;
 
   &__container {
     display: flex;
