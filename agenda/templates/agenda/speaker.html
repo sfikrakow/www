@@ -56,12 +56,11 @@
                 {% trans 'Where to find me' %}
             </div>
             <div class="event-info__content">
-                <ul>
-                    {# TODO: icons? #}
+                <ul class="event-info__content--icon-list">
                     {% for link in page.social_links.all %}
                         <li><a class="event-header_details_value event-header_details_value--link"
                                href="{{ link.link }}" target="_blank"
-                               rel="noreferrer noopener">{{ link.get_type_display }}</a></li>
+                               rel="noreferrer noopener"><i class="{{ link.icon }}"></i> {{ link.link|truncatechars:40 }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

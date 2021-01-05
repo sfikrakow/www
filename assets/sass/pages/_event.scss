@@ -14,7 +14,8 @@
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
-    flex-basis: 30%;
+    flex-basis: 18ch;
+    flex-shrink: 0;
     text-align: center;
     color: $page_color_4;
     margin-bottom: 0.6rem;
@@ -27,12 +28,17 @@
 
   &__content {
     font-size: 1.2rem;
-    flex-basis: 70%;
+    //flex-basis: 80%;
     padding-left: 0;
 
     &--event-title {
       font-size: 2rem;
       color: $page_color_5;
+    }
+
+    &--icon-list {
+      list-style: none;
+      padding-inline-start: 0;
     }
   }
 }
@@ -53,6 +59,10 @@
       &:hover {
         color: $page_color_4;
       }
+    }
+
+    &--embed {
+      margin: 20px 0;
     }
   }
 }

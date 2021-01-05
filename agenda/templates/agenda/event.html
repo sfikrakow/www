@@ -12,7 +12,7 @@
 
 
 {% block body_content %}
-    {% if page.event_speakers and page.event_speakers > 0 %}
+    {% if page.event_speakers and page.event_speakers.count > 0 %}
         <div class="event-info">
             <div class="event-info__title">
                 {% if page.event_speakers.count > 1 %}
@@ -67,8 +67,8 @@
             </div>
             <div class="event-info__content">
                 <div><a class="event-header_details_value event-header_details_value--link" href="{{ page.recording_link }}"
-                        rel="noreferrer noopener" target="_blank">{% trans 'link' %}</a></div>
-                <div>
+                        rel="noreferrer noopener" target="_blank"><i class="fas fa-external-link-alt"></i> {{ page.recording_link|truncatechars:50 }}</a></div>
+                <div class="event-header_details_value--embed">
                     {% embed page.recording_link %}
                 </div>
             </div>

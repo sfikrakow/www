@@ -107,6 +107,19 @@ class SocialLink(InvalidateCacheMixin, models.Model):
                             verbose_name=_('type'))
     link = models.URLField(max_length=512, verbose_name=_('link'))
 
+    @property
+    def icon(self):
+        return {
+            SocialLinkTypes.FACEBOOK: 'fab fa-facebook',
+            SocialLinkTypes.TWITTER: 'fab fa-twitter',
+            SocialLinkTypes.GITHUB: 'fab fa-github',
+            SocialLinkTypes.INSTAGRAM: 'fab fa-instagram',
+            SocialLinkTypes.LINKEDIN: 'fab fa-linkedin',
+            SocialLinkTypes.EMAIL: 'fas fa-envelope',
+            SocialLinkTypes.WEBSITE: 'fas fa-link',
+            SocialLinkTypes.OTHER: 'fas fa-external-link-alt',
+        }.get(self.type, 'fas fa-external-link-alt')
+
 
 class EditionIndex(SFIPage):
     subpage_types = ['Edition']
