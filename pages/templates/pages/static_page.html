@@ -2,5 +2,7 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    {% include_block page.content %}
+    {% if page.content %}
+        {% include_block page.content %}
+    {% endif %}
 {% endblock content %}
