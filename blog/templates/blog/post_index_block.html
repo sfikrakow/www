@@ -10,7 +10,7 @@
             {% endfor %}
         </div>
         <div class="post_base-list__more">
-            <button class="post_base-list__more-button" onclick="location.href=`{% pageurl value.index %}`">{% trans 'More...' %}</button>
+            <a class="post_base-list__more-button" href="{% pageurl value.index %}">{% trans 'More...' %}</a>
         </div>
     </section>
 {% endblock %}

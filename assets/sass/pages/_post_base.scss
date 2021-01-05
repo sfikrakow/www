@@ -22,7 +22,7 @@
     margin: 0px auto 30px auto;
     text-align: center;
 
-    button {
+    button, a {
       background-color: $page_color_5;
       color: $page_color_1;
       transition: 0.3s;
@@ -34,9 +34,10 @@
       border: none;
       cursor: pointer;
       margin-top: 15px;
+      text-decoration: none;
     }
 
-    button:hover {
+    button:hover, a:hover {
       background-color: $page_color_4;
     }
   }

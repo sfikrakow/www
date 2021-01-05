@@ -30,6 +30,8 @@ class RenderWithContext:
 def with_context(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
+        if 'context' in kwargs:
+            return func(*args, **kwargs)
         return RenderWithContext(func, args, kwargs)
 
     return wrapper
