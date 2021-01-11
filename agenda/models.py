@@ -241,7 +241,7 @@ class EventIndex(EditionSubpage):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['posts'] = paginate(
-            Event.objects.live().public().descendant_of(self).order_by('title'),
+            Event.objects.live().public().descendant_of(self).order_by('date'),
             request, EventIndex.EVENTS_PER_PAGE)
         return context
 
