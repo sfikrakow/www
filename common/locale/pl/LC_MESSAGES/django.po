@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-27 20:25+0100\n"
+"POT-Creation-Date: 2021-01-11 20:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,14 +109,14 @@ msgid "Back to homepage"
 msgstr "Wróć do strony głównej"
 
 #: common/templates/common/base.html:23 common/templates/common/base.html:24
-#: common/templates/common/base.html:30 common/templates/common/page.html:7
-#: common/templates/common/page.html:14
-#: common/templates/common/partials/footer.html:86
+#: common/templates/common/base.html:30 common/templates/common/page.html:9
+#: common/templates/common/page.html:16
+#: common/templates/common/partials/footer.html:96
 #: common/templates/common/partials/header.html:9
 msgid "SFI IT Academic Festival"
 msgstr "Studencki Festiwal Informatyczny"
 
-#: common/templates/common/page.html:9
+#: common/templates/common/page.html:11
 msgid "en_US"
 msgstr "pl_PL"
 
@@ -124,31 +124,49 @@ msgstr "pl_PL"
 msgid "16th edition"
 msgstr "16 edycja"
 
-#: common/templates/common/partials/footer.html:18
+#: common/templates/common/partials/footer.html:16
 msgid "Contact us"
 msgstr "Skontaktuj się z nami"
 
-#: common/templates/common/partials/footer.html:35
+#: common/templates/common/partials/footer.html:33
 msgid "Name and surname"
 msgstr "Imię i nazwisko"
 
-#: common/templates/common/partials/footer.html:39
+#: common/templates/common/partials/footer.html:37
 msgid "Email address"
 msgstr "Adres email"
 
-#: common/templates/common/partials/footer.html:43
+#: common/templates/common/partials/footer.html:41
 msgid "Subject"
 msgstr "Temat"
 
-#: common/templates/common/partials/footer.html:47
+#: common/templates/common/partials/footer.html:45
 msgid "Your message"
 msgstr "Twoja wiadomość"
+
+#: common/templates/common/partials/footer.html:53
+msgid "Your message has been sent"
+msgstr "Twoja wiadomość"
+
+#: common/templates/common/partials/footer.html:54
+msgid ""
+"Something went wrong - we can't deliver your message. Write to kontakt@sfi.pl"
+msgstr ""
+"Coś poszło nie tak - nie możemy dostarczyć Twojej wiadomości. Napisz na kontakt@sfi.pl"
 
 #: common/templates/common/partials/footer.html:57
 msgid "Send"
 msgstr "Wyślij"
 
-#: common/templates/common/partials/footer.html:87
+#: common/templates/common/partials/footer.html:65
+msgid "Organizers"
+msgstr "Organizatorzy"
+
+#: common/templates/common/partials/footer.html:86
+msgid "Helps us"
+msgstr "Wspiera nas"
+
+#: common/templates/common/partials/footer.html:97
 msgid "All rights reserved"
 msgstr "Wszelkie prawa zastrzeżone"
 
