@@ -256,6 +256,7 @@ class EventIndex(EditionSubpage):
 class LanguageChoice(models.TextChoices):
     POLISH = 'pl', _('Polish')
     ENGLISH = 'en', _('English')
+    POLISH_ENGLISH = 'pl+en', _('Polish+English')
 
 
 class Event(EditionSubpage):

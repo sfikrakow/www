@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-27 20:25+0100\n"
+"POT-Creation-Date: 2021-01-12 13:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: agenda/models.py:27 agenda/models.py:188
+#: agenda/models.py:27 agenda/models.py:201
 msgid "name"
 msgstr "nazwa"
 
@@ -29,11 +29,10 @@ msgid "logo"
 msgstr "logo"
 
 #: agenda/models.py:36 agenda/models.py:108
-#: agenda/templates/agenda/event.html:70
 msgid "link"
 msgstr "link"
 
-#: agenda/models.py:48 agenda/models.py:71 agenda/models.py:256
+#: agenda/models.py:48 agenda/models.py:71 agenda/models.py:270
 msgid "sponsor"
 msgstr "sponsor"
 
@@ -49,11 +48,11 @@ msgstr "lista prelegentów"
 msgid "speakers indexes"
 msgstr "listy prelegentów"
 
-#: agenda/models.py:70 agenda/models.py:146 agenda/models.py:249
+#: agenda/models.py:70 agenda/models.py:263
 msgid "content"
 msgstr "zawartość"
 
-#: agenda/models.py:89 agenda/models.py:297
+#: agenda/models.py:89 agenda/models.py:311
 msgid "speaker"
 msgstr "prelegent"
 
@@ -77,103 +76,111 @@ msgstr "Inne"
 msgid "type"
 msgstr "typ"
 
-#: agenda/models.py:122
+#: agenda/models.py:135
 msgid "edition index"
 msgstr "lista edycji"
 
-#: agenda/models.py:123
+#: agenda/models.py:136
 msgid "edition indexes"
 msgstr "listy edycji"
 
-#: agenda/models.py:127
+#: agenda/models.py:140
 msgid "edition start date"
 msgstr "data początku edycji"
 
-#: agenda/models.py:128
+#: agenda/models.py:141
 msgid "edition end date"
 msgstr "data końca edycji"
 
-#: agenda/models.py:135
+#: agenda/models.py:148
 msgid "default featured image"
 msgstr "domyślny wyróżniony obrazek"
 
-#: agenda/models.py:163 agenda/models.py:187
+#: agenda/models.py:159
+msgid "edition footer"
+msgstr "stopka edycji"
+
+#: agenda/models.py:176 agenda/models.py:200
 msgid "edition"
 msgstr "edycja"
 
-#: agenda/models.py:164
+#: agenda/models.py:177
 msgid "editions"
 msgstr "edycje"
 
-#: agenda/models.py:189
+#: agenda/models.py:202
 msgid "icon"
 msgstr "ikona"
 
-#: agenda/models.py:194 agenda/models.py:221
+#: agenda/models.py:207 agenda/models.py:234
 msgid "Color must be in hex"
 msgstr "Kolor musi być w formie szesnastkowej"
 
-#: agenda/models.py:195 agenda/models.py:222
+#: agenda/models.py:208 agenda/models.py:235
 msgid "color"
 msgstr "kolor"
 
-#: agenda/models.py:207
+#: agenda/models.py:220
 msgid "event category"
 msgstr "kategoria wydarzeń"
 
-#: agenda/models.py:208
+#: agenda/models.py:221
 msgid "event categories"
 msgstr "kategorie wydarzeń"
 
-#: agenda/models.py:239
+#: agenda/models.py:252
 msgid "event list"
 msgstr "lista wydarzeń"
 
-#: agenda/models.py:240
+#: agenda/models.py:253
 msgid "event lists"
 msgstr "listy wydarzeń"
 
-#: agenda/models.py:244
+#: agenda/models.py:257
 msgid "Polish"
 msgstr "Polski"
 
-#: agenda/models.py:245
+#: agenda/models.py:258
 msgid "English"
 msgstr "Angielski"
 
-#: agenda/models.py:250
+#: agenda/models.py:259
+msgid "Polish+English"
+msgstr "Polski+Angielski"
+
+#: agenda/models.py:264
 msgid "date"
 msgstr "data"
 
-#: agenda/models.py:251
+#: agenda/models.py:265
 msgid "duration in minutes"
 msgstr "czas trwania w minutach"
 
-#: agenda/models.py:253
+#: agenda/models.py:267
 msgid "category"
 msgstr "kategoria"
 
-#: agenda/models.py:255
+#: agenda/models.py:269
 msgid "language"
 msgstr "język"
 
-#: agenda/models.py:257
+#: agenda/models.py:271
 msgid "link to recording"
 msgstr "link do nagrania"
 
-#: agenda/models.py:291
+#: agenda/models.py:305
 msgid "event"
 msgstr "wydarzenie"
 
-#: agenda/models.py:292
+#: agenda/models.py:306
 msgid "events"
 msgstr "wydarzenia"
 
-#: agenda/models.py:305
+#: agenda/models.py:319
 msgid "event speaker"
 msgstr "prelegent"
 
-#: agenda/models.py:306
+#: agenda/models.py:320
 msgid "event speakers"
 msgstr "prelegenci"
 
