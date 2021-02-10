@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-11 20:03+0100\n"
+"POT-Creation-Date: 2021-02-10 22:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,7 +111,7 @@ msgstr "Wróć do strony głównej"
 #: common/templates/common/base.html:23 common/templates/common/base.html:24
 #: common/templates/common/base.html:30 common/templates/common/page.html:9
 #: common/templates/common/page.html:16
-#: common/templates/common/partials/footer.html:96
+#: common/templates/common/partials/footer.html:98
 #: common/templates/common/partials/header.html:9
 msgid "SFI IT Academic Festival"
 msgstr "Studencki Festiwal Informatyczny"
@@ -162,14 +162,22 @@ msgstr "Wyślij"
 msgid "Organizers"
 msgstr "Organizatorzy"
 
-#: common/templates/common/partials/footer.html:86
+#: common/templates/common/partials/footer.html:88
 msgid "Helps us"
 msgstr "Wspiera nas"
 
-#: common/templates/common/partials/footer.html:97
+#: common/templates/common/partials/footer.html:99
 msgid "All rights reserved"
 msgstr "Wszelkie prawa zastrzeżone"
 
 #: common/templates/common/partials/header.html:9
 msgid "16th"
 msgstr "16."
+
+#: common/templates/common/post_index_base.html:23
+msgid "previous"
+msgstr "poprzednie"
+
+#: common/templates/common/post_index_base.html:29
+msgid "next"
+msgstr "następne"
