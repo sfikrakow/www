@@ -27,7 +27,7 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    transition: background-color .1s .1s  ease-in-out;
+    transition: background-color .1s .1s ease-in-out;
 
     &::before {
       content: "";
@@ -53,7 +53,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: map-get($breakpoints, tablet_landscape)) {
   .hamburger {
     display: block;
     margin-top: 5px;
@@ -63,14 +63,16 @@
 }
 
 .is-active {
-    .hamburger__inner {
-      background-color: transparent;
-      &::before {
-        transform: translateY(10px) rotate(-45deg)
-      }
-      &::after {
-        transform: translateY(-10px) rotate(45deg)
-      }
+  .hamburger__inner {
+    background-color: transparent;
+
+    &::before {
+      transform: translateY(10px) rotate(-45deg)
     }
 
+    &::after {
+      transform: translateY(-10px) rotate(45deg)
+    }
   }
+
+}
