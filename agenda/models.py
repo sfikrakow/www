@@ -4,6 +4,7 @@ from collections import defaultdict
 from django.core.validators import RegexValidator
 from django.db import models
 from django.forms.widgets import TextInput
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel, StreamFieldPanel
@@ -83,7 +84,8 @@ class Speaker(SFIPage):
         by_edition = defaultdict(list)
         for event_speaker in self.event_speakers.all():
             by_edition[event_speaker.event.get_edition()].append(event_speaker.event)
-        return sorted(by_edition.items(), key=lambda x: x[0].start_date, reverse=True)
+        return sorted(by_edition.items(), key=lambda x: x[0].start_date if x[0].start_date else timezone.now(),
+                      reverse=True)
 
     class Meta:
         verbose_name = _('speaker')
