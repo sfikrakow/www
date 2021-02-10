@@ -5,10 +5,16 @@
   overflow: hidden;
   text-align: center;
   padding: 0 10px;
+
   &__title {
     color: $page_color_5;
     font-size: 18px;
     cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: $page_color_4;
+    }
   }
 
   &__icon {
@@ -22,13 +28,20 @@
     max-height: 0px;
     text-align: justify;
     padding: 0 30px;
-    & > a {
+
+    a {
       color: $page_color_5;
       text-decoration: none;
+      transition: all .3s ease-in-out;
+      word-wrap: break-word;
+
+      &:hover {
+        color: $page_color_4;
+      }
     }
   }
 
-  &.active  &__icon {
+  &.active &__icon {
     transform: rotate(180deg);
   }
 

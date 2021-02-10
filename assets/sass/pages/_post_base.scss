@@ -265,6 +265,7 @@
     text-decoration: none;
     color: $page_color_5;
     font-size: 45px;
+    transition: all .3s ease-in-out;
 
     &:hover {
       color: $page_color_4;
