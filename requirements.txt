@@ -9,3 +9,4 @@ opencv-contrib-python-headless>=4.4.0.44,<4.4.1
 django-recaptcha==2.0.6
 django-webpack-loader==0.7.0
 mozilla-django-oidc==1.2.4
+fontawesome-free==5.15.2

@@ -1,4 +1,6 @@
 {% extends 'common/page.html' %}
+{% load i18n %}
+{% load common_tags %}
 
 {% block content %}
     <section class="post_base-list">
@@ -16,14 +18,16 @@
         <div class="pagination">
             <div class="pagination__left pagination__btn">
                 {% if posts.has_previous %}
-                    <a class="pagination__link" href="{{ request.path }}?page={{ posts.previous_page_number }}"><i
-                            class="fas fa-arrow-circle-left"></i></a>
+                    <a class="pagination__link"
+                       href="{{ request.path }}?page={{ posts.previous_page_number }}">
+                        {% fa_icon 'fas fa-arrow-circle-left' %} {% trans 'previous' %}</a>
                 {% endif %}
             </div>
             <div class="pagination__right pagination__btn">
                 {% if posts.has_next %}
-                    <a class="pagination__link" href="{{ request.path }}?page={{ posts.next_page_number }}"><i
-                            class="fas fa-arrow-circle-right"></i></a>
+                    <a class="pagination__link"
+                       href="{{ request.path }}?page={{ posts.next_page_number }}">{% trans 'next' %}
+                        {% fa_icon 'fas fa-arrow-circle-right' %}</a>
                 {% endif %}
             </div>
         </div>

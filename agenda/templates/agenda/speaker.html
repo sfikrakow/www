@@ -60,7 +60,7 @@
                     {% for link in page.social_links.all %}
                         <li><a class="event-header_details_value event-header_details_value--link"
                                href="{{ link.link }}" target="_blank"
-                               rel="noreferrer noopener"><i class="{{ link.icon }}"></i> {{ link.link|truncatechars:40 }}</a></li>
+                               rel="noreferrer noopener">{% fa_icon link.icon %} {{ link.link|truncatechars:40 }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

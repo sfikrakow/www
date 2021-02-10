@@ -1,8 +1,13 @@
+import importlib
+import os
+import re
+
 from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter, truncatewords
 from django.templatetags.static import static
 from django.utils.html import strip_tags
+from django.utils.safestring import mark_safe
 from wagtail.images.models import Image
 
 from common.utils import RenderWithContext
@@ -75,3 +80,25 @@ def get_featured_image_url(context, img):
 def page_languages(page):
     locales = [x[0] for x in settings.LANGUAGES if page.__dict__['slug_' + x[0]]]
     return locales
+
+
+@register.simple_tag
+def fa_icon(fa_icon_string: str, icon_class: str = ''):
+    match = re.fullmatch(r'^(\w{3}) fa-([A-Za-z-]+)$', fa_icon_string)
+    if not match:
+        return ''
+    icon_type = {
+        'fab': 'brands',
+        'far': 'regular',
+        'fas': 'solid',
+    }.get(match.group(1), 'far')
+    icon_name = match.group(2)
+
+    fa = importlib.import_module("fontawesome-free")
+    icons_path = os.path.dirname(fa.__file__)
+    path = os.path.join(icons_path, 'static', 'fontawesome_free', 'svgs', icon_type, icon_name + '.svg')
+    try:
+        with open(path, 'r') as file:
+            return mark_safe('<span class="fa-icon {}">{}</span>'.format(icon_class, file.read()))
+    except OSError:
+        return ''

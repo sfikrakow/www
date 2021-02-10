@@ -24,6 +24,7 @@ body {
 %sticky-footer {
   flex-shrink: 0;
 }
+
 // End of sticky footer implementation
 
 // WAGTAIL styles
@@ -31,6 +32,7 @@ body {
 .block-paragraph {
   font-size: 1.1rem;
   line-height: 1.4;
+
   h1,
   h2,
   h3,
@@ -39,7 +41,7 @@ body {
     &:first-child {
       margin-top: 0;
     }
-    
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -67,6 +69,7 @@ body {
     text-decoration: none;
     transition: all .3s ease-in-out;
     word-wrap: break-word;
+
     &:hover {
       color: $page_color_4;
     }
@@ -108,4 +111,18 @@ body {
     max-width: 100%;
   }
 }
+
 // end of WAGTAIL styles
+
+.fa-icon {
+  display: inline-block;
+
+  & > svg {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    line-height: 1;
+    margin-bottom: -0.2em;
+    fill: currentColor;
+  }
+}
