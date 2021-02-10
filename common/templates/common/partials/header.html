@@ -3,8 +3,8 @@
 {% load static %}
 
 <header class="home-header">
-    {% responsive_img settings.common.ThemeSettings.slider_primary_image 'max-2560x600' 'home-header__header-image slide1' placeholder='img/slide-1.jpg' placeholder_webp='img/slide-1.webp' %}
-    {% responsive_img settings.common.ThemeSettings.slider_secondary_image 'max-2560x600' 'home-header__header-image slide2' placeholder='img/slide-2.jpg' placeholder_webp='img/slide-2.webp' %}
+    {% responsive_img_set settings.common.ThemeSettings.slider_primary_image 'PAGE_HEADER' 'home-header__header-image slide1' placeholder='img/slide-1.jpg' placeholder_webp='img/slide-1.webp' %}
+    {% responsive_img_set settings.common.ThemeSettings.slider_secondary_image 'PAGE_HEADER' 'home-header__header-image slide2' placeholder='img/slide-2.jpg' placeholder_webp='img/slide-2.webp' %}
     <div class="home-header__sfi-title">
         <span class="home-header__sfi-edition">{% trans '16th' %}</span> {% trans 'SFI IT Academic Festival' %}
     </div>

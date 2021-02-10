@@ -10,6 +10,7 @@ from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
 from wagtail.images.models import Image
 
+from common.image_preset import ImageRenderPreset, ImagePresets
 from common.utils import RenderWithContext
 
 register = template.Library()
@@ -46,6 +47,47 @@ def responsive_img(context, img, size: str, css_class='', placeholder=None, plac
             'alt': 'placeholder'
         }
     return {}
+
+
+@register.simple_tag(takes_context=True)
+def responsive_img_set(context, img, preset_name: str, css_class='', placeholder=None, placeholder_webp=None):
+    preset: ImageRenderPreset = ImagePresets[preset_name].value
+    if isinstance(img, RenderWithContext):
+        img = img.render(context)
+    if isinstance(img, Image):
+        sources = ''.join(
+            '<source {media_query} srcset="{srcset}" type="{type}">'.format(
+                media_query=('media="(min-width: {}px)"'.format(int(alternative.min_page_width_px)) if int(
+                    alternative.min_page_width_px) > 0 else ''),
+                srcset=','.join(
+                    '{img} {dens}x'.format(
+                        img=img.get_rendition(size + str(alternative.image_type.value[0])).url,
+                        dens=dens
+                    )
+                    for size, dens in alternative.image_size_densities
+                ),
+                type=alternative.image_type.value[1]
+            )
+            for alternative in preset.image_alternatives
+        )
+        default_image = img.get_rendition(preset.default_image)
+        tag = '<picture class="{css_class}">{sources}<img src="{default_image}" alt="{alt}"></picture>'.format(
+            css_class=css_class,
+            sources=sources,
+            default_image=default_image.url,
+            alt=default_image.alt
+        )
+        return mark_safe(tag)
+    if placeholder:
+        tag = '<picture class="{css_class}">{sources}<img src="{default_image}" alt="{alt}"></picture>'.format(
+            css_class=css_class,
+            sources='<source srcset="{img_webp}" type="image/webp">'.format(
+                img_webp=static(placeholder_webp)) if placeholder_webp else '',
+            default_image=static(placeholder),
+            alt='placeholder'
+        )
+        return mark_safe(tag)
+    return ''
 
 
 @register.simple_tag
