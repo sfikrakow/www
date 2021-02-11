@@ -31,13 +31,18 @@
         </div>
     {% endif %}
     {% if page.sponsor %}
-        <div class="event-info">
+        <div class="event-info event-info-center">
             <div class="event-info__title">
                 {% trans 'Sponsor' %}
             </div>
             <div class="event-info__content">
-                <a href="{{ page.sponsor.link }}" rel="noreferrer noopener" target="_blank">
-                    {% responsive_img page.sponsor.logo 'max-500x100' 'nk-tu-wstawi-klase-css' %}
+                <a href="{{ page.sponsor.link }}" rel="noreferrer noopener" target="_blank"
+                   class="event-header_details_value event-header_details_value--link">
+                    {% if page.sponsor.logo %}
+                        {% responsive_img page.sponsor.logo 'max-500x100' 'event-header_details_value--image-link' %}
+                    {% else %}
+                        {{ page.sponsor.name }}
+                    {% endif %}
                 </a>
             </div>
         </div>
@@ -66,8 +71,10 @@
                 {% trans 'Recording' %}
             </div>
             <div class="event-info__content">
-                <div><a class="event-header_details_value event-header_details_value--link" href="{{ page.recording_link }}"
-                        rel="noreferrer noopener" target="_blank"><i class="fas fa-external-link-alt"></i> {{ page.recording_link|truncatechars:50 }}</a></div>
+                <div><a class="event-header_details_value event-header_details_value--link"
+                        href="{{ page.recording_link }}"
+                        rel="noreferrer noopener" target="_blank"><i
+                        class="fas fa-external-link-alt"></i> {{ page.recording_link|truncatechars:50 }}</a></div>
                 <div class="event-header_details_value--embed">
                     {% embed page.recording_link %}
                 </div>

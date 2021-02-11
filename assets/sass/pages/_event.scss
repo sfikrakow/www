@@ -55,9 +55,19 @@
       text-decoration: none;
       transition: color 0.2s ease-in;
       font-weight: 700;
-      
+
       &:hover {
         color: $page_color_4;
+      }
+    }
+
+    &--image-link {
+      transition: 0.3s;
+      margin: 0 15px;
+      display: block;
+
+      &:hover {
+        transform: scale(1.1);
       }
     }
 
@@ -68,12 +78,6 @@
 }
 
 .post_base {
-  &__header--event {
-    .post_base__header-image {
-      flex-basis: 50%;
-    }
-  }
-
   &__body--event {
     .post_base__body-content {
       flex-basis: 80%;
@@ -88,6 +92,10 @@
     justify-content: normal;
     align-items: flex-start;
     margin-top: 0;
+
+    &-center {
+      align-items: center;
+    }
 
     &__title {
       margin-bottom: 0;
