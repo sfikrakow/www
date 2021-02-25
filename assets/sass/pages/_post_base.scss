@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
 
     margin: 0 auto;
     max-width: 80%;
@@ -101,9 +102,23 @@
     margin: 0.8rem 0;
   }
 
-  &__date {
+  &__subtitle {
+    color: $page_color_4;
+    font-size: 1.2rem;
+  }
+
+  &__date, &__info {
     color: $page_color_6;
     font-size: 1rem;
+  }
+
+  &__info, &__subtitle {
+    padding-left: 0;
+    & li {
+      white-space: nowrap;
+      display: inline;
+      margin-right: 1rem;
+    }
   }
 
   &__post-content {
@@ -280,6 +295,7 @@
       flex-basis: 45%;
 
       &-full {
+        max-width: 100rem;
         flex-basis: 100% !important;
       }
     }

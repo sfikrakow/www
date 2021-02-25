@@ -10,10 +10,40 @@
                     {% responsive_img event.get_featured_image 'fill-350x350' 'post_base-list__image post_base-list__image-full' %}
                     <div class="post_base-list__post-info post_base-list__post-info-full">
                         <div class="post_base-list__info-container">
-                            <p class="post_base-list__title">{{ event.title }}</p>
-                            <p class="post_base-list__date">
-                                {{ event.date | time }}{% if event.duration_minutes %}, {{ event.duration_minutes }}
-                                    min.{% endif %}</p>
+                            <p class="post_base-list__title">{% fa_icon 'fas fa-clock' %} {{ event.date | time }}: {{ event.title }}</p>
+                            <ul class="post_base-list__subtitle">
+                                {% if event.sponsor %}
+                                    <li>{% fa_icon 'fas fa-building' %} {{ event.sponsor.name }}</li>
+                                {% endif %}
+                                {% for event_speaker in event.event_speakers.all %}
+                                    {% if event_speaker.live %}
+                                        <li>{% fa_icon 'fas fa-user' %} {{ event_speaker.speaker.title }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <ul class="post_base-list__info">
+                                <li>
+                                    {% trans 'Type' %}: <span
+                                        {% if event.index.color %}style="color: {{ event.index.color }}"{% endif %}>{{ event.get_type }}</span>
+                                </li>
+                                {% if event.event_category %}
+                                    <li>
+                                        {% trans 'Category' %}: <span
+                                            {% if event.event_category.color %}style="color: {{ event.event_category.color }}"{% endif %}>
+                                        {% if event.event_category.icon %}
+                                            {% fa_icon event.event_category.icon %}{% endif %} {{ event.event_category.name }}</span>
+                                    </li>
+                                {% endif %}
+                                {% if event.duration_minutes %}
+                                    <li>
+                                        {% trans 'Duration' %}: {{ event.duration_minutes }} min
+                                    </li>{% endif %}
+                                {% if event.language %}
+                                    <li>{% trans 'Language' %}:
+                                        {{ event.get_language_display }}
+                                    </li>
+                                {% endif %}
+                            </ul>
                             <div class="post_base-list__post-content">{{ event.content | richtext | truncatechars_html:750 }}</div>
                         </div>
                         <p class="post_base-list__read-more">{% trans 'Read more...' %}</p>

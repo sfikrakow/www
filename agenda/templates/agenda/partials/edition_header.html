@@ -6,7 +6,7 @@
 {% block details %}
     <div class="event-header_details">
         {% if page.start_date %}
-            <p>{% trans 'Date' %}: <span class="event-header_details_value">{{ page.start_date }}{% if page.end_date %}
+            <p><span class="event-header_details_value">{{ page.start_date }}{% if page.end_date %}
                 - {{ page.end_date }}{% endif %}</span></p>
         {% endif %}
     </div>
