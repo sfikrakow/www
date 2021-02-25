@@ -23,9 +23,11 @@
             </div>
             <div class="event-info__content">
                 {% for event_speaker in page.event_speakers.all %}
-                    <a href="{% pageurl event_speaker.speaker %}"
-                       class="event-header_details_value event-header_details_value--link">
-                        {{ event_speaker.speaker.title }}</a>{% if not forloop.last %},{% endif %}
+                    {% if event_speaker.live %}
+                        <a href="{% pageurl event_speaker.speaker %}"
+                           class="event-header_details_value event-header_details_value--link">
+                            {{ event_speaker.speaker.title }}</a>{% if not forloop.last %},{% endif %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel, StreamFieldPanel
 from wagtail.core import blocks
+from wagtail.core.blocks import RawHTMLBlock
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.embeds.models import Embed
@@ -17,10 +18,12 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
+from agenda.blocks import EventIndexBlock
+from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, \
+    MapBlock
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
 from common.utils import paginate, with_context
-from pages.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery
 
 
 @register_snippet
@@ -53,7 +56,7 @@ class Sponsor(InvalidateCacheMixin, models.Model):
 class SpeakerIndex(SFIPage):
     subpage_types = ['Speaker']
 
-    SPEAKERS_PER_PAGE = 10
+    SPEAKERS_PER_PAGE = 25
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -83,7 +86,8 @@ class Speaker(SFIPage):
     def get_all_events_by_edition(self):
         by_edition = defaultdict(list)
         for event_speaker in self.event_speakers.all():
-            by_edition[event_speaker.event.get_edition()].append(event_speaker.event)
+            if event_speaker.event.live:
+                by_edition[event_speaker.event.get_edition()].append(event_speaker.event)
         return sorted(by_edition.items(), key=lambda x: x[0].start_date if x[0].start_date else timezone.now(),
                       reverse=True)
 
@@ -126,11 +130,11 @@ class SocialLink(InvalidateCacheMixin, models.Model):
 class EditionIndex(SFIPage):
     subpage_types = ['Edition']
 
-    EDITIONS_PER_PAGE = 10
+    EDITIONS_PER_PAGE = 25
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['posts'] = Edition.objects.live().public().descendant_of(self).order_by("title")
+        context['posts'] = Edition.objects.live().public().descendant_of(self).order_by('-start_date', 'title')
         return context
 
     class Meta:
@@ -141,6 +145,20 @@ class EditionIndex(SFIPage):
 class Edition(SFIPage):
     start_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition start date'))
     end_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition end date'))
+
+    content = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('event_index', EventIndexBlock()),
+        ('section_title', SectionTitleBlock()),
+        ('section_subtitle', SectionSubtitleBlock()),
+        ('section_divider', SectionDividerBlock()),
+        ('dropdown', DropdownBlock()),
+        ('photo_gallery', PhotoGallery()),
+        ('map', MapBlock()),
+        ('raw_html', RawHTMLBlock()),
+    ], null=True, blank=True, verbose_name=_('content'))
+
     default_featured_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -166,6 +184,7 @@ class Edition(SFIPage):
     content_panels = SFIPage.content_panels + [
         FieldPanel('start_date'),
         FieldPanel('end_date'),
+        StreamFieldPanel('content'),
         ImageChooserPanel('default_featured_image'),
         InlinePanel('event_categories', label='Event categories'),
         StreamFieldPanel('edition_footer'),
@@ -227,7 +246,7 @@ class EventIndex(EditionSubpage):
     parent_page_types = ['Edition']
     subpage_types = ['Event']
 
-    EVENTS_PER_PAGE = 10
+    EVENTS_PER_PAGE = 25
 
     color = models.CharField(max_length=7,
                              default='#23211f',
@@ -316,6 +335,10 @@ class EventSpeaker(InvalidateCacheMixin, models.Model):
     panels = [
         PageChooserPanel('speaker'),
     ]
+
+    @property
+    def live(self):
+        return self.event.live and self.speaker.live
 
     class Meta:
         verbose_name = _('event speaker')

@@ -11,7 +11,7 @@ from agenda.blocks import EventIndexBlock
 from blog.blocks import PostIndexBlock
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
-from pages.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, MapBlock, \
+from common.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, MapBlock, \
     SectionSubtitleBlock
 
 

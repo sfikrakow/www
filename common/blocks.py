@@ -16,28 +16,28 @@ class HeadingBlock(StructBlock):
     buttons = ListBlock(MenuItem(), required=False, default=[])
 
     class Meta:
-        template = 'pages/heading_block.html'
+        template = 'common/blocks/heading_block.html'
 
 
 class SectionTitleBlock(StructBlock):
     title = TextBlock()
 
     class Meta:
-        template = 'pages/section_title_block.html'
+        template = 'common/blocks/section_title_block.html'
 
 
 class SectionSubtitleBlock(StructBlock):
     title = TextBlock()
 
     class Meta:
-        template = 'pages/section_subtitle_block.html'
+        template = 'common/blocks/section_subtitle_block.html'
 
 
 class SectionDividerBlock(StructBlock):
     title = TextBlock()
 
     class Meta:
-        template = 'pages/section_divider_block.html'
+        template = 'common/blocks/section_divider_block.html'
 
 
 class DropdownBlock(StructBlock):
@@ -45,7 +45,7 @@ class DropdownBlock(StructBlock):
     content = RichTextBlock()
 
     class Meta:
-        template = 'pages/dropdown_block.html'
+        template = 'common/blocks/dropdown_block.html'
 
 
 class PhotoGalleryItem(StructBlock):
@@ -75,10 +75,11 @@ class PhotoGallery(StructBlock):
         return context
 
     class Meta:
-        template = 'pages/photo_gallery_block.html'
+        template = 'common/blocks/photo_gallery_block.html'
 
 
 class MapMarker(StructBlock):
+    name = TextBlock()
     longitude = FloatBlock()
     latitude = FloatBlock()
 
@@ -98,4 +99,4 @@ class MapBlock(StructBlock):
         return context
 
     class Meta:
-        template = 'pages/map_block.html'
+        template = 'common/blocks/map_block.html'

@@ -1,11 +1,13 @@
 {% load i18n %}
 {% load common_tags %}
 
-<div class="page-map" id="map-{{ random_id }}">
-    <div id="map-placeholder-{{ random_id }}" class="page-map__placeholder">
-        {% responsive_img value.placeholder "fill-2560x600" %}
-        <div class="page-map__placeholder__text" id="map-text-{{ random_id }}">{% trans 'Click to interact' %}</div>
-        <div class="page-map__loader" id="map-loader-{{ random_id }}"></div>
+<div class="map-container">
+    <div class="page-map" id="map-{{ random_id }}">
+        <div id="map-placeholder-{{ random_id }}" class="page-map__placeholder">
+            {% responsive_img value.placeholder "fill-2560x600" %}
+            <div class="page-map__placeholder__text" id="map-text-{{ random_id }}">{% trans 'Click to interact' %}</div>
+            <div class="page-map__loader" id="map-loader-{{ random_id }}"></div>
+        </div>
     </div>
 </div>
 <script>
@@ -63,23 +65,28 @@
                 },
                 labelLayerId
             );
+            document.getElementById("map-placeholder-{{ random_id }}").style.display = 'none';
         });
-        let markers = {
-            type: "FeatureCollection",
-            features: [
-                {% for marker in value.markers %}
-                    {
-                        type: "Feature",
-                        geometry: {type: "Point", coordinates: [{{ marker.longitude }}, {{ marker.latitude }}]},
-                        properties: {description: "SFI location"}
-                    },
-                {% endfor %}
-            ]
-        };
-        markers.features.forEach(function (e) {
+        let markers = [
+            {% for marker in value.markers %}
+                {
+                    coordinates: [{{ marker.longitude }}, {{ marker.latitude }}],
+                    name: "{{ marker.name }}",
+                },
+            {% endfor %}
+        ];
+        markers.forEach(function (e) {
             let element = document.createElement("div");
             element.className = "page-map__marker";
-            new mapboxgl.Marker(element).setLngLat(e.geometry.coordinates).addTo(map)
+            new mapboxgl.Marker(element)
+                .setLngLat(e.coordinates)
+                .setPopup(new mapboxgl.Popup({
+                    offset: 30,
+                    closeButton: false,
+                    closeOnClick: false,
+                    focusAfterOpen: false
+                }).setText(e.name))
+                .addTo(map).togglePopup();
         });
     }
 

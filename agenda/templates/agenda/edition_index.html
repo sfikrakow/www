@@ -1,0 +1,5 @@
+{% extends 'common/post_index_base.html' %}
+
+{% block single_post %}
+    {% include 'agenda/partials/edition_index_single.html' with edition=post %}
+{% endblock %}

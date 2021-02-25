@@ -135,3 +135,4 @@ assets/webpack_bundles/
 assets/bundles/
 node_modules/
 webpack-stats.json
+*.old

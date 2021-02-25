@@ -1,8 +1,16 @@
+.block-map {
+}
+
+.map-container {
+}
+
 .page-map {
+  position: relative;
   width: 100%;
   min-height: 475px;
   max-height: 700px;
   height: 50vh;
+  //border-radius: 30px 0 0 30px;
 
   &__marker {
     background: url("../img/sfi-marker.png") no-repeat center center;
@@ -21,12 +29,13 @@
     width: 100%;
     position: relative;
     cursor: pointer;
-    
+
     & img {
       height: 100%;
       width: 100%;
       object-fit: cover;
       filter: brightness(80%);
+      //border-radius: 30px 0 0 30px;
     }
 
     &__text {
@@ -49,6 +58,12 @@
     height: 60px;
     animation: spin 1s linear infinite;
     display: none;
+  }
+
+  & .mapboxgl-popup-content {
+    color: $page_color_2;
+    font-weight: bold;
+    font-size: 1rem;
   }
 }
 

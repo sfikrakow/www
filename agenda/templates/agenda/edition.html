@@ -1,0 +1,10 @@
+{% extends "common/page.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% include 'agenda/partials/edition_header.html' %}
+
+    {% if page.content %}
+        {% include_block page.content %}
+    {% endif %}
+{% endblock content %}
