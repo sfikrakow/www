@@ -76,7 +76,4 @@ function submitContactForm(e) {
 }
 
 contactForm.addEventListener('submit', submitContactForm);
-
-const btn = document.createElement('button');
-btn.innerText = '{% trans "Send" %}';
-document.querySelector('.footer-contact__form').appendChild(btn);
+document.getElementById('contact-form-button').type = 'submit';

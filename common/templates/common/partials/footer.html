@@ -50,9 +50,10 @@
                  data-callback="captchaSubmit"
                  data-size="invisible">
             </div>
+            <button type="reset" id="contact-form-button">{% trans "Send" %}</button>
             <p class="footer-contact__form-positive form-result">{% trans 'Your message has been sent' %}</p>
             <p class="footer-contact__form-negative form-result">{% trans "Something went wrong - we can't deliver your message. Write to kontakt@sfi.pl" %}</p>
-            <noscript>JavaScript support is required to use this form</noscript>
+            <noscript>JavaScript support is required to submit this form</noscript>
         </form>
     </div>
     <div class="footer__orgs">
