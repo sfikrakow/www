@@ -20,13 +20,13 @@
             </div>
         </div>
     {% endif %}
-        <div class="event-info">
+    <div class="event-info">
         <div class="event-info__title">
             {% trans 'My events' %}
         </div>
         <div class="event-info__content">
             {% for edition, events in page.get_all_events_by_edition %}
-                <div><a href="#" {# TODO: add edition link when edition pages are ready. #}
+                <div><a href="{% pageurl edition %}"
                         class="event-header_details_value event-header_details_value--link">{{ edition.title }}</a>
                 </div>
                 <ul>
@@ -60,7 +60,8 @@
                     {% for link in page.social_links.all %}
                         <li><a class="event-header_details_value event-header_details_value--link"
                                href="{{ link.link }}" target="_blank"
-                               rel="noreferrer noopener">{% fa_icon link.icon %} {{ link.link|truncatechars:40 }}</a></li>
+                               rel="noreferrer noopener">{% fa_icon link.icon %} {{ link.link|truncatechars:40 }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>

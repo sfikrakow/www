@@ -5,7 +5,9 @@
 
 {% block details %}
     <div class="event-header_details">
-        <p>{% trans 'Edition' %}: <span class="event-header_details_value">{{ page.get_edition.title }}</span></p>
+        <p>{% trans 'Edition' %}: <a href="{% pageurl page.get_edition %}"
+                                     class="event-header_details_value event-header_details_value--link">{{ page.get_edition.title }}</a>
+        </p>
         {% if page.date %}
             <p>{% trans 'Date' %}: <span class="event-header_details_value">{{ page.date }}</span></p>
         {% endif %}
