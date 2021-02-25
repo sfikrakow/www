@@ -6,8 +6,8 @@
 {% block details %}
     <div class="event-header_details">
         {% if page.start_date %}
-            <p><span class="event-header_details_value">{{ page.start_date }}{% if page.end_date %}
-                - {{ page.end_date }}{% endif %}</span></p>
+            <p><span class="event-header_details_value">{{ page.start_date|date }}{% if page.end_date %}
+                - {{ page.end_date|date }}{% endif %}</span></p>
         {% endif %}
     </div>
 {% endblock details %}
