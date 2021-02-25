@@ -52,11 +52,12 @@ class PhotoGalleryItem(StructBlock):
     title = TextBlock(required=False)
     photo = ImageChooserBlock()
     link = URLBlock(required=False)
+    white_background = BooleanBlock(default=False, required=False)
 
 
 class PhotoGallery(StructBlock):
-    image_height = IntegerBlock(min_value=0, max_value=2000, default=200)
-    image_width = IntegerBlock(min_value=0, max_value=2000, default=200)
+    image_height = IntegerBlock(min_value=0, max_value=2000, default=64)
+    image_width = IntegerBlock(min_value=0, max_value=2000, default=260)
     crop_to_fit = BooleanBlock(default=False, required=False)
     photos = ListBlock(PhotoGalleryItem())
 

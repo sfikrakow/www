@@ -2,7 +2,8 @@
 {% for entry in value.photos %}
     <a {% if entry.link %} href="{{ entry.link }}" {% endif %} rel="noopener noreferer" target="_blank"
                            class="block-photo_gallery__container">
-        <div class='block-photo_gallery__photo-container' style="height: {{ max_height }}px;">
+        <div class='block-photo_gallery__photo-container {% if entry.white_background %}block-photo_gallery__photo-container__white{% endif %}'
+             style="height: {{ max_height }}px;">
             {% responsive_img entry.photo image_format "block-photo_gallery__image" transparent=True %}
         </div>
         {% if entry.title %}
