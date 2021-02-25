@@ -18,7 +18,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
-from agenda.blocks import EventIndexBlock
+from agenda.blocks import EventIndexBlock, EventScheduleBlock
 from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, \
     MapBlock
 from common.cache import InvalidateCacheMixin
@@ -150,6 +150,7 @@ class Edition(SFIPage):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('event_index', EventIndexBlock()),
+        ('event_schedule', EventScheduleBlock()),
         ('section_title', SectionTitleBlock()),
         ('section_subtitle', SectionSubtitleBlock()),
         ('section_divider', SectionDividerBlock()),

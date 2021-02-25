@@ -4,7 +4,7 @@ import re
 
 from django import template
 from django.conf import settings
-from django.template.defaultfilters import stringfilter, truncatewords
+from django.template.defaultfilters import stringfilter, truncatechars
 from django.templatetags.static import static
 from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
@@ -19,7 +19,8 @@ register = template.Library()
 @register.filter(is_safe=True)
 @stringfilter
 def unrich_text(value):
-    value = value.replace('<p>', '').replace('</p>', ' ')
+    value = value.replace('</p>', ' ').replace('<br/>', ' ')
+    value = re.sub(r'</h\d>', ' ', value)
     return strip_tags(value)
 
 
@@ -103,7 +104,7 @@ def get_description(page):
     if page.search_description:
         return page.search_description
     elif hasattr(page, 'content') and isinstance(page.content, str) and not page.content.startswith('{'):
-        return truncatewords(unrich_text(page.content), 15)
+        return truncatechars(unrich_text(page.content), 280)
     else:
         return ''
 

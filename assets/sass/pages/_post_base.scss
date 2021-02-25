@@ -94,7 +94,7 @@
 
   &__title {
     color: $page_color_5;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
     transition: color 0.2s ease-in-out;
 
@@ -103,16 +103,16 @@
 
   &__date {
     color: $page_color_6;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   &__post-content {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   &__read-more {
     @extend %sticky-footer;
-    font-size: 1rem;
+    font-size: 1.2rem;
     text-align: right;
   }
 }
@@ -278,14 +278,26 @@
     &__single-post {
       flex-direction: row;
       flex-basis: 45%;
+
+      &-full {
+        flex-basis: 100% !important;
+      }
     }
 
-    &__image {
+    &__full {
       flex-basis: 40%;
+
+      &-small {
+        flex-basis: 25% !important;
+      }
     }
 
     &__post-info {
       flex-basis: 60%;
+
+      &-full {
+        flex-basis: 75% !important;
+      }
     }
   }
 

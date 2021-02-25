@@ -1,0 +1,25 @@
+{% load wagtailcore_tags %}
+{% load i18n %}
+{% load common_tags %}
+{% for day in days %}
+    <h2 class="section_subtitle">{{ day.0.date | date }}</h2>
+    <section class="post_base-list">
+        <div class="post_base-list__container">
+            {% for event in day %}
+                <a href="{{ event.url }}" class="post_base-list__single-post post_base-list__single-post-full">
+                    {% responsive_img event.get_featured_image 'fill-350x350' 'post_base-list__image post_base-list__image-full' %}
+                    <div class="post_base-list__post-info post_base-list__post-info-full">
+                        <div class="post_base-list__info-container">
+                            <p class="post_base-list__title">{{ event.title }}</p>
+                            <p class="post_base-list__date">
+                                {{ event.date | time }}{% if event.duration_minutes %}, {{ event.duration_minutes }}
+                                    min.{% endif %}</p>
+                            <div class="post_base-list__post-content">{{ event.content | richtext | truncatechars_html:750 }}</div>
+                        </div>
+                        <p class="post_base-list__read-more">{% trans 'Read more...' %}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endfor %}
