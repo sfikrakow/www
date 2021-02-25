@@ -114,6 +114,7 @@
 
   &__info, &__subtitle {
     padding-left: 0;
+
     & li {
       white-space: nowrap;
       display: inline;
@@ -123,6 +124,7 @@
 
   &__post-content {
     font-size: 1.2rem;
+    max-width: 60rem;
   }
 
   &__read-more {
