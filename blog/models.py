@@ -9,11 +9,13 @@ from wagtail.core.models import Page
 from common.models import SFIPage
 from common.utils import paginate
 
+DEFAULT_PAGINATION = 20  # the number should be even (two column view).
+
 
 class PostIndex(SFIPage):
     subpage_types = ['Post']
 
-    POSTS_PER_PAGE = 10
+    POSTS_PER_PAGE = DEFAULT_PAGINATION
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)

@@ -25,6 +25,8 @@ from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
 from common.utils import paginate, with_context
 
+DEFAULT_PAGINATION = 20  # the number should be even (two column view).
+
 
 @register_snippet
 class Sponsor(InvalidateCacheMixin, models.Model):
@@ -56,7 +58,7 @@ class Sponsor(InvalidateCacheMixin, models.Model):
 class SpeakerIndex(SFIPage):
     subpage_types = ['Speaker']
 
-    SPEAKERS_PER_PAGE = 25
+    SPEAKERS_PER_PAGE = DEFAULT_PAGINATION
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -130,7 +132,7 @@ class SocialLink(InvalidateCacheMixin, models.Model):
 class EditionIndex(SFIPage):
     subpage_types = ['Edition']
 
-    EDITIONS_PER_PAGE = 25
+    EDITIONS_PER_PAGE = DEFAULT_PAGINATION
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -247,7 +249,7 @@ class EventIndex(EditionSubpage):
     parent_page_types = ['Edition']
     subpage_types = ['Event']
 
-    EVENTS_PER_PAGE = 25
+    EVENTS_PER_PAGE = DEFAULT_PAGINATION
 
     color = models.CharField(max_length=7,
                              default='#23211f',
