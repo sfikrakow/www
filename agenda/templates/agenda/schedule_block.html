@@ -7,7 +7,7 @@
         <div class="post_base-list__container">
             {% for event in day %}
                 <a href="{{ event.url }}" class="post_base-list__single-post post_base-list__single-post-full">
-                    {% responsive_img event.get_featured_image 'fill-350x350' 'post_base-list__image post_base-list__image-full' %}
+                    {% responsive_img_set event.get_featured_image 'POST_IMAGE_LARGE' 'post_base-list__image post_base-list__image-full' %}
                     <div class="post_base-list__post-info post_base-list__post-info-full">
                         <div class="post_base-list__info-container">
                             <p class="post_base-list__title">{% fa_icon 'fas fa-clock' %} {{ event.date | time }}: {{ event.title }}</p>

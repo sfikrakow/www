@@ -83,3 +83,11 @@ class ImagePresets(Enum):
         ImageSizeSelector(PageBreakpointsPx.tablet_landscape, 'max', 1366, 600),
         ImageSizeSelector(PageBreakpointsPx.zero, 'max', 768, 600),
     ], ('max-1920x600' + ImageType.JPG.value[0]))
+
+    POST_IMAGE_LARGE = ImageRenderPreset([
+        ImageSizeSelector(PageBreakpointsPx.zero, 'fill', 500, 500),
+    ], ('fill-500x500' + ImageType.JPG.value[0]))
+
+    POST_IMAGE = ImageRenderPreset([
+        ImageSizeSelector(PageBreakpointsPx.zero, 'fill', 350, 350),
+    ], ('fill-500x500' + ImageType.JPG.value[0]))

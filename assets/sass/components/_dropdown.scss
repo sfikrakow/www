@@ -1,16 +1,18 @@
 .dropdown {
-  color: red;
-  max-width: 80%;
-  margin: 0 auto;
-  overflow: hidden;
-  text-align: center;
-  padding: 0 10px;
+  @extend .container-regular;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 
   &__title {
+    margin: 0.5em 0;
+    font-weight: bold;
+    display: block;
     color: $page_color_5;
-    font-size: 18px;
+    font-size: 1.4rem;
     cursor: pointer;
     transition: all .3s ease-in-out;
+    text-decoration: none;
 
     &:hover {
       color: $page_color_4;
@@ -18,16 +20,17 @@
   }
 
   &__icon {
+    transform: rotate(180deg);
     margin-left: 2px;
   }
 
   &__content {
     color: $page_color_1;
-    font-size: 16px;
-    transition: max-height 0.2s ease-out;
-    max-height: 0px;
+    font-size: 1.2rem;
+    transition: all 0.2s ease-out;
     text-align: justify;
-    padding: 0 30px;
+
+    transform-origin: top;
 
     a {
       color: $page_color_5;
@@ -41,50 +44,14 @@
     }
   }
 
-  &.active &__icon {
-    transform: rotate(180deg);
-  }
-
-}
-
-@include breakpoint(tablet_portrait) {
-  .dropdown {
-    text-align: left;
-    padding: 0 30px;
-
-    &__title {
-      font-size: 32px;
+  &:not(&:focus-within) {
+    .dropdown__icon {
+      transform: none;
     }
 
-    &__content {
-      font-size: 24px;
-      padding: 0;
-    }
-  }
-}
-
-@include breakpoint(tablet_landscape) {
-  .dropdown {
-    &__title {
-      font-size: 30px;
-    }
-
-    &__content {
-      font-size: 22px;
-    }
-  }
-}
-
-
-@include breakpoint(fhd) {
-  .dropdown {
-
-    &__title {
-      font-size: 32px;
-    }
-
-    &__content {
-      font-size: 24px;
+    .dropdown__content {
+      height: 0;
+      transform: scaleY(0);
     }
   }
 }

@@ -16,6 +16,21 @@ body {
   flex-direction: column;
 }
 
+%base-container {
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container-regular {
+  @extend %base-container;
+  max-width: 100rem;
+}
+
+.container-wide {
+  @extend %base-container;
+  max-width: 140rem;
+}
+
 // Sticky footer implementation
 .content {
   flex: 1 0 auto;
@@ -98,23 +113,12 @@ body {
       height: auto;
     }
   }
-
-  &-paragraph {
-    padding: 1.2rem;
-    max-width: 80%;
-    margin: 0 auto;
-  }
 }
 
 .block-paragraph {
-  margin-bottom: 2em;
-  margin-top: 2em;
-}
-
-@media screen and (max-width: 680px) {
-  .block-paragraph {
-    max-width: 100%;
-  }
+  @extend .container-regular;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 // end of WAGTAIL styles

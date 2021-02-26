@@ -1,6 +1,8 @@
 .post_base-list {
-  padding: 0 0.8rem;
-  margin: 30px 0;
+  @extend .container-wide;
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 
   &__main-title {
     margin: 2rem auto;
@@ -14,9 +16,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-
     margin: 0 auto;
-    max-width: 80%;
   }
 
   &__more {
@@ -69,7 +69,7 @@
   }
 
   &__image {
-    flex-basis: 30%;
+    flex-basis: auto;
     border-radius: 15px;
     overflow: hidden;
 
@@ -82,7 +82,7 @@
   }
 
   &__post-info {
-    flex-basis: 70%;
+    flex-basis: 60%;
     padding: 0 0.8rem;
 
     display: flex;
@@ -234,10 +234,7 @@
   }
 
   &__body {
-    padding: 2rem 0.8rem;
-    margin: 0 auto;
-    max-width: 90%;
-
+    @extend .container-regular;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -294,7 +291,7 @@
   .post_base-list {
     &__single-post {
       flex-direction: row;
-      flex-basis: 45%;
+      flex-basis: 48%;
 
       &-full {
         max-width: 100rem;
@@ -336,9 +333,6 @@
       font-size: 2.8rem;
     }
 
-    &__body {
-      max-width: 80%;
-    }
   }
 
   .pagination {
@@ -347,18 +341,6 @@
 }
 
 @include breakpoint(tablet_landscape) {
-  .post_base-list {
-    &__container {
-      flex-direction: row;
-      justify-content: space-evenly;
-      max-width: 80%;
-    }
-
-    &__more {
-      max-width: 75%;
-    }
-  }
-
   .post_base {
     &__header {
       flex-direction: row;
@@ -398,13 +380,20 @@
 }
 
 @include breakpoint(laptop) {
+  .post_base-list {
+    &__container {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    &__more {
+      max-width: 75%;
+    }
+  }
+
   .post_base {
     &__header {
       height: 400px;
-    }
-
-    &__body {
-      max-width: 65%;
     }
   }
 }
