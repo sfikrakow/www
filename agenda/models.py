@@ -257,16 +257,17 @@ class EventIndex(EditionSubpage):
                                  regex=r'^#([0-9a-fA-F]{6})$',
                                  message=_('Color must be in hex'),
                              ), ], verbose_name=_('color'))
+    reversed_order = models.BooleanField(default=False, verbose_name=_('reversed index order'))
 
     content_panels = SFIPage.content_panels + [
-        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'}))
+        FieldPanel('reversed_order'),
+        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'})),
     ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['posts'] = paginate(
-            Event.objects.live().public().descendant_of(self).order_by('date'),
-            request, EventIndex.EVENTS_PER_PAGE)
+        events = Event.objects.live().public().descendant_of(self).order_by('-date' if self.reversed_order else 'date')
+        context['posts'] = paginate(events, request, EventIndex.EVENTS_PER_PAGE)
         return context
 
     def get_edition(self):
