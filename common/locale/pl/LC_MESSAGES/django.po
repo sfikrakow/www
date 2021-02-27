@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 22:27+0100\n"
+"POT-Creation-Date: 2021-02-27 02:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,81 +20,89 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: common/models.py:21
+#: common/models.py:26
 msgid "user"
 msgstr "użytkownik"
 
-#: common/models.py:22
+#: common/models.py:27
 msgid "users"
 msgstr "użytkownicy"
 
-#: common/models.py:32
+#: common/models.py:37
 msgid "featured image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:61
+#: common/models.py:66
 msgid "menu items"
 msgstr "elementy menu"
 
-#: common/models.py:65
+#: common/models.py:70
 msgid "navigation menu"
 msgstr "menu nawigacyjne"
 
-#: common/models.py:66
+#: common/models.py:71
 msgid "navigation menus"
 msgstr "menu nawigacyjne"
 
-#: common/models.py:70
+#: common/models.py:75
 msgid "menu item"
 msgstr "element menu"
 
-#: common/models.py:71
+#: common/models.py:76
 msgid "link title"
 msgstr "tytuł linku"
 
-#: common/models.py:78
+#: common/models.py:83
 msgid "linked page"
 msgstr "podlinkowana strona"
 
-#: common/models.py:79
+#: common/models.py:84
 msgid "Overrides the url field"
 msgstr "zastępuje pole adresu linku"
 
-#: common/models.py:85
+#: common/models.py:90
 msgid "link url"
 msgstr "adres linku"
 
-#: common/models.py:86
+#: common/models.py:91
 msgid "Overridden by linked page"
 msgstr "zastępowane przez adres podlinkowanej strony"
 
-#: common/models.py:88
+#: common/models.py:93
 msgid "open in new tab"
 msgstr "otwórz w nowej karcie"
 
-#: common/models.py:114
+#: common/models.py:119
 msgid "default featured image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:123
+#: common/models.py:128
 msgid "default edition image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:132
+#: common/models.py:137
 msgid "default footer image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:141
+#: common/models.py:146
 msgid "default primary image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:150
+#: common/models.py:155
 msgid "default secondary image"
 msgstr "wyróżniony obrazek"
 
-#: common/models.py:162
+#: common/models.py:167
 msgid "theme settings"
 msgstr "ustawienia motywu"
+
+#: common/models.py:172
+msgid "recording file"
+msgstr "nagranie"
+
+#: common/models.py:196 common/models.py:197
+msgid "audio recording"
+msgstr "nagranie audio"
 
 #: common/templates/404.html:7 common/templates/404.html:14
 msgid "Page not found"
@@ -111,16 +119,20 @@ msgstr "Wróć do strony głównej"
 #: common/templates/common/base.html:23 common/templates/common/base.html:24
 #: common/templates/common/base.html:30 common/templates/common/page.html:9
 #: common/templates/common/page.html:16
-#: common/templates/common/partials/footer.html:98
+#: common/templates/common/partials/footer.html:94
 #: common/templates/common/partials/header.html:9
 msgid "SFI IT Academic Festival"
 msgstr "Studencki Festiwal Informatyczny"
+
+#: common/templates/common/blocks/map_block.html:8
+msgid "Click to interact"
+msgstr "Kliknij aby aktywować"
 
 #: common/templates/common/page.html:11
 msgid "en_US"
 msgstr "pl_PL"
 
-#: common/templates/common/partials/edition_header.html:11
+#: common/templates/common/partials/edition_header.html:10
 msgid "16th edition"
 msgstr "16 edycja"
 
@@ -145,28 +157,29 @@ msgid "Your message"
 msgstr "Twoja wiadomość"
 
 #: common/templates/common/partials/footer.html:53
-msgid "Your message has been sent"
-msgstr "Twoja wiadomość"
-
-#: common/templates/common/partials/footer.html:54
-msgid ""
-"Something went wrong - we can't deliver your message. Write to kontakt@sfi.pl"
-msgstr ""
-"Coś poszło nie tak - nie możemy dostarczyć Twojej wiadomości. Napisz na kontakt@sfi.pl"
-
-#: common/templates/common/partials/footer.html:57
 msgid "Send"
 msgstr "Wyślij"
 
-#: common/templates/common/partials/footer.html:65
+#: common/templates/common/partials/footer.html:54
+msgid "Your message has been sent"
+msgstr "Twoja wiadomość"
+
+#: common/templates/common/partials/footer.html:55
+msgid ""
+"Something went wrong - we can't deliver your message. Write to kontakt@sfi.pl"
+msgstr ""
+"Coś poszło nie tak - nie możemy dostarczyć Twojej wiadomości. Napisz na "
+"kontakt@sfi.pl"
+
+#: common/templates/common/partials/footer.html:61
 msgid "Organizers"
 msgstr "Organizatorzy"
 
-#: common/templates/common/partials/footer.html:88
+#: common/templates/common/partials/footer.html:84
 msgid "Helps us"
 msgstr "Wspiera nas"
 
-#: common/templates/common/partials/footer.html:99
+#: common/templates/common/partials/footer.html:95
 msgid "All rights reserved"
 msgstr "Wszelkie prawa zastrzeżone"
 

@@ -40,6 +40,15 @@
       list-style: none;
       padding-inline-start: 0;
     }
+
+    & audio {
+      width: 100em;
+      max-width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 }
 

@@ -83,4 +83,16 @@
             </div>
         </div>
     {% endif %}
+    {% if page.audio_recording %}
+        <div class="event-info" style="width: 100%">
+            <div class="event-info__title">
+                {% trans 'Listen' %}
+            </div>
+            <div class="event-info__content">
+                <audio controls>
+                    <source src="{{ page.audio_recording.file.url }}" type="{{ page.audio_recording.mime_type }}">
+                </audio>
+            </div>
+        </div>
+    {% endif %}
 {% endblock body_content %}

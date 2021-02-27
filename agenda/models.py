@@ -22,7 +22,7 @@ from agenda.blocks import EventIndexBlock, EventScheduleBlock
 from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, \
     MapBlock
 from common.cache import InvalidateCacheMixin
-from common.models import SFIPage
+from common.models import SFIPage, AudioFile
 from common.utils import paginate, with_context
 
 DEFAULT_PAGINATION = 20  # the number should be even (two column view).
@@ -294,6 +294,8 @@ class Event(EditionSubpage):
                                 verbose_name=_('language'))
     sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
     recording_link = models.URLField(max_length=512, null=True, blank=True, verbose_name=_('link to recording'))
+    audio_recording = models.ForeignKey(AudioFile, null=True, blank=True, on_delete=models.SET_NULL,
+                                        verbose_name=_('audio recording file'))
 
     class EventCategoryFieldPanel(FieldPanel):
         # Terrible hack to limit category choices to edition.
@@ -311,7 +313,8 @@ class Event(EditionSubpage):
         EventCategoryFieldPanel('event_category'),
         FieldPanel('language'),
         SnippetChooserPanel('sponsor'),
-        FieldPanel('recording_link')
+        FieldPanel('recording_link'),
+        SnippetChooserPanel('audio_recording'),
     ]
 
     parent_page_types = ['EventIndex']

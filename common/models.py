@@ -1,5 +1,8 @@
+import os
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django import forms
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -8,7 +11,9 @@ from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.models import register_snippet
 
+from common.audio_metadata import get_audio_metadata
 from common.cache import InvalidateCacheMixin
 from common.utils import with_context
 
@@ -160,3 +165,33 @@ class ThemeSettings(BaseSetting, InvalidateCacheMixin):
 
     class Meta:
         verbose_name = _('theme settings')
+
+
+@register_snippet
+class AudioFile(models.Model):
+    file = models.FileField(verbose_name=_('recording file'))
+    mime_type = models.CharField(max_length=64, blank=True, null=True)
+    duration_seconds = models.IntegerField(blank=True, null=True)
+
+    panels = [
+        FieldPanel('file'),
+        FieldPanel('mime_type', widget=forms.TextInput(attrs={'readonly': 'readonly'})),
+        FieldPanel('duration_seconds', widget=forms.NumberInput(attrs={'readonly': 'readonly'})),
+    ]
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        metadata = get_audio_metadata(self.file.path)
+        if metadata:
+            self.mime_type, self.duration_seconds = metadata
+        else:
+            self.duration_seconds = -1
+            self.mime_type = 'UNKNOWN'
+        super().save()
+
+    def __str__(self):
+        return os.path.basename(self.file.name)
+
+    class Meta:
+        verbose_name = _('audio recording')
+        verbose_name_plural = _('audio recording')
