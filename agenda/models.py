@@ -216,8 +216,10 @@ class EditionSubpage(SFIPage):
     def get_featured_image(self, context):
         if self.featured_image:
             return self.featured_image
-        else:
-            return self.get_edition().get_featured_image(context=context)
+        edition = self.get_edition()
+        if edition.default_featured_image:
+            return edition.default_featured_image
+        return edition.get_featured_image(context=context)
 
     def get_edition_footer(self):
         return self.get_edition().get_edition_footer()
