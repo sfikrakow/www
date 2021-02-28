@@ -4,6 +4,10 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 
+  &:focus {
+    outline: none;
+  }
+
   &__title {
     margin: 0.5em 0;
     font-weight: bold;
@@ -14,7 +18,7 @@
     transition: all .3s ease-in-out;
     text-decoration: none;
 
-    :focus {
+    &:focus {
       outline: none;
     }
 
