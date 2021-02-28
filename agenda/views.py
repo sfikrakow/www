@@ -126,7 +126,7 @@ class EditionPodcastFeedView(Feed):
         return max(item.audio_recording.modification_date, item.last_published_at)
 
     item_guid_is_permalink = False
-    language = 'en'
+    language = 'pl'
     feed_copyright = 'All rights reserved'
     ttl = 60
     author_name = 'SFI Academic IT Festival'
