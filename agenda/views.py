@@ -28,6 +28,7 @@ class ITunesFeed(Rss201rev2Feed):
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
         handler.addQuickElement("pubDate", rfc2822_date(self.latest_post_date()))
+        handler.addQuickElement('itunes:new-feed-url', self.feed['feed_url'])
         handler.addQuickElement('itunes:summary', self.feed['description'])
         handler.addQuickElement('itunes:subtitle', truncatechars(self.feed['description'], 49))
         handler.addQuickElement('itunes:author', self.feed['author_name'])
