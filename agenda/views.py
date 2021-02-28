@@ -8,9 +8,11 @@ from django.shortcuts import get_object_or_404
 from django.template.defaultfilters import truncatechars, slugify
 from django.utils import translation
 from django.utils.feedgenerator import Rss201rev2Feed, rfc2822_date
+from wagtail.images.models import Image
 
 from agenda.models import Edition, Event
-from common.templatetags.common_tags import get_featured_image_url, unrich_text
+from common.templatetags.common_tags import unrich_text
+from common.utils import RenderWithContext
 
 
 class ITunesFeed(Rss201rev2Feed):
@@ -59,6 +61,15 @@ def _merge_multi_lang(obj, base_field_name):
         if hasattr(obj, field_name) and getattr(obj, field_name):
             texts.append('[{}] {}'.format(lang.upper(), unrich_text(getattr(obj, field_name))))
     return ' \n'.join(texts)
+
+
+def _podcast_image(context, img):
+    if isinstance(img, RenderWithContext):
+        img = img.render(context)
+    if isinstance(img, Image):
+        rendition = img.get_rendition('fill-1500x1500|format-jpeg|jpegquality-70')
+        return context['request'].build_absolute_uri(rendition.url)
+    return ''
 
 
 class EditionPodcastFeedView(Feed):
@@ -125,7 +136,7 @@ class EditionPodcastFeedView(Feed):
             'explicit': 'no',
             'owner_name': 'SFI Academic IT Festival',
             'owner_email': 'podcast@sfi.pl',
-            'image_url': get_featured_image_url(self.context, obj.get_featured_image()),
+            'image_url': _podcast_image(self.context, obj.get_featured_image()),
             'itunes_category': 'Technology',
         }
 
@@ -133,5 +144,5 @@ class EditionPodcastFeedView(Feed):
         return {
             'explicit': 'no',
             'duration': str(item.audio_recording.duration_seconds),
-            'image_url': get_featured_image_url(self.context, item.get_featured_image()),
+            'image_url': _podcast_image(self.context, item.get_featured_image()),
         }
