@@ -1,6 +1,14 @@
 {% extends "common/page.html" %}
 {% load wagtailcore_tags %}
 
+{% block head %}
+    {{ block.super }}
+    {% if page.generate_podcast_feed %}
+        <link type="application/rss+xml" rel="alternate" title="{{ page.title }}"
+              href="{% url 'feeds_podcast' page.slug_pl %}"/>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     {% include 'agenda/partials/edition_header.html' %}
 

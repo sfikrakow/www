@@ -1,10 +1,8 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import RedirectView
-
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
@@ -21,7 +19,7 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
     path('sitemap.xml', sitemap),
     path('contact_form/', ContactFormView.as_view()),
-    path('feeds/podcasts/<slug:slug>/', EditionPodcastFeedView()),
+    path('feeds/podcasts/<slug:slug>/', EditionPodcastFeedView(), name='feeds_podcast'),
 ]
 
 if settings.DEBUG:
