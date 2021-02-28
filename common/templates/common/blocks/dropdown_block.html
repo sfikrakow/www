@@ -1,7 +1,8 @@
 {% load common_tags %}
 {% load wagtailcore_tags %}
 
-<div class="dropdown">
-    <a href="#" class="dropdown__title">{% fa_icon 'fas fa-caret-down' 'dropdown__icon' %} {{ value.title }}</a>
+<div class="dropdown" tabindex="0">
+    <a href="#" class="dropdown__title"
+       tabindex="-1">{% fa_icon 'fas fa-caret-down' 'dropdown__icon' %} {{ value.title }}</a>
     <div class="dropdown__content">{{ value.content | richtext }}</div>
 </div>
