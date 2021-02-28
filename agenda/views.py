@@ -50,7 +50,7 @@ class ITunesFeed(Rss201rev2Feed):
         handler.addQuickElement('itunes:subtitle', truncatechars(item['description'], 49))
         handler.addQuickElement('itunes:duration', item['duration'])
         handler.addQuickElement('itunes:explicit', item['explicit'])
-        handler.addQuickElement('itunes:image', attrs={'href': self.feed['image_url']})
+        handler.addQuickElement('itunes:image', attrs={'href': item['image_url']})
         handler.addQuickElement('itunes:author', self.feed['author_name'])
 
 

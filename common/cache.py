@@ -51,7 +51,7 @@ class CacheEntry:
     created_date: datetime
 
 
-PAGE_CACHE_URLS = ('/en/', '/pl/')
+PAGE_CACHE_URLS = ('/en/', '/pl/', '/feeds/')
 
 
 class FetchPageFromCacheMiddleware:
