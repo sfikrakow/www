@@ -170,13 +170,19 @@ class ThemeSettings(BaseSetting, InvalidateCacheMixin):
 @register_snippet
 class AudioFile(models.Model):
     file = models.FileField(verbose_name=_('recording file'))
-    mime_type = models.CharField(max_length=64, blank=True, null=True)
-    duration_seconds = models.IntegerField(blank=True, null=True)
+    mime_type = models.CharField(max_length=64, blank=True, null=True, verbose_name=_('mime type'),
+                                 help_text=_('should be detected automatically'))
+    duration_seconds = models.IntegerField(blank=True, null=True, verbose_name=_('duration in seconds'),
+                                           help_text=_('should be detected automatically'))
+    modification_date = models.DateTimeField(auto_now=True, null=True)
+    guid_override = models.CharField(max_length=200, blank=True, null=True, verbose_name=_('override global unique id'),
+                                     help_text=_('leave empty unless you know what you are doing'))
 
     panels = [
         FieldPanel('file'),
         FieldPanel('mime_type', widget=forms.TextInput(attrs={'readonly': 'readonly'})),
         FieldPanel('duration_seconds', widget=forms.NumberInput(attrs={'readonly': 'readonly'})),
+        FieldPanel('guid_override')
     ]
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):

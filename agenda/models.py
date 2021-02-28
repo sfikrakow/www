@@ -181,6 +181,8 @@ class Edition(SFIPage):
         ('raw_html', blocks.RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('edition footer'))
 
+    generate_podcast_feed = models.BooleanField(default=False, verbose_name=_('generate podcast feed'))
+
     def get_edition_footer(self):
         return self.edition_footer
 
@@ -191,6 +193,10 @@ class Edition(SFIPage):
         ImageChooserPanel('default_featured_image'),
         InlinePanel('event_categories', label='Event categories'),
         StreamFieldPanel('edition_footer'),
+    ]
+
+    settings_panels = SFIPage.settings_panels + [
+        FieldPanel('generate_podcast_feed')
     ]
 
     parent_page_types = ['EditionIndex']
@@ -234,7 +240,7 @@ class Category(InvalidateCacheMixin, models.Model):
     panels = [
         FieldPanel('name'),
         FieldPanel('icon'),
-        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'}))
+        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60px'}))
     ]
 
     def __str__(self):
