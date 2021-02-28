@@ -14,7 +14,7 @@
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
-    flex-basis: 18ch;
+    flex-basis: 0;
     flex-shrink: 0;
     text-align: center;
     color: $page_color_4;
@@ -108,7 +108,7 @@
     &__title {
       margin-bottom: 0;
       text-align: right;
-      flex-basis: 0;
+      flex-basis: 20ch;
     }
 
     &__content {
