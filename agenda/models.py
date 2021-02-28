@@ -269,7 +269,7 @@ class EventIndex(EditionSubpage):
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('reversed_order'),
-        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60'})),
+        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60px'})),
     ]
 
     def get_context(self, request, *args, **kwargs):

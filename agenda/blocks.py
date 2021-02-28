@@ -14,7 +14,7 @@ class AgendaBlock(StructBlock):
 
 
 class EventIndexBlock(StructBlock):
-    index = PageChooserBlock(page_type=['agenda.EventIndex'])
+    index = PageChooserBlock(page_type=['agenda.EventIndex', 'agenda.Edition'])
     shown_posts = IntegerBlock(min_value=1)
 
     def get_context(self, value, parent_context=None):
