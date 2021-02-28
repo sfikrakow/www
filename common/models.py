@@ -170,6 +170,7 @@ class ThemeSettings(BaseSetting, InvalidateCacheMixin):
 @register_snippet
 class AudioFile(models.Model):
     file = models.FileField(verbose_name=_('recording file'))
+    explicit_content = models.BooleanField(default=False, verbose_name=_('explicit content'))
     mime_type = models.CharField(max_length=64, blank=True, null=True, verbose_name=_('mime type'),
                                  help_text=_('should be detected automatically'))
     duration_seconds = models.IntegerField(blank=True, null=True, verbose_name=_('duration in seconds'),
@@ -180,6 +181,7 @@ class AudioFile(models.Model):
 
     panels = [
         FieldPanel('file'),
+        FieldPanel('explicit_content'),
         FieldPanel('mime_type', widget=forms.TextInput(attrs={'readonly': 'readonly'})),
         FieldPanel('duration_seconds', widget=forms.NumberInput(attrs={'readonly': 'readonly'})),
         FieldPanel('guid_override')

@@ -143,7 +143,7 @@ class EditionPodcastFeedView(Feed):
 
     def item_extra_kwargs(self, item):
         return {
-            'explicit': 'no',
+            'explicit': 'yes' if item.audio_recording.explicit_content else 'no',
             'duration': str(item.audio_recording.duration_seconds),
             'image_url': _podcast_image(self.context, item.get_featured_image()),
         }
