@@ -9,6 +9,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from agenda.views import EditionPodcastFeedView
+from common.views import sitemap_index
 from forms.views import ContactFormView
 
 urlpatterns = [
@@ -17,9 +18,9 @@ urlpatterns = [
     path('django-admin/', admin.site.urls),
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
-    path('sitemap.xml', sitemap),
     path('contact_form/', ContactFormView.as_view()),
     path('feeds/podcasts/<slug:slug>/', EditionPodcastFeedView(), name='feeds_podcast'),
+    path('sitemap.xml', sitemap_index)
 ]
 
 if settings.DEBUG:
@@ -31,6 +32,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = urlpatterns + i18n_patterns(
+    path('sitemap.xml', sitemap),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.db import models
 from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
+# noinspection PyProtectedMember
 from django.utils.cache import get_conditional_response, _generate_cache_key
 from django.utils.http import http_date
 
@@ -111,7 +112,7 @@ class FetchPageFromCacheMiddleware:
                 hasattr(request, 'user') and request.user.is_authenticated)
 
 
-# noinspection PyProtectedMember,PyUnresolvedReferences
+# noinspection PyProtectedMember
 class UpdatePageCacheMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response

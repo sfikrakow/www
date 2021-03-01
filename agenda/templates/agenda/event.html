@@ -38,7 +38,7 @@
                 {% trans 'Sponsor' %}
             </div>
             <div class="event-info__content">
-                <a href="{{ page.sponsor.link }}" rel="noreferrer noopener" target="_blank"
+                <a href="{{ page.sponsor.link|default:'#' }}" rel="noreferrer noopener" target="_blank"
                    class="event-header_details_value event-header_details_value--link">
                     {% if page.sponsor.logo %}
                         {% responsive_img page.sponsor.logo 'max-500x100' 'event-header_details_value--image-link' %}
