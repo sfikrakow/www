@@ -19,7 +19,7 @@ urlpatterns = [
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('contact_form/', ContactFormView.as_view()),
-    path('feeds/podcasts/<slug:slug>/', EditionPodcastFeedView(), name='feeds_podcast'),
+    path('feeds/podcasts/<slug:slug>/feed.rss', EditionPodcastFeedView(), name='feeds_podcast'),
     path('sitemap.xml', sitemap_index)
 ]
 
