@@ -124,7 +124,7 @@ class EditionPodcastFeedView(Feed):
         return _merge_multi_lang(item, 'content')
 
     def item_pubdate(self, item):
-        return max(item.audio_recording.modification_date, item.last_published_at)
+        return item.date
 
     item_guid_is_permalink = False
     language = 'pl'
