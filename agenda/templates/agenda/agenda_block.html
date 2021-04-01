@@ -1,1 +1,7 @@
-{# TODO #}
+{% load common_tags %}
+<!-- TODO -->
+<div class="agenda">
+  {% for post in posts %}
+      <p>{{ post.title }}</p>
+  {% endfor %}
+</div>

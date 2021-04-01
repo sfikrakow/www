@@ -18,7 +18,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
-from agenda.blocks import EventIndexBlock, EventScheduleBlock
+from agenda.blocks import AgendaBlock, EventIndexBlock, EventScheduleBlock
 from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, \
     MapBlock
 from common.cache import InvalidateCacheMixin
@@ -39,7 +39,8 @@ class Sponsor(InvalidateCacheMixin, models.Model):
         related_name='+',
         verbose_name=_('logo')
     )
-    link = models.URLField(max_length=500, null=True, blank=True, verbose_name=_('link'))
+    link = models.URLField(max_length=500, null=True,
+                           blank=True, verbose_name=_('link'))
 
     panels = [
         FieldPanel('name'),
@@ -74,7 +75,8 @@ class SpeakerIndex(SFIPage):
 
 class Speaker(SFIPage):
     content = RichTextField(verbose_name=_('content'))
-    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
+    sponsor = models.ForeignKey(
+        Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('content'),
@@ -89,7 +91,8 @@ class Speaker(SFIPage):
         by_edition = defaultdict(list)
         for event_speaker in self.event_speakers.all():
             if event_speaker.event.live:
-                by_edition[event_speaker.event.get_edition()].append(event_speaker.event)
+                by_edition[event_speaker.event.get_edition()].append(
+                    event_speaker.event)
         return sorted(by_edition.items(), key=lambda x: x[0].start_date if x[0].start_date else timezone.now(),
                       reverse=True)
 
@@ -110,7 +113,8 @@ class SocialLinkTypes(models.TextChoices):
 
 
 class SocialLink(InvalidateCacheMixin, models.Model):
-    speaker = ParentalKey(Speaker, on_delete=models.CASCADE, related_name='social_links')
+    speaker = ParentalKey(Speaker, on_delete=models.CASCADE,
+                          related_name='social_links')
     type = models.CharField(max_length=16, choices=SocialLinkTypes.choices, default=SocialLinkTypes.OTHER,
                             verbose_name=_('type'))
     link = models.URLField(max_length=512, verbose_name=_('link'))
@@ -136,7 +140,8 @@ class EditionIndex(SFIPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['posts'] = Edition.objects.live().public().descendant_of(self).order_by('-start_date', 'title')
+        context['posts'] = Edition.objects.live().public().descendant_of(
+            self).order_by('-start_date', 'title')
         return context
 
     class Meta:
@@ -145,10 +150,13 @@ class EditionIndex(SFIPage):
 
 
 class Edition(SFIPage):
-    start_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition start date'))
-    end_date = models.DateTimeField(null=True, blank=True, verbose_name=_('edition end date'))
+    start_date = models.DateTimeField(
+        null=True, blank=True, verbose_name=_('edition start date'))
+    end_date = models.DateTimeField(
+        null=True, blank=True, verbose_name=_('edition end date'))
 
     content = StreamField([
+        ('agenda', AgendaBlock()),
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('event_index', EventIndexBlock()),
@@ -181,7 +189,8 @@ class Edition(SFIPage):
         ('raw_html', blocks.RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('edition footer'))
 
-    generate_podcast_feed = models.BooleanField(default=False, verbose_name=_('generate podcast feed'))
+    generate_podcast_feed = models.BooleanField(
+        default=False, verbose_name=_('generate podcast feed'))
 
     def get_edition_footer(self):
         return self.edition_footer
@@ -229,7 +238,8 @@ class EditionSubpage(SFIPage):
 
 
 class Category(InvalidateCacheMixin, models.Model):
-    edition = ParentalKey(Edition, on_delete=models.CASCADE, related_name='event_categories', verbose_name=_('edition'))
+    edition = ParentalKey(Edition, on_delete=models.CASCADE,
+                          related_name='event_categories', verbose_name=_('edition'))
     name = models.CharField(max_length=100, verbose_name=_('name'))
     icon = models.CharField(max_length=300, verbose_name=_('icon'))
     color = models.CharField(max_length=7,
@@ -242,7 +252,8 @@ class Category(InvalidateCacheMixin, models.Model):
     panels = [
         FieldPanel('name'),
         FieldPanel('icon'),
-        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60px'}))
+        FieldPanel('color', widget=TextInput(
+            attrs={'type': 'color', 'style': 'height:60px'}))
     ]
 
     def __str__(self):
@@ -265,17 +276,21 @@ class EventIndex(EditionSubpage):
                                  regex=r'^#([0-9a-fA-F]{6})$',
                                  message=_('Color must be in hex'),
                              ), ], verbose_name=_('color'))
-    reversed_order = models.BooleanField(default=False, verbose_name=_('reversed index order'))
+    reversed_order = models.BooleanField(
+        default=False, verbose_name=_('reversed index order'))
 
     content_panels = SFIPage.content_panels + [
         FieldPanel('reversed_order'),
-        FieldPanel('color', widget=TextInput(attrs={'type': 'color', 'style': 'height:60px'})),
+        FieldPanel('color', widget=TextInput(
+            attrs={'type': 'color', 'style': 'height:60px'})),
     ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        events = Event.objects.live().public().descendant_of(self).order_by('-date' if self.reversed_order else 'date')
-        context['posts'] = paginate(events, request, EventIndex.EVENTS_PER_PAGE)
+        events = Event.objects.live().public().descendant_of(
+            self).order_by('-date' if self.reversed_order else 'date')
+        context['posts'] = paginate(
+            events, request, EventIndex.EVENTS_PER_PAGE)
         return context
 
     def get_edition(self):
@@ -295,13 +310,16 @@ class LanguageChoice(models.TextChoices):
 class Event(EditionSubpage):
     content = RichTextField(verbose_name=_('content'))
     date = models.DateTimeField(null=True, blank=True, verbose_name=_('date'))
-    duration_minutes = models.IntegerField(null=True, blank=True, verbose_name=_('duration in minutes'))
+    duration_minutes = models.IntegerField(
+        null=True, blank=True, verbose_name=_('duration in minutes'))
     event_category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL,
                                        verbose_name=_('category'))
     language = models.CharField(max_length=5, choices=LanguageChoice.choices, null=True, blank=True,
                                 verbose_name=_('language'))
-    sponsor = models.ForeignKey(Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
-    recording_link = models.URLField(max_length=512, null=True, blank=True, verbose_name=_('link to recording'))
+    sponsor = models.ForeignKey(
+        Sponsor, null=True, blank=True, on_delete=models.PROTECT, verbose_name=_('sponsor'))
+    recording_link = models.URLField(
+        max_length=512, null=True, blank=True, verbose_name=_('link to recording'))
     audio_recording = models.ForeignKey(AudioFile, null=True, blank=True, on_delete=models.SET_NULL,
                                         verbose_name=_('audio recording file'))
 
@@ -343,7 +361,8 @@ class Event(EditionSubpage):
 
 
 class EventSpeaker(InvalidateCacheMixin, models.Model):
-    event = ParentalKey(Event, on_delete=models.CASCADE, related_name='event_speakers')
+    event = ParentalKey(Event, on_delete=models.CASCADE,
+                        related_name='event_speakers')
     speaker = models.ForeignKey(Speaker, null=True, on_delete=models.PROTECT, verbose_name=_('speaker'),
                                 related_name='event_speakers')
 
