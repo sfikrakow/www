@@ -1,7 +1,21 @@
 {% load common_tags %}
 <!-- TODO -->
+
 <div class="agenda">
-  {% for post in posts %}
-      <p>{{ post.title }}</p>
-  {% endfor %}
+    {% for day in agenda %}
+        <p>day: {{ day.date }}</p>
+        {% for row in day.rows %}
+            <p>row: {{ row.start_time }}, {{ row.duration_minutes }}</p>
+            {% for column in row.columns %}
+                <p>column</p>
+                {% for entry in column.entries %}
+                    {% if entry.is_break %}
+                        <p>break: {{ entry }}</p>
+                    {% else %}
+                        <p>event: {{ entry }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
 </div>
