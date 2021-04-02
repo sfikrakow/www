@@ -105,6 +105,12 @@ class EditionPodcastFeedView(Feed):
     def item_link(self, item):
         return item.url
 
+    def item_title(self, item):
+        title = str(item.title)
+        if item.event_speakers.count() > 0:
+            title = ', '.join(ev.speaker.title for ev in item.event_speakers.all()) + ' - ' + title
+        return super().item_title(title)
+
     def item_guid(self, item):
         if item.audio_recording.guid_override:
             return item.audio_recording.guid_override
@@ -129,7 +135,7 @@ class EditionPodcastFeedView(Feed):
     item_guid_is_permalink = False
     language = 'pl'
     feed_copyright = 'All rights reserved'
-    ttl = 60
+    ttl = 300
     author_name = 'SFI Academic IT Festival'
 
     def feed_extra_kwargs(self, obj):

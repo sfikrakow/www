@@ -104,7 +104,7 @@ def get_description(page):
     if page.search_description:
         return page.search_description
     elif hasattr(page, 'content') and isinstance(page.content, str) and not page.content.startswith('{'):
-        return truncatechars(unrich_text(page.content), 280)
+        return mark_safe(truncatechars(unrich_text(page.content), 150))
     else:
         return ''
 
