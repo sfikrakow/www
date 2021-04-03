@@ -116,7 +116,7 @@ class AgendaBlock(StructBlock):
         merged: List[List[List[AgendaEvent]]] = []
         while len(first_fit) > 0:
             current = first_fit.popleft()
-            while len(first_fit) > 0 and len(current) == len(first_fit[-1]):
+            while len(first_fit) > 0 and len(current) == len(first_fit[0]):
                 nxt = first_fit.popleft()
                 for i in range(len(current)):
                     current[i] += nxt[i]
