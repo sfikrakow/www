@@ -64,9 +64,9 @@ class AgendaRow(AgendaEntry):
 
 
 @dataclass(frozen=True)
-class AgendaDay:
-    date: datetime.date
+class AgendaDay(AgendaEntry):
     rows: List[AgendaRow]
+    date: datetime.date
 
 
 class AgendaBlock(StructBlock):
@@ -74,7 +74,8 @@ class AgendaBlock(StructBlock):
     index = PageChooserBlock(page_type=['agenda.EventIndex', 'agenda.Edition'])
 
     @staticmethod
-    def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time) -> List[AgendaRow]:
+    def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time) -> \
+            Tuple[datetime.time, int, List[AgendaRow]]:
         @dataclass(frozen=True, init=False)
         class IntervalEvent:
             time: datetime.time
@@ -151,7 +152,7 @@ class AgendaBlock(StructBlock):
                 row.append(AgendaColumn(column))
             processed.append(AgendaRow(last_block_end, _time2min(block_end) - _time2min(last_block_end), row))
             last_block_end = block_end
-        return processed
+        return processed[0].start_time, sum(r.duration_minutes for r in processed), processed
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
@@ -179,8 +180,10 @@ class AgendaBlock(StructBlock):
                                                                       sorted(days_set.items(), key=itemgetter(0))]
 
         earliest_start = min(e[1][0].start_time for e in days_events)
-        days: List[AgendaDay] = [AgendaDay(date, self._create_event_stream(ev, earliest_start)) for date, ev in
-                                 days_events]
+        streams: List[Tuple[datetime.date, Tuple[datetime.time, int, List[AgendaRow]]]] = [
+            (d, self._create_event_stream(ev, earliest_start)) for d, ev in days_events]
+        days: List[AgendaDay] = [AgendaDay(start_time, duration, stream, date)
+                                 for date, (start_time, duration, stream) in streams]
         context['agenda'] = days
         return context
 
