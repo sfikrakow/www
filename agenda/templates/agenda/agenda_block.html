@@ -3,19 +3,41 @@
 
 <div class="agenda">
     {% for day in agenda %}
-        <p>day: {{ day.date }}</p>
+        <div class="agenda__day">day: {{ day.date }}
         {% for row in day.rows %}
-            <p>row: {{ row.start_time }}, {{ row.duration_minutes }}</p>
+           <div class="agenda__row">{# row: {{ row.start_time }}, {{ row.duration_minutes }}#}
             {% for column in row.columns %}
-                <p>column</p>
+                <div class="agenda__column">{#column#}
                 {% for entry in column.entries %}
                     {% if entry.is_break %}
-                        <p>break: {{ entry }}</p>
+                        <div class="agenda__break" style="height: {{ entry.duration_minutes }}px">break: {{ entry }}</div>
                     {% else %}
-                        <p>event: {{ entry }}</p>
+                        <div class="agenda__event" style="height: {{ entry.duration_minutes }}px">event: {{ entry}}</div>
                     {% endif %}
                 {% endfor %}
+                </div>
             {% endfor %}
+            </div>
         {% endfor %}
+        </div>
     {% endfor %}
 </div>
+
+{#<div class="agenda">#}
+{#    {% for day in agenda %}#}
+{#        <div class="agenda__day">day: {{ day.date }}</div>#}
+{#        {% for row in day.rows %}#}
+{#            <div class="agenda__row">row: {{ row.start_time }}, {{ row.duration_minutes }}</div>#}
+{#            {% for column in row.columns %}#}
+{#                <div class="agenda__column">column</div>#}
+{#                {% for entry in column.entries %}#}
+{#                    {% if entry.is_break %}#}
+{#                        <div class="agenda__break">break: {{ entry }}</div>#}
+{#                    {% else %}#}
+{#                        <div class="agenda__event">event: {{ entry }}</div>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
+{#    {% endfor %}#}
+{#</div>#}
