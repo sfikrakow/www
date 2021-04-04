@@ -71,17 +71,17 @@ const agendaHandler = (event) => {
 
   event.target.classList.add('active');
   agendaDays.forEach((agendaDay) => {
-    agendaDay.style.opacity = 0;
+    agendaDay.style.display = 'none';
   });
 
   const index = Number(event.target.dataset.index);
-  agendaDays[index].style.opacity = 1;
+  agendaDays[index].style.display = 'block';
 }
 const agendaButtons = document.querySelectorAll('.agenda__navigation-day');
 const agendaDays = document.querySelectorAll('.agenda__day');
 
 // Make 1st day visible by default
 agendaButtons[0].classList.add('active');
-agendaDays[0].style.opacity = 1;
+agendaDays[0].style.display = 'block';
 
 agendaButtons.forEach((agendaButton) => agendaButton.addEventListener('click', agendaHandler));
