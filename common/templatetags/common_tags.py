@@ -126,7 +126,7 @@ def page_languages(page):
 
 
 @register.simple_tag
-def fa_icon(fa_icon_string: str, icon_class: str = ''):
+def fa_icon(fa_icon_string: str, icon_class: str = '', icon_style: str = ''):
     match = re.fullmatch(r'^(\w{3}) fa-([A-Za-z-]+)$', fa_icon_string)
     if not match:
         return ''
@@ -142,6 +142,7 @@ def fa_icon(fa_icon_string: str, icon_class: str = ''):
     path = os.path.join(icons_path, 'static', 'fontawesome_free', 'svgs', icon_type, icon_name + '.svg')
     try:
         with open(path, 'r') as file:
-            return mark_safe('<span class="fa-icon {}">{}</span>'.format(icon_class, file.read()))
+            return mark_safe(
+                '<span class="fa-icon {}" style="{}">{}</span>'.format(icon_class, icon_style, file.read()))
     except OSError:
         return ''
