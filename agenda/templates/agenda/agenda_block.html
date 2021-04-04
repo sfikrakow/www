@@ -7,8 +7,7 @@
             <div class="agenda__navigation-day" data-index={{ forloop.counter0 }}>{{ day.date }}</div>
         {% endfor %}
     </div>
-{# TODO Change it to relative height #}
-    <div class="agenda__container " style="height: 500px">
+    <div class="agenda__container ">
         {% for day in agenda %}
             <div class="agenda__day" data-index={{ forloop.counter0 }}>
             {% for row in day.rows %}
@@ -17,11 +16,20 @@
                     <div class="agenda__column">
                     {% for entry in column.entries %}
                         {% if entry.is_break %}
-                            <div class="agenda__break" style="height: {{ entry.duration_minutes }}px">break: {{ entry }}</div>
+                            <div class="agenda__break" style="min-height: {{ entry.duration_minutes }}px"></div>
                         {% else %}
                             <div class="agenda__event" style="
-                                    height: {{ entry.duration_minutes }}px;
-                                    background-color: {{ entry.bg_color_hex }}">{{ entry.title }}</div>
+                                    height: calc({{ entry.duration_minutes }}px + 100px);
+                                    background-color: {{ entry.bg_color_hex }}">
+                                <div class="agenda__event-info">
+                                    <p>{{ entry.start_time }}</p>
+                                    <p>{{ entry.group_icon }}</p>
+                                </div>
+                                <p class="agenda__event-title">{{ entry.title }}</p>
+                                {% for speaker in entry.speakers %}
+                                    <p class="agenda__event-speaker">{{ speaker }}</p>
+                                {% endfor %}
+                            </div>
                         {% endif %}
                     {% endfor %}
                     </div>
