@@ -1,10 +1,36 @@
-.agenda {
+.agenda__navigation {
   display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-day {
+    padding: 10px;
+    margin: 0 5px;
+    background-color: $page_color_5;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &-day.active {
+    background-color: $page_color_4;
+  }
+}
+
+.agenda__container {
+  position: relative;
   margin: 0 auto;
   justify-content: space-around;
 
   .agenda__day {
-
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.3s;
   }
 
   .agenda__row {
@@ -24,5 +50,8 @@
     border: white 2px solid;
     flex-grow: 1;
     flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
