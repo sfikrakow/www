@@ -63,11 +63,6 @@ function submitContactForm(e) {
 contactForm.addEventListener('submit', submitContactForm);
 document.getElementById('contact-form-button').type = 'submit';
 
-const agendaButtons = document.querySelectorAll('.agenda__navigation-day');
-const agendaDays = document.querySelectorAll('.agenda__day');
-
-console.log(agendaButtons);
-console.log(agendaDays);
 
 const agendaHandler = (event) => {
   agendaButtons.forEach((agendaButton) => {
@@ -82,5 +77,11 @@ const agendaHandler = (event) => {
   const index = Number(event.target.dataset.index);
   agendaDays[index].style.opacity = 1;
 }
+const agendaButtons = document.querySelectorAll('.agenda__navigation-day');
+const agendaDays = document.querySelectorAll('.agenda__day');
+
+// Make 1st day visible by default
+agendaButtons[0].classList.add('active');
+agendaDays[0].style.opacity = 1;
 
 agendaButtons.forEach((agendaButton) => agendaButton.addEventListener('click', agendaHandler));
