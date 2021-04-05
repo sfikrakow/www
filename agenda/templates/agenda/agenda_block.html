@@ -28,9 +28,7 @@
                                     {%endif%}
                                 </div>
                                 <p class="agenda__event-title">{{ entry.title }}</p>
-                                {% for speaker in entry.speakers %}
-                                    <p class="agenda__event-speaker">{{ speaker }}</p>
-                                {% endfor %}
+                                <p class="agenda__event-speaker">{{ entry.speakers }}</p>
                             </div>
                         {% endif %}
                     {% endfor %}

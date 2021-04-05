@@ -40,7 +40,6 @@
 
   .agenda__column {
     width: 50%;
-    flex-shrink: 1;
   }
 
   .agenda__break {
@@ -63,7 +62,7 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-
+      font-size: 16px;
       p {
         margin: 0;
       }

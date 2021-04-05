@@ -41,7 +41,7 @@ class AgendaEntry:
 @dataclass(frozen=True)
 class AgendaEvent(AgendaEntry):
     title: str
-    speakers: List[str]
+    speakers: str
     bg_color_hex: str
     group_icon: Optional[str] = None
     group_icon_color_hex: Optional[str] = None
@@ -171,7 +171,7 @@ class AgendaBlock(StructBlock):
                 start_time=timezone.localtime(e.date).time(),
                 duration_minutes=e.duration_minutes,
                 title=e.title,
-                speakers=[s.speaker.title for s in e.event_speakers.all()],
+                speakers=', '.join([s.speaker.title for s in e.event_speakers.all()]),
                 bg_color_hex=e.index().color,
                 group_icon=e.event_category.icon if e.event_category else None,
                 group_icon_color_hex=e.event_category.color if e.event_category else None,
