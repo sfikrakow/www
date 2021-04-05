@@ -1,15 +1,15 @@
 {% load common_tags %}
 
-<div class="agenda">
+<div class="agenda container-wide">
     <div class="agenda__navigation">
         {% for day in agenda %}
             <div class="agenda__navigation-day"
                  data-index={{ forloop.counter0 }}>{{ day.date|date:'l' }}, {{ day.date|date }}</div>
         {% endfor %}
     </div>
-    <div class="agenda__container ">
+    <div class="agenda__container">
         {% for day in agenda %}
-            <div class="agenda__day" id="agenda__day-desktop" data-index={{ forloop.counter0 }}>
+            <div class="agenda__day" data-index={{ forloop.counter0 }}>
                 <div class="agenda__navigation-day-desktop"
                      data-index={{ forloop.counter0 }}>{{ day.date|date:'l' }}, {{ day.date|date }}</div>
                 {% for row in day.rows %}
@@ -34,8 +34,8 @@
                                                 </p>
                                             </div>
                                             <div class="agenda__event-details">
-                                                <p class="agenda__event-title"
-                                                   id="agenda__event-title-desktop">{{ entry.title }}</p>
+                                                <p class="agenda__event-title agenda__event-title-desktop"
+                                                   >{{ entry.title }}</p>
                                                 <p class="agenda__event-speakers">{{ entry.speakers }}</p>
                                             </div>
 

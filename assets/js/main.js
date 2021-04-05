@@ -94,16 +94,3 @@ agendaButtons[0].classList.add('active');
 agendaDays[0].style.display = 'block';
 
 agendaButtons.forEach((agendaButton) => agendaButton.addEventListener('click', agendaHandler));
-
-
-// The purpose of this code is to make the events that are the only ones at a given time
-// take 100% of their container. Rest should take % that is in proportion to the quantity of events
-// at a given time. I had to filter childNodes to remove everything that is not the div.agenda__column so I can count
-// only columns and not whitespaces in the code which are text nodes in childNodes array.
-document.querySelectorAll('.agenda__row').forEach((row, index) => {
-  const columns = [...row.childNodes].filter((child) => child.classList?.contains('agenda__column'));
-
-  columns.forEach((column) => {
-    column.style.width = `${100 / columns.length}%`;
-  });
-})

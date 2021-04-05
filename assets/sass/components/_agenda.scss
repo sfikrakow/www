@@ -31,11 +31,13 @@
 .agenda__container {
   display: flex;
   margin: 0 auto;
-  justify-content: space-around;
+  justify-content: center;
 
   .agenda__day {
     display: none;
-    max-width: 90vw;
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 50rem;
   }
 
   .agenda__row {
@@ -44,7 +46,8 @@
   }
 
   .agenda__column {
-    width: 50%;
+    flex-grow: 1;
+    flex-basis: 0;
   }
 
   .agenda__break {
@@ -56,7 +59,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 10px;
     margin: 1px;
     text-align: center;
     text-decoration: none;
@@ -64,7 +67,7 @@
     transition: filter 0.2s ease-in-out;
 
     &:hover {
-      filter: brightness(1.2);
+      filter: brightness(1.4);
     }
 
     &-info {
@@ -94,24 +97,18 @@
     &-title {
       width: 100%;
       margin: 0.3em 0;
-
-      // WRAP LOGIC BELOW
-      //white-space: nowrap;
-      //overflow: hidden;
-      //text-overflow: ellipsis;
-      //resize: horizontal;
+      font-size: 1rem;
     }
 
     &-speakers {
       margin: 0.3em 0;
+      font-size: 0.8rem;
     }
   }
 }
 
 @include breakpoint(laptop) {
-
   .agenda {
-    max-width: 80%;
     margin: 0 auto;
 
     &__navigation {
@@ -129,14 +126,13 @@
     }
   }
 
-  #agenda__day-desktop {
-    display: block;
-    flex-basis: 33%;
-  }
-}
+  .agenda__container {
+    .agenda__event {
+      padding: 10px 15px;
+    }
 
-@include breakpoint(fhd) {
-  #agenda__event-title-desktop {
-    font-size: 15px;
+    .agenda__day {
+      display: block !important;
+    }
   }
 }
