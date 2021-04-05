@@ -16,11 +16,16 @@
     transition: 0.3s;
     font-size: 12px;
     cursor: pointer;
+    text-align: center;
   }
 
   &-day.active {
     background-color: $page_color_4;
   }
+}
+
+.agenda__navigation-day-desktop {
+  display: none;
 }
 
 .agenda__container {
@@ -58,7 +63,7 @@
 
     &-info {
       padding-top: 0;
-      margin-top: 5px;
+      //margin-top: 5px;
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -80,6 +85,40 @@
 
     &-speakers {
       margin-bottom: 0;
+      filter: brightness(65%);
     }
   }
 }
+
+ @include breakpoint(laptop) {
+
+   .agenda {
+     max-width: 80%;
+     margin: 0 auto;
+
+     &__navigation {
+       display: none;
+     }
+
+     &__navigation-day-desktop {
+       display: block;
+       text-align: center;
+       padding: 10px;
+       background-color: $page_color_5;
+       border-radius: 5px;
+       font-size: 16px;
+       margin: 7px 1px;
+     }
+   }
+
+   #agenda__day-desktop {
+     display: block;
+     flex-basis: 33%;
+   }
+ }
+
+ @include breakpoint(fhd) {
+    #agenda__event-title-desktop {
+     font-size: 15px;
+   }
+ }

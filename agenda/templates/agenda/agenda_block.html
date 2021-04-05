@@ -9,7 +9,8 @@
     </div>
     <div class="agenda__container ">
         {% for day in agenda %}
-            <div class="agenda__day" data-index={{ forloop.counter0 }}>
+            <div class="agenda__day" id="agenda__day-desktop" data-index={{ forloop.counter0 }}>
+            <div class="agenda__navigation-day-desktop" data-index={{ forloop.counter0 }}>{{ day.date }}</div>
             {% for row in day.rows %}
                <div class="agenda__row">
                 {% for column in row.columns %}
@@ -27,8 +28,8 @@
                                         {% fa_icon entry.group_icon icon_color=entry.group_icon_color_hex %}
                                     {%endif%}
                                 </div>
-                                <p class="agenda__event-title">{{ entry.title }}</p>
-                                <p class="agenda__event-speaker">{{ entry.speakers }}</p>
+                                <p class="agenda__event-title" id="agenda__event-title-desktop">{{ entry.title }}</p>
+                                <p class="agenda__event-speakers" >{{ entry.speakers }}</p>
                             </div>
                         {% endif %}
                     {% endfor %}
