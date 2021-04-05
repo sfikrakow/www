@@ -1,4 +1,7 @@
+{% load i18n %}
 {% load common_tags %}
+
+{% get_current_language as LANGUAGE_CODE %}
 
 <div class="agenda container-wide">
     <div class="agenda__navigation">
@@ -18,7 +21,7 @@
                             <div class="agenda__column">
                                 {% for entry in column.entries %}
                                     {% if entry.is_break %}
-                                        <div class="agenda__break"
+                                        <div class="agenda__break {% if entry.is_day_padding %}agenda__day-padding{% endif %}"
                                              style="height: calc({{ entry.duration_minutes }}px * 3);"></div>
                                     {% else %}
                                         <a href="{{ entry.url }}" class="agenda__event" style="
@@ -27,15 +30,17 @@
                                             <div class="agenda__event-info">
                                                 <p>{{ entry.start_time }}</p>
                                                 <p>
+                                                    {% if entry.language and entry.language != LANGUAGE_CODE %}
+                                                        {{ entry.language|upper }}
+                                                    {% endif %}
                                                     {% if entry.group_icon %}
                                                         {% fa_icon entry.group_icon icon_color=entry.group_icon_color_hex %}
                                                     {% endif %}
-                                                    {{ entry.language|default_if_none:''|upper }}
                                                 </p>
                                             </div>
                                             <div class="agenda__event-details">
                                                 <p class="agenda__event-title agenda__event-title-desktop"
-                                                   >{{ entry.title }}</p>
+                                                >{{ entry.title }}</p>
                                                 <p class="agenda__event-speakers">{{ entry.speakers }}</p>
                                             </div>
 
@@ -49,5 +54,14 @@
             </div>
         {% endfor %}
     </div>
+    {% if categories.count > 1 %}
+        <div class="agenda__legend">
+            <ul>
+                {% for category in categories %}
+                    <li>{% fa_icon category.icon icon_color=category.color %} - {{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </div>
 

@@ -1,20 +1,24 @@
 .agenda {
   font-weight: bold;
+  margin: 20px 0;
 }
 
 .agenda__navigation {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 
   &-day {
     padding: 10px;
-    margin: 0 5px;
+    margin: 5px;
+    max-width: 20rem;
+    width: 100%;
     background-color: $page_color_5;
     border-radius: 5px;
     transition: 0.3s;
-    font-size: 12px;
+    font-size: 1rem;
     cursor: pointer;
     text-align: center;
   }
@@ -54,6 +58,10 @@
     opacity: 0;
   }
 
+  .agenda__day-padding {
+    display: none;
+  }
+
   .agenda__event {
     border-radius: 10px;
     display: flex;
@@ -79,7 +87,7 @@
 
       & .fa-icon {
         font-size: 20px;
-        margin-right: 0.3em;
+        margin-left: 0.3em;
       }
 
       & p {
@@ -107,10 +115,36 @@
   }
 }
 
+.agenda__legend {
+  margin: 20px;
+  font-size: 1rem;
+  text-align: center;
+
+  & > ul {
+    border-radius: 10px;
+    display: flex;
+    max-width: 100rem;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: $page_color_7;
+    list-style: none;
+    flex-wrap: wrap;
+
+    & > li {
+      display: inline-block;
+      margin: 0.2rem 1rem;
+      white-space: nowrap;
+    }
+  }
+
+  & .fa-icon {
+    font-size: 1.2rem;
+  }
+}
+
 @include breakpoint(laptop) {
   .agenda {
-    margin: 0 auto;
-
     &__navigation {
       display: none;
     }
@@ -129,6 +163,10 @@
   .agenda__container {
     .agenda__event {
       padding: 10px 15px;
+    }
+
+    .agenda__day-padding {
+      display: block;
     }
 
     .agenda__day {

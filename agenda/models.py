@@ -149,7 +149,28 @@ class EditionIndex(SFIPage):
         verbose_name_plural = _('edition indexes')
 
 
-class Edition(SFIPage):
+class EditionSubpage(SFIPage):
+    @abstractmethod
+    def get_edition(self):
+        pass
+
+    @with_context
+    def get_featured_image(self, context):
+        if self.featured_image:
+            return self.featured_image
+        edition = self.get_edition()
+        if edition.default_featured_image:
+            return edition.default_featured_image
+        return edition.get_featured_image(context=context)
+
+    def get_edition_footer(self):
+        return self.get_edition().get_edition_footer()
+
+    class Meta:
+        abstract = True
+
+
+class Edition(EditionSubpage):
     start_date = models.DateTimeField(
         null=True, blank=True, verbose_name=_('edition start date'))
     end_date = models.DateTimeField(
@@ -195,6 +216,9 @@ class Edition(SFIPage):
     def get_edition_footer(self):
         return self.edition_footer
 
+    def get_edition(self):
+        return self
+
     content_panels = SFIPage.content_panels + [
         FieldPanel('start_date'),
         FieldPanel('end_date'),
@@ -214,27 +238,6 @@ class Edition(SFIPage):
     class Meta:
         verbose_name = _('edition')
         verbose_name_plural = _('editions')
-
-
-class EditionSubpage(SFIPage):
-    @abstractmethod
-    def get_edition(self):
-        pass
-
-    @with_context
-    def get_featured_image(self, context):
-        if self.featured_image:
-            return self.featured_image
-        edition = self.get_edition()
-        if edition.default_featured_image:
-            return edition.default_featured_image
-        return edition.get_featured_image(context=context)
-
-    def get_edition_footer(self):
-        return self.get_edition().get_edition_footer()
-
-    class Meta:
-        abstract = True
 
 
 class Category(InvalidateCacheMixin, models.Model):

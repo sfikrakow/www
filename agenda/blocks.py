@@ -6,6 +6,7 @@ from typing import List, Optional, Union, Tuple
 
 from django.utils import timezone
 from wagtail.core.blocks import StructBlock, PageChooserBlock, IntegerBlock
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
 import agenda.models
 
@@ -47,12 +48,13 @@ class AgendaEvent(AgendaEntry):
     bg_color_hex: str
     group_icon: Optional[str] = None
     group_icon_color_hex: Optional[str] = None
-    is_break = False
+    is_break: bool = False
 
 
 @dataclass(frozen=True)
 class AgendaBreak(AgendaEntry):
-    is_break = True
+    is_break: bool = True
+    is_day_padding: bool = False
 
 
 @dataclass(frozen=True)
@@ -71,95 +73,99 @@ class AgendaDay(AgendaEntry):
     date: datetime.date
 
 
+def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time
+                         ) -> Tuple[datetime.time, int, List[AgendaRow]]:
+    @dataclass(frozen=True, init=False)
+    class IntervalEvent:
+        time: datetime.time
+        event: AgendaEvent
+        is_end: bool = False
+
+        def __init__(self, time: datetime.time, event, is_end):
+            object.__setattr__(self, 'time', datetime.time(hour=time.hour, minute=time.minute, tzinfo=time.tzinfo))
+            object.__setattr__(self, 'event', event)
+            object.__setattr__(self, 'is_end', is_end)
+
+    # do a first fit on intervals to divide them into columns.
+    interval_events = [IntervalEvent(ev.start_time, ev, False) for ev in events] + [
+        IntervalEvent(ev.end_time, ev, True) for ev in events]
+    interval_events = sorted(interval_events, key=lambda x: x.time)
+    first_fit: deque[List[List[AgendaEvent]]] = deque([])
+    ev_idx = 0
+    open_intervals = 0
+    while ev_idx < len(interval_events):
+        columns: List[List[AgendaEvent]] = []
+        while True:
+            ev_interval = interval_events[ev_idx]
+            ev = ev_interval.event
+            ev_idx += 1
+            if ev_interval.is_end:
+                open_intervals -= 1
+            else:
+                open_intervals += 1
+                first_fit_col_id = next(
+                    (idx for idx, col in enumerate(columns) if col[-1].end_time_min <= ev.start_time_min), -1)
+                if first_fit_col_id >= 0:
+                    columns[first_fit_col_id].append(ev)
+                else:
+                    columns.append([ev])
+            if open_intervals == 0:
+                break
+        first_fit.append(columns)
+    # merge blocks with the same number of columns.
+    merged: List[List[List[AgendaEvent]]] = []
+    while len(first_fit) > 0:
+        current = first_fit.popleft()
+        while len(first_fit) > 0 and len(current) == len(first_fit[0]):
+            nxt = first_fit.popleft()
+            for i in range(len(current)):
+                current[i] += nxt[i]
+        merged.append(current)
+    # insert AgendaBreak between events in columns and pad columns to block length.
+    processed: List[AgendaRow] = []
+    last_block_end = stream_start_time
+    top_padding = True
+    for idx, block in enumerate(merged):
+        block_start = min(col[0].start_time for col in block)
+        block_end = max(col[-1].end_time for col in block)
+        row: List[AgendaColumn] = []
+        if block_start > last_block_end:
+            if len(block) != 1:
+                # more than one column - add padding row.
+                processed.append(AgendaRow(last_block_end, _time2min(block_start) - _time2min(last_block_end), [
+                    AgendaColumn([AgendaBreak(last_block_end, _time2min(block_start) - _time2min(last_block_end),
+                                              is_day_padding=top_padding)])
+                ]))
+                top_padding = False
+                last_block_end = block_start
+            else:
+                # single column - apply padding to the column itself.
+                block_start = last_block_end
+        for col in block:
+            column: List[Union[AgendaBreak, AgendaEvent]] = []
+            col_time = block_start
+            for ev in col:
+                if ev.start_time > col_time:
+                    column.append(AgendaBreak(col_time, ev.start_time_min - _time2min(col_time),
+                                              is_day_padding=(top_padding and len(block) == 1)))
+                column.append(ev)
+                top_padding = False
+                col_time = ev.end_time
+            if col_time < block_end:
+                column.append(AgendaBreak(col_time, _time2min(block_end) - _time2min(col_time)))
+            row.append(AgendaColumn(column))
+        processed.append(AgendaRow(last_block_end, _time2min(block_end) - _time2min(last_block_end), row))
+        last_block_end = block_end
+    return processed[0].start_time, sum(r.duration_minutes for r in processed), processed
+
+
 class AgendaBlock(StructBlock):
     # Assumes that all events begin and end on the same day (local time).
     index = PageChooserBlock(page_type=['agenda.EventIndex', 'agenda.Edition'])
 
-    @staticmethod
-    def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time
-                             ) -> Tuple[datetime.time, int, List[AgendaRow]]:
-        @dataclass(frozen=True, init=False)
-        class IntervalEvent:
-            time: datetime.time
-            event: AgendaEvent
-            is_end: bool = False
-
-            def __init__(self, time: datetime.time, event, is_end):
-                object.__setattr__(self, 'time', datetime.time(hour=time.hour, minute=time.minute, tzinfo=time.tzinfo))
-                object.__setattr__(self, 'event', event)
-                object.__setattr__(self, 'is_end', is_end)
-
-        # do a first fit on intervals to divide them into columns.
-        interval_events = [IntervalEvent(ev.start_time, ev, False) for ev in events] + [
-            IntervalEvent(ev.end_time, ev, True) for ev in events]
-        interval_events = sorted(interval_events, key=lambda x: x.time)
-        first_fit: deque[List[List[AgendaEvent]]] = deque([])
-        ev_idx = 0
-        open_intervals = 0
-        while ev_idx < len(interval_events):
-            columns: List[List[AgendaEvent]] = []
-            while True:
-                ev_interval = interval_events[ev_idx]
-                ev = ev_interval.event
-                ev_idx += 1
-                if ev_interval.is_end:
-                    open_intervals -= 1
-                else:
-                    open_intervals += 1
-                    first_fit_col_id = next(
-                        (idx for idx, col in enumerate(columns) if col[-1].end_time_min <= ev.start_time_min), -1)
-                    if first_fit_col_id >= 0:
-                        columns[first_fit_col_id].append(ev)
-                    else:
-                        columns.append([ev])
-                if open_intervals == 0:
-                    break
-            first_fit.append(columns)
-        # merge blocks with the same number of columns.
-        merged: List[List[List[AgendaEvent]]] = []
-        while len(first_fit) > 0:
-            current = first_fit.popleft()
-            while len(first_fit) > 0 and len(current) == len(first_fit[0]):
-                nxt = first_fit.popleft()
-                for i in range(len(current)):
-                    current[i] += nxt[i]
-            merged.append(current)
-        # insert AgendaBreak between events in columns and pad columns to block length.
-        processed: List[AgendaRow] = []
-        last_block_end = stream_start_time
-        for idx, block in enumerate(merged):
-            block_start = min(col[0].start_time for col in block)
-            block_end = max(col[-1].end_time for col in block)
-            row: List[AgendaColumn] = []
-            if block_start > last_block_end:
-                if len(block) != 1:
-                    # more than one column - add padding row.
-                    processed.append(AgendaRow(last_block_end, _time2min(block_start) - _time2min(last_block_end), [
-                        AgendaColumn([AgendaBreak(last_block_end, _time2min(block_start) - _time2min(last_block_end))])
-                    ]))
-                    last_block_end = block_start
-                else:
-                    # single column - apply padding to the column itself.
-                    block_start = last_block_end
-            for col in block:
-                column: List[Union[AgendaBreak, AgendaEvent]] = []
-                col_time = block_start
-                for ev in col:
-                    if ev.start_time > col_time:
-                        column.append(AgendaBreak(col_time, ev.start_time_min - _time2min(col_time)))
-                    column.append(ev)
-                    col_time = ev.end_time
-                if col_time < block_end:
-                    column.append(AgendaBreak(col_time, _time2min(block_end) - _time2min(col_time)))
-                row.append(AgendaColumn(column))
-            processed.append(AgendaRow(last_block_end, _time2min(block_end) - _time2min(last_block_end), row))
-            last_block_end = block_end
-        return processed[0].start_time, sum(r.duration_minutes for r in processed), processed
-
-    def get_context(self, value, parent_context=None):
-        context = super().get_context(value, parent_context)
+    def _get_agenda(self, context, index):
         events = list(agenda.models.Event.objects.live().public().exclude(date__isnull=True).exclude(
-            duration_minutes__isnull=True).descendant_of(value['index']).all())
+            duration_minutes__isnull=True).descendant_of(index).all())
         if len(events) == 0:
             context['days'] = []
             return context
@@ -174,7 +180,7 @@ class AgendaBlock(StructBlock):
                 duration_minutes=e.duration_minutes,
                 title=e.title,
                 speakers=', '.join([s.speaker.title for s in e.event_speakers.all()]),
-                url=e.url,
+                url=pageurl(context, e),
                 language=e.language,
                 bg_color_hex=e.index().color,
                 group_icon=e.event_category.icon if e.event_category else None,
@@ -185,10 +191,18 @@ class AgendaBlock(StructBlock):
 
         earliest_start = min(e[1][0].start_time for e in days_events)
         streams: List[Tuple[datetime.date, Tuple[datetime.time, int, List[AgendaRow]]]] = [
-            (d, self._create_event_stream(ev, earliest_start)) for d, ev in days_events]
+            (d, _create_event_stream(ev, earliest_start)) for d, ev in days_events]
         days: List[AgendaDay] = [AgendaDay(start_time, duration, stream, date)
                                  for date, (start_time, duration, stream) in streams]
-        context['agenda'] = days
+        return days
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        index = value['index']
+        index = index.edition if hasattr(index, 'edition') else index.eventindex
+        context['agenda'] = self._get_agenda(context, index)
+        context['categories'] = agenda.models.Category.objects.filter(edition=index.get_edition()).order_by(
+            'name').all()
         return context
 
     class Meta:
