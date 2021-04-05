@@ -1,42 +1,51 @@
 {% load common_tags %}
-<!-- TODO -->
 
 <div class="agenda">
     <div class="agenda__navigation">
         {% for day in agenda %}
-            <div class="agenda__navigation-day" data-index={{ forloop.counter0 }}>{{ day.date }}</div>
+            <div class="agenda__navigation-day"
+                 data-index={{ forloop.counter0 }}>{{ day.date|date:'l' }}, {{ day.date|date }}</div>
         {% endfor %}
     </div>
     <div class="agenda__container ">
         {% for day in agenda %}
             <div class="agenda__day" id="agenda__day-desktop" data-index={{ forloop.counter0 }}>
-            <div class="agenda__navigation-day-desktop" data-index={{ forloop.counter0 }}>{{ day.date }}</div>
-            {% for row in day.rows %}
-               <div class="agenda__row">
-                {% for column in row.columns %}
-                    <div class="agenda__column">
-                    {% for entry in column.entries %}
-                        {% if entry.is_break %}
-                            <div class="agenda__break" style="min-height: {{ entry.duration_minutes }}px"></div>
-                        {% else %}
-                            <div class="agenda__event" style="
-                                    height: calc({{ entry.duration_minutes }}px + 100px);
-                                    background-color: {{ entry.bg_color_hex }}">
-                                <div class="agenda__event-info">
-                                    <p>{{ entry.start_time }}</p>
-                                    {% if entry.group_icon %}
-                                        {% fa_icon entry.group_icon icon_color=entry.group_icon_color_hex %}
-                                    {%endif%}
-                                </div>
-                                <p class="agenda__event-title" id="agenda__event-title-desktop">{{ entry.title }}</p>
-                                <p class="agenda__event-speakers" >{{ entry.speakers }}</p>
+                <div class="agenda__navigation-day-desktop"
+                     data-index={{ forloop.counter0 }}>{{ day.date|date:'l' }}, {{ day.date|date }}</div>
+                {% for row in day.rows %}
+                    <div class="agenda__row">
+                        {% for column in row.columns %}
+                            <div class="agenda__column">
+                                {% for entry in column.entries %}
+                                    {% if entry.is_break %}
+                                        <div class="agenda__break"
+                                             style="height: calc({{ entry.duration_minutes }}px * 3);"></div>
+                                    {% else %}
+                                        <a href="{{ entry.url }}" class="agenda__event" style="
+                                                height: calc({{ entry.duration_minutes }}px * 3);
+                                                background-color: {{ entry.bg_color_hex }}">
+                                            <div class="agenda__event-info">
+                                                <p>{{ entry.start_time }}</p>
+                                                <p>
+                                                    {% if entry.group_icon %}
+                                                        {% fa_icon entry.group_icon icon_color=entry.group_icon_color_hex %}
+                                                    {% endif %}
+                                                    {{ entry.language|default_if_none:''|upper }}
+                                                </p>
+                                            </div>
+                                            <div class="agenda__event-details">
+                                                <p class="agenda__event-title"
+                                                   id="agenda__event-title-desktop">{{ entry.title }}</p>
+                                                <p class="agenda__event-speakers">{{ entry.speakers }}</p>
+                                            </div>
+
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        {% endfor %}
                     </div>
                 {% endfor %}
-                </div>
-            {% endfor %}
             </div>
         {% endfor %}
     </div>

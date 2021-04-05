@@ -55,27 +55,46 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
-    padding: 0 15px;
+    padding: 10px 15px;
     margin: 1px;
     text-align: center;
+    text-decoration: none;
+    color: $page_color_1;
+    transition: filter 0.2s ease-in-out;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
 
     &-info {
       padding-top: 0;
-      //margin-top: 5px;
       display: flex;
       justify-content: space-between;
       width: 100%;
       font-size: 16px;
-      p {
+
+      & .fa-icon {
+        font-size: 20px;
+        margin-right: 0.3em;
+      }
+
+      & p {
         margin: 0;
       }
     }
 
+    &-details {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     &-title {
       width: 100%;
-      margin-bottom: 0;
+      margin: 0.3em 0;
+
       // WRAP LOGIC BELOW
       //white-space: nowrap;
       //overflow: hidden;
@@ -84,41 +103,40 @@
     }
 
     &-speakers {
-      margin-bottom: 0;
-      filter: brightness(65%);
+      margin: 0.3em 0;
     }
   }
 }
 
- @include breakpoint(laptop) {
+@include breakpoint(laptop) {
 
-   .agenda {
-     max-width: 80%;
-     margin: 0 auto;
+  .agenda {
+    max-width: 80%;
+    margin: 0 auto;
 
-     &__navigation {
-       display: none;
-     }
+    &__navigation {
+      display: none;
+    }
 
-     &__navigation-day-desktop {
-       display: block;
-       text-align: center;
-       padding: 10px;
-       background-color: $page_color_5;
-       border-radius: 5px;
-       font-size: 16px;
-       margin: 7px 1px;
-     }
-   }
+    &__navigation-day-desktop {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background-color: $page_color_7;
+      border-radius: 5px;
+      font-size: 16px;
+      margin: 7px 1px;
+    }
+  }
 
-   #agenda__day-desktop {
-     display: block;
-     flex-basis: 33%;
-   }
- }
+  #agenda__day-desktop {
+    display: block;
+    flex-basis: 33%;
+  }
+}
 
- @include breakpoint(fhd) {
-    #agenda__event-title-desktop {
-     font-size: 15px;
-   }
- }
+@include breakpoint(fhd) {
+  #agenda__event-title-desktop {
+    font-size: 15px;
+  }
+}

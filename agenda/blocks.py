@@ -25,7 +25,7 @@ class AgendaEntry:
 
     @property
     def end_time_min(self):
-        return self.start_time_min
+        return self.start_time_min + self.duration_minutes
 
     @property
     def end_time(self):
@@ -42,6 +42,8 @@ class AgendaEntry:
 class AgendaEvent(AgendaEntry):
     title: str
     speakers: str
+    url: str
+    language: str
     bg_color_hex: str
     group_icon: Optional[str] = None
     group_icon_color_hex: Optional[str] = None
@@ -74,8 +76,8 @@ class AgendaBlock(StructBlock):
     index = PageChooserBlock(page_type=['agenda.EventIndex', 'agenda.Edition'])
 
     @staticmethod
-    def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time) -> \
-            Tuple[datetime.time, int, List[AgendaRow]]:
+    def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time
+                             ) -> Tuple[datetime.time, int, List[AgendaRow]]:
         @dataclass(frozen=True, init=False)
         class IntervalEvent:
             time: datetime.time
@@ -106,7 +108,7 @@ class AgendaBlock(StructBlock):
                     open_intervals += 1
                     first_fit_col_id = next(
                         (idx for idx, col in enumerate(columns) if col[-1].end_time_min <= ev.start_time_min), -1)
-                    if first_fit_col_id > 0:
+                    if first_fit_col_id >= 0:
                         columns[first_fit_col_id].append(ev)
                     else:
                         columns.append([ev])
@@ -172,6 +174,8 @@ class AgendaBlock(StructBlock):
                 duration_minutes=e.duration_minutes,
                 title=e.title,
                 speakers=', '.join([s.speaker.title for s in e.event_speakers.all()]),
+                url=e.url,
+                language=e.language,
                 bg_color_hex=e.index().color,
                 group_icon=e.event_category.icon if e.event_category else None,
                 group_icon_color_hex=e.event_category.color if e.event_category else None,
