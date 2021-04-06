@@ -22,7 +22,7 @@ from agenda.blocks import AgendaBlock, EventIndexBlock, EventScheduleBlock
 from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, \
     MapBlock
 from common.cache import InvalidateCacheMixin
-from common.models import SFIPage, AudioFile
+from common.models import SFIPage, AudioFile, ThemeSettings
 from common.utils import paginate, with_context
 
 DEFAULT_PAGINATION = 20  # the number should be even (two column view).
@@ -161,7 +161,7 @@ class EditionSubpage(SFIPage):
         edition = self.get_edition()
         if edition.default_featured_image:
             return edition.default_featured_image
-        return edition.get_featured_image(context=context)
+        return ThemeSettings.for_request(context['request']).default_featured_image
 
     def get_edition_footer(self):
         return self.get_edition().get_edition_footer()
