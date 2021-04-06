@@ -21,7 +21,7 @@
     </div>
     <div class="agenda__container">
         {% for day in agenda %}
-            <div class="agenda__day" data-index={{ forloop.counter0 }}>
+            <div class="agenda__day" data-index={{ forloop.counter0 }} data-date={{ day.date|date:'c' }}>
                 <div class="agenda__navigation-day-desktop"
                      data-index={{ forloop.counter0 }}>{{ day.date|date:'l' }}, {{ day.date|date }}</div>
                 {% for row in day.rows %}

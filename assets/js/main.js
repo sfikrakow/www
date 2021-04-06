@@ -89,8 +89,28 @@ const agendaHandler = (event) => {
 const agendaButtons = document.querySelectorAll('.agenda__navigation-day');
 const agendaDays = document.querySelectorAll('.agenda__day');
 
-// Make 1st day visible by default
-agendaButtons[0].classList.add('active');
-agendaDays[0].style.display = 'block';
-
 agendaButtons.forEach((agendaButton) => agendaButton.addEventListener('click', agendaHandler));
+
+const isToday = (date) => {
+  const today = new Date();
+  return date.getDate() === today.getDate() &&
+         date.getMonth() === today.getMonth() &&
+         date.getFullYear() === today.getFullYear();
+}
+
+let shouldDisplayDefaultDay = true;
+
+agendaDays.forEach((day, index) => {
+  const dayDate = new Date(day.dataset.date);
+  if (isToday(dayDate)) {
+    shouldDisplayDefaultDay = false;
+    day.style.display = 'block';
+    agendaButtons[index].classList.add('active');
+  }
+});
+
+if (shouldDisplayDefaultDay && agendaDays.length > 0) {
+  agendaButtons[0].classList.add('active');
+  agendaDays[0].style.display = 'block';
+}
+
