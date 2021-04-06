@@ -75,20 +75,16 @@ class AgendaDay(AgendaEntry):
 
 def _create_event_stream(events: List[AgendaEvent], stream_start_time: datetime.time
                          ) -> Tuple[datetime.time, int, List[AgendaRow]]:
-    @dataclass(frozen=True, init=False)
+    @dataclass(frozen=True)
     class IntervalEvent:
-        time: datetime.time
+        time: float
         event: AgendaEvent
         is_end: bool = False
 
-        def __init__(self, time: datetime.time, event, is_end):
-            object.__setattr__(self, 'time', datetime.time(hour=time.hour, minute=time.minute, tzinfo=time.tzinfo))
-            object.__setattr__(self, 'event', event)
-            object.__setattr__(self, 'is_end', is_end)
-
     # do a first fit on intervals to divide them into columns.
-    interval_events = [IntervalEvent(ev.start_time, ev, False) for ev in events] + [
-        IntervalEvent(ev.end_time, ev, True) for ev in events]
+    epsilon = 0.0001
+    interval_events = [IntervalEvent(ev.start_time_min + epsilon, ev, False) for ev in events] + [
+        IntervalEvent(ev.end_time_min, ev, True) for ev in events]
     interval_events = sorted(interval_events, key=lambda x: x.time)
     first_fit: deque[List[List[AgendaEvent]]] = deque([])
     ev_idx = 0
@@ -163,7 +159,8 @@ class AgendaBlock(StructBlock):
     # Assumes that all events begin and end on the same day (local time).
     index = PageChooserBlock(page_type=['agenda.EventIndex', 'agenda.Edition'])
 
-    def _get_agenda(self, context, index):
+    @staticmethod
+    def _get_agenda(context, index):
         events = list(agenda.models.Event.objects.live().public().exclude(date__isnull=True).exclude(
             duration_minutes__isnull=True).descendant_of(index).all())
         if len(events) == 0:
