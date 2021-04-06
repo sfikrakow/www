@@ -105,7 +105,9 @@
     &-title {
       width: 100%;
       margin: 0.3em 0;
-      font-size: 1rem;
+      font-size: 0.9rem;
+      word-break: break-word;
+      hyphens: auto;
     }
 
     &-speakers {
