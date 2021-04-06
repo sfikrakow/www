@@ -4,6 +4,15 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <div class="agenda container-wide">
+    {% if categories.count > 1 %}
+        <div class="agenda__legend">
+            <ul>
+                {% for category in categories %}
+                    <li>{% fa_icon category.icon icon_color=category.color %} - {{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     <div class="agenda__navigation">
         {% for day in agenda %}
             <div class="agenda__navigation-day"
@@ -43,7 +52,6 @@
                                                 >{{ entry.title }}</p>
                                                 <p class="agenda__event-speakers">{{ entry.speakers }}</p>
                                             </div>
-
                                         </a>
                                     {% endif %}
                                 {% endfor %}
@@ -54,14 +62,6 @@
             </div>
         {% endfor %}
     </div>
-    {% if categories.count > 1 %}
-        <div class="agenda__legend">
-            <ul>
-                {% for category in categories %}
-                    <li>{% fa_icon category.icon icon_color=category.color %} - {{ category.name }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+
 </div>
 
