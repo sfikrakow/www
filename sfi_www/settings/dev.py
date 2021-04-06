@@ -22,10 +22,6 @@ OIDC_OP_LOGOUT_ENDPOINT = 'https://sso.sfi.pl/auth/realms/public/protocol/openid
 OIDC_RP_CLIENT_ID = 'dev'
 OIDC_RP_CLIENT_SECRET = None
 
-MIDDLEWARE += [
-    'livereload.middleware.LiveReloadScript',
-]
-
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 try:

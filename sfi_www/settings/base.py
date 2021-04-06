@@ -60,7 +60,6 @@ THIRD_PARTY_APPS = [
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
     'wagtail_modeltranslation.migrate',
-    'livereload',
     'captcha',
     'webpack_loader'
 ]
@@ -124,6 +123,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
