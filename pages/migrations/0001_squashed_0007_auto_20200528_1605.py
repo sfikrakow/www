@@ -49,6 +49,7 @@ class Migration(migrations.Migration):
             depth=2,
             numchild=0,
             url_path='/home/',
+            locale_id=1,
         )
 
         # Create a site with the new homepage set as the root
