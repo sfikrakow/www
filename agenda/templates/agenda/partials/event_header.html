@@ -15,7 +15,9 @@
                                   class="event-header_details_value event-header_details_value--link">{{ page.get_type }}</a>
         </p>
         {% if page.event_category %}
-            <p>{% trans 'Category' %}: <span class="event-header_details_value">{{ page.event_category }}</span></p>
+            <p>{% trans 'Category' %}: <a href="{{ page.event_category.url }}"
+                                          class="event-header_details_value event-header_details_value--link">{{ page.event_category }}</a>
+            </p>
         {% endif %}
         {% if page.language %}
             <p>{% trans 'Language' %}: <span class="event-header_details_value">{{ page.get_language_display }}</span>

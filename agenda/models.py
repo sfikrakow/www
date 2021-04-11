@@ -27,7 +27,7 @@ from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDivide
     MapBlock
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage, AudioFile, ThemeSettings
-from common.utils import paginate, with_context
+from common.utils import paginate, with_context, copy_multi_lang
 
 DEFAULT_PAGINATION = 20  # the number should be even (two column view).
 
@@ -247,7 +247,7 @@ class Edition(RoutablePageMixin, EditionSubpage):
     def get_category_event_index(self, request, category_name):
         category = Category.objects.filter(edition=self, slug=category_name).first()
         if not category:
-            return Http404
+            raise Http404
         events = Event.objects.live().public().descendant_of(self).filter(
             event_category=category).order_by('date')
         posts = paginate(events, request, EventIndex.EVENTS_PER_PAGE)
@@ -277,7 +277,7 @@ class Category(InvalidateCacheMixin, models.Model):
                              ), ], verbose_name=_('color'))
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.slug = slugify(self.name)
+        copy_multi_lang(self, 'name', self, 'slug', slugify)
         super().save(force_insert, force_update, using, update_fields)
 
     panels = [

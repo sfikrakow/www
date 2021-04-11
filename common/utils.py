@@ -64,3 +64,9 @@ def oidc_op_logout(request):
         redirect_url = getattr(settings, 'LOGOUT_REDIRECT_URL', '/')
     redirect_url = request.build_absolute_uri(redirect_url)
     return '{}?redirect_uri={}'.format(oidc_op_logout_endpoint, quote(redirect_url, safe=''))
+
+
+def copy_multi_lang(from_obj, from_field_name, to_obj, to_field_name, transform=lambda x: x):
+    for lang_code, lang_name in settings.LANGUAGES:
+        lang_suffix = '_' + lang_code
+        setattr(to_obj, to_field_name + lang_suffix, transform(getattr(from_obj, from_field_name + lang_suffix)))

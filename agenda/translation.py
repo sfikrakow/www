@@ -26,7 +26,7 @@ class EditionTR(TranslationOptions):
 
 @register(Category)
 class CategoryTR(TranslationOptions):
-    fields = ('name',)
+    fields = ('name', 'slug')
 
 
 @register(EventIndex)
