@@ -7,6 +7,7 @@ from django.forms.widgets import TextInput
 from django.http import Http404
 from django.template.response import TemplateResponse
 from django.utils import timezone
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel, StreamFieldPanel
@@ -242,9 +243,9 @@ class Edition(RoutablePageMixin, EditionSubpage):
         verbose_name = _('edition')
         verbose_name_plural = _('editions')
 
-    @route(r'^c/(\w+)/$')
+    @route(r'^c/([\w\-_]+)/$')
     def get_category_event_index(self, request, category_name):
-        category = Category.objects.filter(name=category_name).first()
+        category = Category.objects.filter(slug=category_name).first()
         if not category:
             return Http404
         events = Event.objects.live().public().descendant_of(self).filter(
@@ -266,6 +267,7 @@ class Category(InvalidateCacheMixin, models.Model):
     edition = ParentalKey(Edition, on_delete=models.CASCADE,
                           related_name='event_categories', verbose_name=_('edition'))
     name = models.CharField(max_length=100, verbose_name=_('name'))
+    slug = models.CharField(max_length=100, verbose_name=_('slug'))
     icon = models.CharField(max_length=300, verbose_name=_('icon'))
     color = models.CharField(max_length=7,
                              default='#23211f',
@@ -273,6 +275,10 @@ class Category(InvalidateCacheMixin, models.Model):
                                  regex=r'^#([0-9a-fA-F]{6})$',
                                  message=_('Color must be in hex'),
                              ), ], verbose_name=_('color'))
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.slug = slugify(self.name)
+        super().save(force_insert, force_update, using, update_fields)
 
     panels = [
         FieldPanel('name'),
@@ -283,7 +289,7 @@ class Category(InvalidateCacheMixin, models.Model):
 
     @property
     def url(self):
-        return self.edition.url + self.edition.reverse_subpage('get_category_event_index', (self.name,))
+        return self.edition.url + self.edition.reverse_subpage('get_category_event_index', (self.slug,))
 
     def __str__(self):
         return self.name
