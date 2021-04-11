@@ -2,9 +2,17 @@
 
 from django.db import migrations, models
 
+from agenda.models import Category
+
+
+def sync_category_slugs(apps, schema_editor):
+    objs = Category.objects.all()
+    for obj in objs:
+        # save creates a slug value.
+        obj.save()
+
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('agenda', '0017_category_slug'),
     ]
@@ -20,4 +28,5 @@ class Migration(migrations.Migration):
             name='slug_pl',
             field=models.CharField(max_length=100, null=True, verbose_name='slug'),
         ),
+        migrations.RunPython(sync_category_slugs, lambda apps, schema_editor: None),
     ]
