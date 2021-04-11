@@ -245,7 +245,7 @@ class Edition(RoutablePageMixin, EditionSubpage):
 
     @route(r'^c/([\w\-_]+)/$')
     def get_category_event_index(self, request, category_name):
-        category = Category.objects.filter(slug=category_name).first()
+        category = Category.objects.filter(edition=self, slug=category_name).first()
         if not category:
             return Http404
         events = Event.objects.live().public().descendant_of(self).filter(
