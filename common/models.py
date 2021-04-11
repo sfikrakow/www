@@ -1,9 +1,12 @@
 import os
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django import forms
-from django.utils.translation import gettext_lazy as _
+from django.template.defaultfilters import truncatechars
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _, override
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin.edit_handlers import InlinePanel, FieldPanel, PageChooserPanel
@@ -15,6 +18,7 @@ from wagtail.snippets.models import register_snippet
 
 from common.audio_metadata import get_audio_metadata
 from common.cache import InvalidateCacheMixin
+from common.templatetags.common_tags import unrich_text
 from common.utils import with_context
 
 
@@ -51,6 +55,38 @@ class SFIPage(Page, InvalidateCacheMixin):
     @with_context
     def get_footer_image(self, context):
         return ThemeSettings.for_request(context['request']).default_footer_image
+
+    def _get_title(self):
+        if self.seo_title:
+            return self.seo_title
+        else:
+            return self.title
+
+    DEFAULT_DESCRIPTION = ''
+
+    def _get_description(self):
+        if self.search_description:
+            return self.search_description
+        elif hasattr(self, 'content') and isinstance(self.content, str) and not self.content.startswith('{'):
+            return mark_safe(truncatechars(unrich_text(self.content), 150))
+        else:
+            return self.DEFAULT_DESCRIPTION
+
+    def _get_locales(self):
+        locales = []
+        for lang in settings.LANGUAGES:
+            with override(lang[0]):
+                locales.append((*lang, self.url, self.full_url))
+        return locales
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['title'] = self._get_title()
+        context['description'] = self._get_description()
+        context['canonical_url'] = self.full_url
+        context['featured_image'] = self.get_featured_image()
+        context['locales'] = self._get_locales()
+        return context
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('featured_image'),

@@ -200,6 +200,10 @@ class AgendaBlock(StructBlock):
         context['agenda'] = self._get_agenda(context, index)
         context['categories'] = agenda.models.Category.objects.filter(edition=index.get_edition()).order_by(
             'name').all()
+        if isinstance(index, agenda.models.Edition):
+            context['indexes'] = agenda.models.EventIndex.objects.child_of(index).live().all()
+        else:
+            context['indexes'] = []
         return context
 
     class Meta:

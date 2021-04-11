@@ -137,6 +137,16 @@
       display: inline-block;
       margin: 0.2rem 1rem;
       white-space: nowrap;
+      transition: filter 0.2s ease-in-out;
+
+      & :hover {
+        filter: brightness(1.4);
+      }
+
+      & > a {
+        color: $page_color_1;
+        text-decoration: none;
+      }
     }
   }
 

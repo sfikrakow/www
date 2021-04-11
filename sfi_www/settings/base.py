@@ -54,6 +54,7 @@ WAGTAIL_APPS = [
     'taggit',
     "django.contrib.sitemaps",
     'wagtail.contrib.settings',
+    'wagtail.contrib.routable_page',
 ]
 
 THIRD_PARTY_APPS = [

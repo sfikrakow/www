@@ -3,36 +3,30 @@
 {% load footer %}
 {% load common_tags %}
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
 
 {% block head %}
-    <title>{% get_title page %} | {% trans 'SFI IT Academic Festival' %}</title>
-    <meta property="og:title" content="{% get_title page %}">
+    <title>{{ title }} | {% trans 'SFI IT Academic Festival' %}</title>
+    <meta property="og:title" content="{{ title }}">
     <meta property="og:locale" content="{% trans 'en_US' %}">
-    <meta name="description" content="{% get_description page %}">
-    <meta property="og:description" content="{% get_description page %}">
-    <link rel="canonical" href="{{ page.full_url }}">
-    <meta property="og:url" content="{{ page.full_url }}">
+    <meta name="description" content="{{ description }}">
+    <meta property="og:description" content="{{ description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:site_name" content="{% trans 'SFI IT Academic Festival' %}">
-    <meta property="og:image" content="{% get_featured_image_url page.get_featured_image %}">
+    <meta property="og:image" content="{% get_featured_image_url featured_image %}">
     <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">
         {
             "@type":"WebPage",
-            "headline":"{% get_title page %}",
-            "image":"{% get_featured_image_url page.get_featured_image %}",
-            "url":"{{ page.full_url }}",
-            "description":"{% get_description page %}",
+            "headline":"{{ title }}",
+            "image":"{% get_featured_image_url featured_image %}",
+            "url":"{{ canonical_url }}",
+            "description":"{{ description }}",
             "@context":"https://schema.org"
         }
     </script>
-    {% page_languages page as languages %}
-    {% for lang_code in languages %}
-        {% language lang_code %}
-            {% if page.slug %}
-                <link rel="alternate" hreflang="{{ lang_code }}" href="{{ page.full_url }}">
-            {% endif %}
-        {% endlanguage %}
+    {% for lang_code, lang_name, locale_url, locale_full_url in locales %}
+        <link rel="alternate" hreflang="{{ lang_code }}" href="{{ locale_full_url }}">
     {% endfor %}
 {% endblock %}
 

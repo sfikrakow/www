@@ -4,10 +4,13 @@ from collections import defaultdict
 from django.core.validators import RegexValidator
 from django.db import models
 from django.forms.widgets import TextInput
+from django.http import Http404
+from django.template.response import TemplateResponse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core import blocks
 from wagtail.core.blocks import RawHTMLBlock
 from wagtail.core.fields import RichTextField, StreamField
@@ -170,7 +173,7 @@ class EditionSubpage(SFIPage):
         abstract = True
 
 
-class Edition(EditionSubpage):
+class Edition(RoutablePageMixin, EditionSubpage):
     start_date = models.DateTimeField(
         null=True, blank=True, verbose_name=_('edition start date'))
     end_date = models.DateTimeField(
@@ -239,6 +242,25 @@ class Edition(EditionSubpage):
         verbose_name = _('edition')
         verbose_name_plural = _('editions')
 
+    @route(r'^c/(\w+)/$')
+    def get_category_event_index(self, request, category_name):
+        category = Category.objects.filter(name=category_name).first()
+        if not category:
+            return Http404
+        events = Event.objects.live().public().descendant_of(self).filter(
+            event_category=category).order_by('date')
+        posts = paginate(events, request, EventIndex.EVENTS_PER_PAGE)
+        relative_url = self.reverse_subpage('get_category_event_index', (category_name,))
+        return TemplateResponse(request, 'agenda/event_index.html', {
+            'posts': posts,
+            'title': '{} - {}'.format(category.name, self.title),
+            'description': '{} - {}'.format(category.name, self.title),
+            'canonical_url': self.full_url + relative_url,
+            'featured_image': self.get_featured_image(),
+            'locales': [(lang_code, lang_name, url + relative_url, full_url + relative_url) for
+                        lang_code, lang_name, url, full_url in self._get_locales()],
+        })
+
 
 class Category(InvalidateCacheMixin, models.Model):
     edition = ParentalKey(Edition, on_delete=models.CASCADE,
@@ -258,6 +280,10 @@ class Category(InvalidateCacheMixin, models.Model):
         FieldPanel('color', widget=TextInput(
             attrs={'type': 'color', 'style': 'height:60px'}))
     ]
+
+    @property
+    def url(self):
+        return self.edition.url + self.edition.reverse_subpage('get_category_event_index', (self.name,))
 
     def __str__(self):
         return self.name

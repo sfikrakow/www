@@ -92,14 +92,6 @@ def responsive_img_set(context, img, preset_name: str, css_class='', placeholder
 
 
 @register.simple_tag
-def get_title(page):
-    if page.seo_title:
-        return page.seo_title
-    else:
-        return page.title
-
-
-@register.simple_tag
 def get_description(page):
     if page.search_description:
         return page.search_description

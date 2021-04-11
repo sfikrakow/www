@@ -7,8 +7,13 @@
     {% if categories.count > 1 %}
         <div class="agenda__legend">
             <ul>
+                {% for index in indexes %}
+                    <li><a href="{{ index.url }}">{% fa_icon 'fas fa-square' icon_color=index.color %}
+                        - {{ index.title }}</a></li>
+                {% endfor %}
                 {% for category in categories %}
-                    <li>{% fa_icon category.icon icon_color=category.color %} - {{ category.name }}</li>
+                    <li><a href="{{ category.url }}">{% fa_icon category.icon icon_color=category.color %}
+                        - {{ category.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>

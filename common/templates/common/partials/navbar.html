@@ -20,12 +20,10 @@
             </li>
         {% endfor %}
         <li class="navbar__li" id="navbar__last">
-            {% get_available_languages as languages %}
             {% get_current_language as lang %}
-            {% for lang_code, lang_name in languages %}
-                {% if page and lang != lang_code %}
-                    {% language lang_code %}
-                        <a class="navbar__link" href="{{ page.url }}">
+            {% for lang_code, lang_name, locale_url, locale_full_url in locales %}
+                {% if lang != lang_code %}
+                        <a class="navbar__link" href="{{ locale_url }}">
                             {% with lang_icon='img/icon-'|add:lang_code|add:'.png'  lang_icon_webp='img/icon-'|add:lang_code|add:'.webp' %}
                                 <picture>
                                     <source srcset="{% static lang_icon_webp %}" type="image/webp">
@@ -34,7 +32,6 @@
                                 </picture>
                             {% endwith %}
                         </a>
-                    {% endlanguage %}
                 {% endif %}
             {% endfor %}
         </li>
