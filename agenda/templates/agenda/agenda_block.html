@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <div class="agenda container-wide">
-    {% if categories.count > 1 %}
+    {% if categories.count > 1 or indexes.count > 1 %}
         <div class="agenda__legend">
             <ul>
                 {% for index in indexes %}
