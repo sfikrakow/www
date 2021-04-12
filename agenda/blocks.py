@@ -6,6 +6,7 @@ from typing import List, Optional, Union, Tuple
 
 from django.utils import timezone
 from wagtail.core.blocks import StructBlock, PageChooserBlock, IntegerBlock
+from wagtail.core.blocks.field_block import BooleanBlock
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
 import agenda.models
@@ -213,11 +214,21 @@ class AgendaBlock(StructBlock):
 class EventIndexBlock(StructBlock):
     index = PageChooserBlock(page_type=['agenda.EventIndex', 'agenda.Edition'])
     shown_posts = IntegerBlock(min_value=1)
+    show_legend = BooleanBlock(required=False, default=False)
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context['posts'] = agenda.models.Event.objects.live().public().descendant_of(value['index']).order_by('-date')[
+        index = value['index']
+        context['posts'] = agenda.models.Event.objects.live().public().descendant_of(index).order_by('-date')[
                            :value['shown_posts']]
+        edition = index.edition if hasattr(index, 'edition') else index.eventindex.get_edition()
+
+        if value['show_legend']:
+            context['categories'] = agenda.models.Category.objects.filter(edition=edition) \
+                                    .order_by('name').all()
+            context['indexes'] = agenda.models.EventIndex.objects.child_of(edition).live().all()
+        else:
+            context['categories'] = context['indexes'] = []
         return context
 
     class Meta:

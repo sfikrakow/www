@@ -245,7 +245,9 @@ class Edition(RoutablePageMixin, EditionSubpage):
 
     @route(r'^c/([\w\-_]+)/$')
     def get_category_event_index(self, request, category_name):
-        category = Category.objects.filter(edition=self, slug=category_name).first()
+        indexes = EventIndex.objects.child_of(self).live().all()
+        categories = Category.objects.filter(edition=self).order_by('name').all()
+        category = categories.filter(slug=category_name).first()
         if not category:
             raise Http404
         events = Event.objects.live().public().descendant_of(self).filter(
@@ -254,6 +256,8 @@ class Edition(RoutablePageMixin, EditionSubpage):
         relative_url = self.reverse_subpage('get_category_event_index', (category_name,))
         return TemplateResponse(request, 'agenda/event_index.html', {
             'posts': posts,
+            'indexes': indexes,
+            'categories': categories,
             'title': '{} - {}'.format(category.name, self.title),
             'description': '{} - {}'.format(category.name, self.title),
             'canonical_url': self.full_url + relative_url,
@@ -326,6 +330,10 @@ class EventIndex(EditionSubpage):
             self).order_by('-date' if self.reversed_order else 'date')
         context['posts'] = paginate(
             events, request, EventIndex.EVENTS_PER_PAGE)
+        context['categories'] = Category.objects.filter(edition=self.get_edition()).order_by(
+            'name').all()
+        context['indexes'] = EventIndex.objects.child_of(self.get_edition()).live().all()
+
         return context
 
     def get_edition(self):

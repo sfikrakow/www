@@ -1,5 +1,11 @@
 {% extends 'common/post_index_base.html' %}
 
+{% block index_legend %}
+    {% if categories.count > 1 or indexes.count > 1 %}
+        {% include 'agenda/partials/event_index_legend.html' %}
+    {% endif %}
+{% endblock %}
+
 {% block single_post %}
     {% include 'agenda/partials/event_index_single.html' with event=post %}
 {% endblock %}

@@ -3,6 +3,11 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
+    {% block index_legend %}
+        {% if categories.count > 1 or indexes.count > 1 %}
+            {% include 'agenda/partials/event_index_legend.html' %}
+        {% endif %}
+    {% endblock %}
     <section class="post_base-list">
         <div class="post_base-list__container">
             {% for post in posts %}
