@@ -398,6 +398,10 @@
   .post_base {
     &__header {
       height: 400px;
+
+      &-title h2 {
+        font-size: 2.5rem;
+      }
     }
   }
 }
