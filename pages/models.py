@@ -12,7 +12,7 @@ from blog.blocks import PostIndexBlock
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage
 from common.blocks import HeadingBlock, SectionTitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, MapBlock, \
-    SectionSubtitleBlock
+    SectionSubtitleBlock, PhotoSlider
 
 
 class StaticPage(SFIPage):
@@ -29,6 +29,7 @@ class StaticPage(SFIPage):
         ('section_divider', SectionDividerBlock()),
         ('dropdown', DropdownBlock()),
         ('photo_gallery', PhotoGallery()),
+        ('photo_slider', PhotoSlider()),
         ('map', MapBlock()),
         ('raw_html', RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
@@ -53,6 +54,7 @@ class FooterSettings(BaseSetting, InvalidateCacheMixin):
         ('section_divider', SectionDividerBlock()),
         ('dropdown', DropdownBlock()),
         ('photo_gallery', PhotoGallery()),
+        ('photo_slider', PhotoSlider()),
         ('raw_html', RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
 

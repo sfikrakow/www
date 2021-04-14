@@ -24,7 +24,7 @@ from wagtail.snippets.models import register_snippet
 
 from agenda.blocks import AgendaBlock, EventIndexBlock, EventScheduleBlock
 from common.blocks import SectionTitleBlock, SectionSubtitleBlock, SectionDividerBlock, DropdownBlock, PhotoGallery, \
-    MapBlock
+    MapBlock, PhotoSlider
 from common.cache import InvalidateCacheMixin
 from common.models import SFIPage, AudioFile, ThemeSettings
 from common.utils import paginate, with_context, copy_multi_lang
@@ -191,6 +191,7 @@ class Edition(RoutablePageMixin, EditionSubpage):
         ('section_divider', SectionDividerBlock()),
         ('dropdown', DropdownBlock()),
         ('photo_gallery', PhotoGallery()),
+        ('photo_slider', PhotoSlider()),
         ('map', MapBlock()),
         ('raw_html', RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('content'))
@@ -211,6 +212,7 @@ class Edition(RoutablePageMixin, EditionSubpage):
         ('section_divider', SectionDividerBlock()),
         ('dropdown', DropdownBlock()),
         ('photo_gallery', PhotoGallery()),
+        ('photo_slider', PhotoSlider()),
         ('raw_html', blocks.RawHTMLBlock()),
     ], null=True, blank=True, verbose_name=_('edition footer'))
 

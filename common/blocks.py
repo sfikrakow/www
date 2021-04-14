@@ -55,6 +55,20 @@ class PhotoGalleryItem(StructBlock):
     white_background = BooleanBlock(default=False, required=False)
 
 
+def _get_gallery_context(context, value):
+    context['image_format'] = "{}-{}x{}".format(
+        'fill' if value['crop_to_fit'] else 'max',
+        value['image_width'],
+        value['image_height'])
+    photo_sizes = [(p['photo'].width, p['photo'].height) for p in value['photos']]
+    if value['crop_to_fit']:
+        context['max_height'] = int(min(value['image_height'], max((p[1] for p in photo_sizes))))
+    else:
+        context['max_height'] = int(min(value['image_height'],
+                                        max((min(h, value['image_width'] * (h / w)) for w, h in photo_sizes))))
+    return context
+
+
 class PhotoGallery(StructBlock):
     image_height = IntegerBlock(min_value=0, max_value=2000, default=64)
     image_width = IntegerBlock(min_value=0, max_value=2000, default=260)
@@ -63,20 +77,25 @@ class PhotoGallery(StructBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context['image_format'] = "{}-{}x{}".format(
-            'fill' if value['crop_to_fit'] else 'max',
-            value['image_width'],
-            value['image_height'])
-        photo_sizes = [(p['photo'].width, p['photo'].height) for p in value['photos']]
-        if value['crop_to_fit']:
-            context['max_height'] = int(min(value['image_height'], max((p[1] for p in photo_sizes))))
-        else:
-            context['max_height'] = int(min(value['image_height'],
-                                            max((min(h, value['image_width'] * (h / w)) for w, h in photo_sizes))))
-        return context
+        return _get_gallery_context(context, value)
 
     class Meta:
         template = 'common/blocks/photo_gallery_block.html'
+
+
+class PhotoSlider(StructBlock):
+    image_height = IntegerBlock(min_value=0, max_value=2000, default=64)
+    image_width = IntegerBlock(min_value=0, max_value=2000, default=260)
+    crop_to_fit = BooleanBlock(default=False, required=False)
+    random_order = BooleanBlock(default=False, required=False)
+    photos = ListBlock(PhotoGalleryItem())
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        return _get_gallery_context(context, value)
+
+    class Meta:
+        template = 'common/blocks/photo_slider_block.html'
 
 
 class MapMarker(StructBlock):
