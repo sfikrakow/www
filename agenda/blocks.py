@@ -177,7 +177,7 @@ class AgendaBlock(StructBlock):
                 start_time=timezone.localtime(e.date).time(),
                 duration_minutes=e.duration_minutes,
                 title=e.title,
-                speakers=', '.join([s.speaker.title for s in e.event_speakers.all()]),
+                speakers=', '.join(([e.sponsor.name] if e.sponsor else []) + [s.speaker.title for s in e.event_speakers.all()]),
                 url=pageurl(context, e),
                 language=e.language,
                 bg_color_hex=e.index().color,

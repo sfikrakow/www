@@ -2,15 +2,6 @@
 
 from django.db import migrations, models
 
-from agenda.models import Category
-
-
-def create_category_slugs(apps, schema_editor):
-    objs = Category.objects.all()
-    for obj in objs:
-        # save creates a slug value.
-        obj.save()
-
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -24,5 +15,4 @@ class Migration(migrations.Migration):
             field=models.CharField(default='', max_length=100, verbose_name='slug'),
             preserve_default=False,
         ),
-        migrations.RunPython(create_category_slugs, lambda apps, schema_editor: None)
     ]
