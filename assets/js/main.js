@@ -114,3 +114,66 @@ if (shouldDisplayDefaultDay && agendaDays.length > 0) {
   agendaDays[0].style.display = 'block';
 }
 
+//
+//
+// GLIDE
+//
+//
+
+let slides = [...document.querySelectorAll('.glide__slide')];
+const slidesContainer = document.querySelector('.glide__slides');
+
+while (slidesContainer.firstChild) {
+  slidesContainer.removeChild(slidesContainer.firstChild);
+}
+
+// Fisher-Yates Shuffle
+const shuffle = (arr) => {
+  let counter = arr.length;
+
+    // While there are elements in the array
+    while (counter > 0) {
+      // Pick a random index
+      let index = Math.floor(Math.random() * counter);
+
+      // Decrease counter by 1
+      counter--;
+
+      // And swap the last element with it
+      let temp = arr[counter];
+      arr[counter] = arr[index];
+      arr[index] = temp;
+    }
+
+  return arr;
+}
+
+if (slides.length) {
+  shuffle(slides).forEach((slide) => {
+    slidesContainer.appendChild(slide);
+  });
+
+  new Glide('.slider', {
+    type: 'carousel',
+    perView: 10,
+    autoplay: 1000,
+    animationDuration: 500,
+    gap: 30,
+    swipeThreshold: 0,
+    dragThreshold: 0,
+    breakpoints: {
+      1920: {
+        perView: 8
+      },
+      1440: {
+        perView: 7
+      },
+      1200: {
+        perView: 6,
+      },
+      500: {
+        perView: 3
+      },
+    }
+  }).mount();
+}
