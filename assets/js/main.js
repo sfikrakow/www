@@ -120,6 +120,8 @@ if (shouldDisplayDefaultDay && agendaDays.length > 0) {
 //
 //
 
+import Glide from '@glidejs/glide';
+
 let slides = [...document.querySelectorAll('.glide__slide')];
 const slidesContainer = document.querySelector('.glide__slides');
 
