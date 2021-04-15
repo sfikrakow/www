@@ -1,14 +1,22 @@
 {% load common_tags %}
-{% for entry in value.photos %}
-    <div>{{ random_order }}</div>
-    <a {% if entry.link %} href="{{ entry.link }}" {% endif %} rel="noopener noreferer" target="_blank"
-                           class="block-photo_gallery__container">
-        <div class='block-photo_gallery__photo-container {% if entry.white_background %}block-photo_gallery__photo-container__white{% endif %}'
-             style="height: {{ max_height }}px;">
-            {% responsive_img entry.photo image_format "block-photo_gallery__image" transparent=True %}
-        </div>
-        {% if entry.title %}
-            {{ entry.title | linebreaks }}
-        {% endif %}
-    </a>
-{% endfor %}
+<div class="slider glide">
+    <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+            {% for entry in value.photos %}
+                <li class="glide__slide">
+                    <div>
+                    <a {% if entry.link %} href="{{ entry.link }}" {% endif %} rel="noopener noreferer" target="_blank"
+                                   class="block-photo_gallery__container">
+                        <div class='block-photo_gallery__photo-container {% if entry.white_background %}block-photo_gallery__photo-container__white{% endif %}'>
+                          {% responsive_img entry.photo image_format "block-photo_gallery__image" transparent=True %}
+                        </div>
+                        {% if entry.title %}
+                            {{ entry.title | linebreaks }}
+                        {% endif %}
+                     </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
