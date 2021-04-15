@@ -158,9 +158,9 @@ if (slides.length) {
   new Glide('.slider', {
     type: 'carousel',
     perView: 10,
-    autoplay: 1000,
+    autoplay: 3000,
     animationDuration: 500,
-    gap: 30,
+    gap: 20,
     swipeThreshold: 0,
     dragThreshold: 0,
     breakpoints: {
