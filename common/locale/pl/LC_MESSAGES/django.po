@@ -133,8 +133,8 @@ msgid "en_US"
 msgstr "pl_PL"
 
 #: common/templates/common/partials/edition_header.html:10
-msgid "16th edition"
-msgstr "16 edycja"
+msgid "17th edition"
+msgstr "17 edycja"
 
 #: common/templates/common/partials/footer.html:16
 msgid "Contact us"
@@ -184,8 +184,8 @@ msgid "All rights reserved"
 msgstr "Wszelkie prawa zastrzeżone"
 
 #: common/templates/common/partials/header.html:9
-msgid "16th"
-msgstr "16."
+msgid "17th"
+msgstr "17."
 
 #: common/templates/common/post_index_base.html:23
 msgid "previous"
