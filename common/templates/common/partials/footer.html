@@ -4,13 +4,13 @@
 {% load i18n %}
 
 <footer class="footer">
-{#    <div class="footer-divider">#}
-{#        <div class="footer-divider__before-left"></div>#}
-{#        <div class="footer-divider__before-right"></div>#}
-{#        {% responsive_img_set page.get_footer_image 'PAGE_FOOTER' 'footer-divider__image' placeholder='img/footer.png' placeholder_webp='img/footer.webp' %}#}
-{#        <div class="footer-divider__after-left"></div>#}
-{#        <div class="footer-divider__after-right"></div>#}
-{#    </div>#}
+    <div class="footer-divider">
+        <div class="footer-divider__before-left"></div>
+        <div class="footer-divider__before-right"></div>
+        {% responsive_img_set page.get_footer_image 'PAGE_FOOTER' 'footer-divider__image' placeholder='img/footer.png' placeholder_webp='img/footer.webp' %}
+        <div class="footer-divider__after-left"></div>
+        <div class="footer-divider__after-right"></div>
+    </div>
     <div class="footer-contact">
         <div class="footer-contact__socials">
             <h2>{% trans 'Contact us' %}</h2>
