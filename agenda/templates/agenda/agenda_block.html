@@ -25,7 +25,7 @@
                                 {% for entry in column.entries %}
                                     {% if entry.is_break %}
                                         <div class="agenda__break {% if entry.is_day_padding %}agenda__day-padding{% endif %}"
-                                             style="height: calc({{ entry.duration_minutes }}px * 3);"></div>
+                                             style="height: calc({{ entry.duration_minutes }}px * 4);"></div>
                                     {% else %}
                                         <a href="{{ entry.url }}" class="agenda__event" style="
                                                 height: calc({{ entry.duration_minutes }}px * 4 - 20px);
