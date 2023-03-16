@@ -63,12 +63,12 @@
   }
 
   .agenda__event {
+    box-shadow: 0 0 0 1px $page_color_2 inset;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px 10px;
-    margin: 1px;
     text-align: center;
     text-decoration: none;
     color: $page_color_1;
